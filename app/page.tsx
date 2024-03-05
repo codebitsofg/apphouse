@@ -1,95 +1,84 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { AnimatePresence, AnimationDefinition } from "framer-motion";
+
+import styled from "styled-components";
+import useMousePosition from "@/utils/hooks/useMousePosition";
+import ProjectRect from "./components/ProjectRect/ProjectRect";
+import { Container } from "./styled";
+import Gallery from "./components/Gallery/Gallery";
+import ProjectDetail from "./components/ProjectDetail/ProjectDetail";
+import Navigation from "./components/Navigation/Navigation";
+import AboutMe from "./components/AboutMe/AboutMe";
+import PageTransition from "./components/PageTransition/PageTransition";
+import MouseFollower from "./components/MouseFollower/MouseFollower";
+import projectData from "@/utils/projectData";
+import useStore from "./store/useStore";
+import { useRouter } from "next/router";
+import usePreloder from "@/utils/hooks/usePreloader";
+import LoadingPage from "./components/LoadingPage/LoadingPage";
 
 export default function Home() {
+  const { isPreloaded, progress } = usePreloder();
+  const [isProjectDetailVisible, setIsProjectDetailVisible] = useState(false);
+  const [isAnimating, setisAnimating] = useState(false);
+  const [isAboutMeVisible, setIsAboutMeVisible] = useState(false);
+  const [project, setProject] = useState<(typeof projectData)[number]>(
+    projectData[0]
+  );
+
+  const { setLink } = useStore();
+
+  const onProjectClick = useCallback((i: number) => {
+    const project = projectData[i];
+    const { liveLink, repoLink, mediaPath } = project;
+
+    setIsProjectDetailVisible(true);
+    setLink(liveLink, repoLink);
+    setisAnimating(true);
+    setProject(project);
+  }, []);
+
+  const onProjectClose = useCallback(() => {
+    setisAnimating(true);
+    setIsProjectDetailVisible(false);
+  }, []);
+
+  const onAboutMeClick = useCallback(() => {
+    setIsAboutMeVisible((prev) => !prev);
+  }, []);
+
+  const onAnimationComplete = useCallback((e: AnimationDefinition) => {
+    setisAnimating(false);
+  }, []);
+
+  if (!isPreloaded) return <LoadingPage progress={progress} />;
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <Container>
+      <MouseFollower />
+      <Gallery onProjectClick={onProjectClick} />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <AnimatePresence>
+        {isProjectDetailVisible && (
+          <ProjectDetail project={project} onClose={onProjectClose} />
+        )}
+      </AnimatePresence>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+      <AnimatePresence>
+        {isAboutMeVisible && <AboutMe onAboutMeClick={onAboutMeClick} />}
+      </AnimatePresence>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+      <Navigation
+        hasNavigated={isAboutMeVisible || isProjectDetailVisible}
+        onAboutMeClick={onAboutMeClick}
+        shouldShowLinks={isProjectDetailVisible}
+      />
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      <PageTransition
+        isAnimating={isAnimating}
+        onAnimationComplete={onAnimationComplete}
+      />
+    </Container>
+  );
 }
