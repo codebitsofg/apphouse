@@ -1,8 +1,12 @@
+import { opacityConfig } from "@/utils/animationConfig";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Container = styled(motion.div)`
+export const Container = styled(motion.div).attrs({
+  exit: { opacity: 0 },
+})`
   position: fixed;
+  opacity: 0;
   top: 0;
   left: 0;
   width: 100vw;

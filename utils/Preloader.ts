@@ -1,17 +1,19 @@
 import projectData from "./projectData";
 
+type Resolve = (value: string) => void;
+
+export type PreloadedSources = { url: string; mediaPath: string }[];
+
 interface IPreloader {
-  handleRequestEnd: (urls: string[]) => void;
+  handleRequestEnd: (urls: PreloadedSources) => void;
   handleProgress: (progress: number) => void;
 }
-
-type Resolve = (value: string) => void;
 
 class Preloader {
   handleRequestEnd;
   handleProgress;
   urlsToPreload: string[];
-  preloadedSources: string[];
+  preloadedSources: PreloadedSources;
   loadedMedia = 0;
   mediaCount = 11;
   progress = 0;
@@ -20,6 +22,7 @@ class Preloader {
     this.handleRequestEnd = handleRequestEnd;
     this.handleProgress = handleProgress;
     this.urlsToPreload = projectData.map(({ mediaPath }) => mediaPath);
+    console.log(this.urlsToPreload);
     this.preloadedSources = [];
     this.preloadAll();
   }
@@ -53,9 +56,10 @@ class Preloader {
   preloadAll = async () => {
     await Promise.all(
       this.urlsToPreload.map(async (mediaPath: string) => {
-        this.preloadedSources.push(
-          await this.preload(this.addPrefix(mediaPath))
-        );
+        this.preloadedSources.push({
+          url: await this.preload(this.addPrefix(mediaPath)),
+          mediaPath: mediaPath,
+        });
       })
     );
   };

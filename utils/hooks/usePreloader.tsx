@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Preloader from "@/utils/Preloader";
+import Preloader, { PreloadedSources } from "@/utils/Preloader";
 import useStore from "@/app/store/useStore";
 
 const usePreloder = () => {
@@ -9,7 +9,7 @@ const usePreloder = () => {
   const [progress, setProgress] = useState(0);
   const preloader = useRef<Preloader | null>(null);
 
-  const handleRequestEnd = (urls: string[]) => {
+  const handleRequestEnd = (urls: PreloadedSources) => {
     setPreloadedSources(urls);
     setisPreloaded(true);
   };

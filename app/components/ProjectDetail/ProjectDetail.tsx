@@ -14,10 +14,9 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
   const { projectName, codeBreakDown, mainTakeAway, mediaPath } = project;
   const { onHoverStartStore, onHoverEndStore, preloadedSources } = useStore();
 
-  const currentProjectIndex = projectData.findIndex(
+  const gifUrl = preloadedSources.find(
     ({ mediaPath: path }) => path === mediaPath
-  );
-  const gifSource = preloadedSources[currentProjectIndex];
+  )?.url;
 
   return (
     <S.Container>
@@ -44,7 +43,7 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
       </S.Panel>
 
       <S.RightPanel>
-        <SlideShow gifSource={gifSource} />
+        <SlideShow gifSource={gifUrl!} />
       </S.RightPanel>
 
       <S.TitleContainer>

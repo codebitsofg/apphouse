@@ -4,7 +4,10 @@ import useStore from "@/app/store/useStore";
 
 const MouseFollower = () => {
   const { isHovered } = useStore();
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState<{
+    x: undefined | number;
+    y: undefined | number;
+  }>({ x: undefined, y: undefined });
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
@@ -24,7 +27,13 @@ const MouseFollower = () => {
   }, []);
 
   return (
-    <Container style={{ left: mousePosition.x, top: mousePosition.y }}>
+    <Container
+      style={{
+        left: mousePosition.x ?? 0,
+        top: mousePosition.y ?? 0,
+        opacity: mousePosition.x ? 1 : 0,
+      }}
+    >
       <Circle isHovered={isHovered} />
     </Container>
   );

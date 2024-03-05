@@ -52,33 +52,39 @@ export default function Home() {
     setisAnimating(false);
   }, []);
 
-  if (!isPreloaded) return <LoadingPage progress={progress} />;
-
   return (
-    <Container>
-      <MouseFollower />
-      <Gallery onProjectClick={onProjectClick} />
-
+    <>
       <AnimatePresence>
-        {isProjectDetailVisible && (
-          <ProjectDetail project={project} onClose={onProjectClose} />
-        )}
+        {!isPreloaded && <LoadingPage progress={progress} />}
       </AnimatePresence>
 
-      <AnimatePresence>
-        {isAboutMeVisible && <AboutMe onAboutMeClick={onAboutMeClick} />}
-      </AnimatePresence>
+      {isPreloaded && (
+        <Container>
+          <MouseFollower />
+          <Gallery onProjectClick={onProjectClick} />
 
-      <Navigation
-        hasNavigated={isAboutMeVisible || isProjectDetailVisible}
-        onAboutMeClick={onAboutMeClick}
-        shouldShowLinks={isProjectDetailVisible}
-      />
+          <AnimatePresence>
+            {isProjectDetailVisible && (
+              <ProjectDetail project={project} onClose={onProjectClose} />
+            )}
+          </AnimatePresence>
 
-      <PageTransition
-        isAnimating={isAnimating}
-        onAnimationComplete={onAnimationComplete}
-      />
-    </Container>
+          <AnimatePresence>
+            {isAboutMeVisible && <AboutMe onAboutMeClick={onAboutMeClick} />}
+          </AnimatePresence>
+
+          <Navigation
+            hasNavigated={isAboutMeVisible || isProjectDetailVisible}
+            onAboutMeClick={onAboutMeClick}
+            shouldShowLinks={isProjectDetailVisible}
+          />
+
+          <PageTransition
+            isAnimating={isAnimating}
+            onAnimationComplete={onAnimationComplete}
+          />
+        </Container>
+      )}
+    </>
   );
 }

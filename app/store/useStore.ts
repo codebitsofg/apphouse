@@ -1,13 +1,14 @@
+import { PreloadedSources } from "@/utils/Preloader";
 import { create } from "zustand";
 
 interface Store {
   isHovered: boolean;
   links: { live: string; repo: string };
-  preloadedSources: string[];
+  preloadedSources: PreloadedSources;
   onHoverStartStore: () => void;
   onHoverEndStore: () => void;
   setLink: (live: string, repo: string) => void;
-  setPreloadedSources: (preloadedSources: string[]) => void;
+  setPreloadedSources: (preloadedSources: PreloadedSources) => void;
 }
 
 const useStore = create<Store>((set) => ({

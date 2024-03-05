@@ -27,7 +27,6 @@ export const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #000000a6;
   z-index: 1;
   pointer-events: none;
 `;
