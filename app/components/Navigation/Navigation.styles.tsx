@@ -42,6 +42,7 @@ export const TabItemContainer = styled(motion.div)<TabItemContainerProps>`
   height: 8vw;
   transition: all ease-in 500ms;
   transition-delay: 2;
+  position: relative;
 
   svg {
     transition: all ease-in 500ms;
@@ -77,4 +78,15 @@ export const LinkContainer = styled(motion.div).attrs({
   ${mediaLarge(css`
     gap: 0.5vw;
   `)}
+`;
+
+export const TabName = styled.span`
+  position: absolute;
+  top: 105%;
+  text-align: center;
+  left: 50%;
+  display: inline-block;
+  font-size: 0.6rem;
+  transform: translateX(-50%);
+  text-transform: uppercase;
 `;

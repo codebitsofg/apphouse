@@ -33,12 +33,14 @@ const Navigation = ({
             <S.Link href={links.repo}>
               <S.TabItemContainer {...props}>
                 <GitIcon />
+                <S.TabName>Code</S.TabName>
               </S.TabItemContainer>
             </S.Link>
 
             <S.Link href={links.live}>
               <S.TabItemContainer {...props}>
                 <GlobeIcon />
+                <S.TabName>Live</S.TabName>
               </S.TabItemContainer>
             </S.Link>
           </S.LinkContainer>
@@ -47,6 +49,7 @@ const Navigation = ({
 
       <S.TabItemContainer {...props} onClick={onAboutMeClick}>
         <AboutMeIcon isDark={hasNavigated} />
+        <S.TabName>Me</S.TabName>
       </S.TabItemContainer>
     </S.Container>
   );
