@@ -1,9 +1,13 @@
+import { opacityConfig } from "@/utils/animationConfig";
 import { mediaLarge } from "@/utils/media";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import css from "styled-jsx/css";
 
-export const Container = styled.div`
+export const Container = styled(motion.div).attrs({
+  ...opacityConfig,
+  transition: { delay: 1.5, duration: 0.5 },
+})`
   position: fixed;
   bottom: 0;
   right: 0;

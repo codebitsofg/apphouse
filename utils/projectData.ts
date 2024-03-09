@@ -138,6 +138,7 @@ export default [
       "Another part was also a good practice to see how <span>client and server</span> communicates in a production environment.",
       "App is fully automated with <span>Github Actions Pipeline</span>. Automating the app was my first DevOps exploration.",
       "A custom domain is configured both for the backend and the frontend to persist cookie.",
+      "The app is only available on Desktop.",
     ],
     codeBreakDown: [
       {

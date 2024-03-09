@@ -33,7 +33,10 @@ export const Overlay = styled(motion.div)`
 
 export const BoxContainer = styled(motion.div)``;
 
-export const CollectionNameContainer = styled.div`
+export const CollectionNameContainer = styled(motion.div).attrs({
+  ...opacityConfig,
+  transition: { delay: 1, duration: 0.5 },
+})`
   position: fixed;
   top: 50%;
   left: 50%;
