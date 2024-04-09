@@ -20,6 +20,7 @@ const MouseFollower = () => {
     };
 
     window.addEventListener("mousemove", updateMousePosition);
+    document.documentElement.style.cursor = "none";
 
     return () => {
       window.removeEventListener("mousemove", updateMousePosition);
