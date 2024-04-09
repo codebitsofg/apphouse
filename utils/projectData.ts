@@ -128,7 +128,7 @@ export default [
   {
     rectPosition: { top: "100%", left: "-50%" },
     projectName: "Task Manager",
-    liveLink: "https://app.taskermanager.online/",
+    liveLink: "https://app.taskermanager.site/",
     repoLink: "https://github.com/soberbat/task-manager",
     mediaPath: "tasker",
     shortDesc: "  Threejs & Nextjs application aimed at modularity",
