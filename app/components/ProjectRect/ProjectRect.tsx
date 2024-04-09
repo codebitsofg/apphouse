@@ -12,7 +12,11 @@ interface ProjectRectProps {
 }
 
 const ProjectRect = (props: ProjectRectProps) => {
-  return <S.Container {...props}> Work {props.children}</S.Container>;
+  return (
+    <S.Container {...props}>
+      <S.Text>Work {props.children}</S.Text>
+    </S.Container>
+  );
 };
 
 export default ProjectRect;

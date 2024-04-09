@@ -36,3 +36,7 @@ export const Container = styled(motion.div).attrs({
     `)}
   `
 );
+
+export const Text = styled.span`
+  pointer-events: none;
+`;
