@@ -14,7 +14,7 @@ import {
 
 export const MouseSpringConf = {
   damping: 15,
-  stiffness: 20,
+  stiffness: 40,
 };
 
 const initialTransform = {
