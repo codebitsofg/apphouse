@@ -27,6 +27,10 @@ export const Progress = styled.span`
   font-size: 8rem;
 `;
 
+export const LoadingTitle = styled.h4`
+  font-weight: 400;
+`;
+
 export const Dot = styled(motion.span).attrs({
   initial: { opacity: 0 },
   animate: { opacity: 1 },

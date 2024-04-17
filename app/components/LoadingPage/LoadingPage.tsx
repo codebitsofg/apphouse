@@ -1,5 +1,11 @@
 import React from "react";
-import { Container, Dot, PreloaderText, Progress } from "./LoadingPage.styles";
+import {
+  Container,
+  Dot,
+  LoadingTitle,
+  PreloaderText,
+  Progress,
+} from "./LoadingPage.styles";
 
 interface LoadingPageProps {
   progress: number;
@@ -13,6 +19,7 @@ const LoadingPage = ({ progress }: LoadingPageProps) => {
         {progress}
         <Dot />
       </Progress>
+      <LoadingTitle>Welcome Onboard! Loading...</LoadingTitle>
     </Container>
   );
 };
