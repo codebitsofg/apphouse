@@ -38,7 +38,7 @@ const LoadingPage = ({ progress, onModeClick }: LoadingPageProps) => {
           <Progress>{progress}</Progress>
           <LoadingBarContainer>
             <LoadingBar>
-              <ProgressBar style={{ width: `${50}%` }} />
+              <ProgressBar style={{ width: `${progress}%` }} />
             </LoadingBar>
           </LoadingBarContainer>
         </>
