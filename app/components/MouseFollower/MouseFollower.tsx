@@ -20,7 +20,6 @@ const MouseFollower = () => {
     };
 
     window.addEventListener("mousemove", updateMousePosition);
-    document.documentElement.style.cursor = "none";
 
     return () => {
       window.removeEventListener("mousemove", updateMousePosition);
@@ -30,8 +29,8 @@ const MouseFollower = () => {
   return (
     <Container
       style={{
-        left: mousePosition.x ?? 0,
-        top: mousePosition.y ?? 0,
+        left: mousePosition.x! - 10 ?? 0,
+        top: mousePosition.y! - 10 ?? 0,
         opacity: mousePosition.x ? 1 : 0,
       }}
     >

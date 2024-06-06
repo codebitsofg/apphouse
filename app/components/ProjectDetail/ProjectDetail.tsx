@@ -1,5 +1,5 @@
 import * as S from "./ProjectDetail.styles";
-import { Project } from "@/utils/app.types";
+import { Project } from "@/utils/types/app.types";
 import CodeBlock from "../CodeBlock/CodeBlock";
 import SlideShow from "../SlideShow/SlideShow";
 import useStore from "@/app/store/useStore";
@@ -22,7 +22,7 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
     <S.Container>
       <S.Panel>
         <S.SectionContainer>
-          <S.DescriptionTitle>The Project</S.DescriptionTitle>
+          <S.DescriptionTitle>{projectName}</S.DescriptionTitle>
           {mainTakeAway.map((description, i) => (
             <S.DescriptionText
               key={i}
@@ -32,7 +32,7 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
         </S.SectionContainer>
 
         <S.SectionContainer>
-          <S.DescriptionTitle>Code Breakdown</S.DescriptionTitle>
+          <S.SecondaryTitle>Code Breakdown</S.SecondaryTitle>
           {codeBreakDown.map(({ text, codeSnippet }) => (
             <S.SectionContainer key={text}>
               <CodeBlock code={codeSnippet} />
@@ -47,7 +47,6 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
       </S.RightPanel>
 
       <S.TitleContainer>
-        <S.ProjectTitle>{projectName}</S.ProjectTitle>
         <S.GoBack
           onClick={onClose}
           onHoverStart={onHoverStartStore}

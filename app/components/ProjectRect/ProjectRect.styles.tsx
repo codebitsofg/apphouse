@@ -29,6 +29,7 @@ export const Container = styled(motion.div).attrs({
     display: flex;
     flex-direction: column;
     transform-origin: center;
+    cursor: pointer;
 
     ${mediaLarge(css`
       width: 12vw;

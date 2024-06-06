@@ -9,16 +9,25 @@ export const Container = styled(motion.div).attrs({
   transition: { delay: 1.5, duration: 0.5 },
 })`
   position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 9;
-  z-index: 4;
-  padding: 2vw;
+  bottom: 1.5%;
+  background-color: #fdfffcd0;
+  border: 1px solid #04080f20;
+  padding: 0.5% 1%;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #04080f20;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transform: translate(-50%, 0%);
+  left: 50%;
+  z-index: 10;
+  height: auto;
+  width: 30%;
   display: flex;
-  gap: 3vw;
+  align-items: center;
+  justify-content: center;
 
   ${mediaLarge(css`
-    gap: 0.5vw;
+    gap: 1vw;
   `)}
 `;
 
@@ -36,16 +45,16 @@ interface TabItemContainerProps {
 }
 
 export const TabItemContainer = styled(motion.div)<TabItemContainerProps>`
-  background-color: ${({ isDark }) => (isDark ? "gainsboro" : "#f7f9f5")};
+  /* background-color: ${({ isDark }) => (isDark ? "#04080f" : "#f7f9f5")}; */
   padding: 0.9vw;
   border-radius: 100%;
   width: 8vw;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 8vw;
-  transition: all ease-in 500ms;
-  transition-delay: 2;
+
   position: relative;
 
   svg {
@@ -56,8 +65,8 @@ export const TabItemContainer = styled(motion.div)<TabItemContainerProps>`
   }
 
   ${mediaLarge(css`
-    width: 2.7vw;
-    height: 2.7vw;
+    width: 3vw;
+    height: 3vw;
 
     svg {
       width: 100%;
@@ -68,19 +77,21 @@ export const TabItemContainer = styled(motion.div)<TabItemContainerProps>`
 
 export const Link = styled.a.attrs({
   target: "_blank",
-})``;
+})`
+  display: flex;
+`;
 
 export const LinkContainer = styled(motion.div).attrs({
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   exit: { opacity: 0 },
-  transition: { duration: 0.5, delay: 0.5 },
+  transition: { duration: 0.5 },
 })`
   display: flex;
   gap: 3vw;
 
   ${mediaLarge(css`
-    gap: 0.5vw;
+    gap: 1vw;
   `)}
 `;
 

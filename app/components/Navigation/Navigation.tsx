@@ -4,7 +4,9 @@ import AboutMeIcon from "../Icons/AboutMeIcon";
 import useStore from "@/app/store/useStore";
 import GitIcon from "../Icons/GitIcon";
 import GlobeIcon from "../Icons/GlobeIcon";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, LayoutGroup } from "framer-motion";
+import LinkedinLogo from "../Icons/LinkedinLogo";
+import ChangeModeIcon from "../Icons/ChangeModeIcon";
 
 interface NavigationProps {
   onAboutMeClick: () => void;
@@ -26,30 +28,53 @@ const Navigation = ({
   };
 
   return (
-    <S.Container>
-      <AnimatePresence>
+    <S.Container layout>
+      <AnimatePresence key={"lkeyyy"} mode="popLayout">
         {shouldShowLinks && (
-          <S.LinkContainer>
+          <S.LinkContainer layout key={"thekey"}>
             <S.Link href={links.repo}>
               <S.TabItemContainer {...props}>
                 <GitIcon />
-                <S.TabName>Code</S.TabName>
               </S.TabItemContainer>
             </S.Link>
 
             <S.Link href={links.live}>
               <S.TabItemContainer {...props}>
                 <GlobeIcon />
-                <S.TabName>Live</S.TabName>
               </S.TabItemContainer>
             </S.Link>
           </S.LinkContainer>
         )}
       </AnimatePresence>
 
-      <S.TabItemContainer {...props} onClick={onAboutMeClick}>
+      <S.TabItemContainer
+        key={"mykey"}
+        {...props}
+        layout
+        onClick={onAboutMeClick}
+      >
         <AboutMeIcon isDark={hasNavigated} />
-        <S.TabName>Me</S.TabName>
+      </S.TabItemContainer>
+      <S.TabItemContainer
+        key={"mykey"}
+        {...props}
+        layout
+        onClick={onAboutMeClick}
+      >
+        <S.Link href={links.repo}>
+          <LinkedinLogo />
+        </S.Link>
+      </S.TabItemContainer>
+
+      <S.TabItemContainer
+        key={"mykey"}
+        {...props}
+        layout
+        onClick={onAboutMeClick}
+      >
+        <S.Link href={links.repo}>
+          <ChangeModeIcon />
+        </S.Link>
       </S.TabItemContainer>
     </S.Container>
   );

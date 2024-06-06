@@ -50,8 +50,8 @@ export const SectionContainer = styled.section`
 export const DescriptionTitle = styled.h1`
   font-weight: 400;
   margin-bottom: 1vh;
-  color: #ed1c24;
-  font-size: 2rem;
+  color: #001a23;
+  font-size: 3.4rem;
   border-bottom: 1px dotted gainsboro;
   width: max-content;
   padding-bottom: 0.5vh;
@@ -64,7 +64,7 @@ export const DescriptionText = styled.p`
   font-weight: 400;
 
   span {
-    color: #090c9b;
+    color: #001a23;
     font-weight: 400;
   }
 `;
@@ -104,18 +104,18 @@ export const TitleContainer = styled.div`
   `)}
 `;
 
-export const ProjectTitle = styled.h1`
+export const SecondaryTitle = styled.h1`
   font-size: 1rem;
   font-weight: 300;
   margin: 0;
   padding: 0;
   display: inline-block;
-  color: #090c9b;
+  color: #001a23;
   font-weight: 300;
   margin-right: 1vw;
 
   ${mediaLarge(css`
-    font-size: 1rem;
+    font-size: 2rem;
     margin-right: unset;
   `)}
 `;
@@ -144,6 +144,7 @@ export const MediaTitle = styled.span`
 
 export const GoBack = styled(motion.div)`
   width: 4.5vw;
+  cursor: pointer;
   height: 4.5vw;
   background-image: url("/back.svg");
   transform: scale(-1);

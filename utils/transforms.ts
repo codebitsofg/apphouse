@@ -4,7 +4,7 @@ import {
   SetStartPos,
   SetTransform,
   StartPos,
-} from "./app.types";
+} from "./types/app.types";
 
 export const handleTouchMove = (
   event: TouchEvent,

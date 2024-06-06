@@ -11,8 +11,8 @@ export const Container = styled(motion.div).attrs({
   left: 0;
   width: 100vw;
   height: 100dvh;
-  background-color: #0f0e0e;
-  z-index: 5;
+  background-color: #04080f;
+  z-index: 2;
   pointer-events: none;
   display: flex;
   align-items: center;

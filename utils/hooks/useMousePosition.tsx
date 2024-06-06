@@ -10,7 +10,7 @@ import {
   SetStartPos,
   SetTransform,
   StartPos,
-} from "../app.types";
+} from "../types/app.types";
 
 export const MouseSpringConf = {
   damping: 15,

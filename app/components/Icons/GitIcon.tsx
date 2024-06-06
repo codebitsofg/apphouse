@@ -6,7 +6,7 @@ const GitIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
-      fill="#f7f9f5"
+      fill="#001a23"
       className="bi bi-git"
       viewBox="0 0 16 16"
     >

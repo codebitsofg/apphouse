@@ -17,9 +17,13 @@ import useStore from "./store/useStore";
 import { useRouter } from "next/router";
 import usePreloder from "@/utils/hooks/usePreloader";
 import LoadingPage from "./components/LoadingPage/LoadingPage";
+import { Mode } from "@/utils/types/app.types";
+import ClassicView from "./components/ClassicView/ClassicView";
+import Badge from "./components/Badge/Badge";
 
 export default function Home() {
   const { isPreloaded, progress } = usePreloder();
+  const [mode, setMode] = useState<Mode | undefined>(undefined);
   const [isProjectDetailVisible, setIsProjectDetailVisible] = useState(false);
   const [isAnimating, setisAnimating] = useState(false);
   const [isAboutMeVisible, setIsAboutMeVisible] = useState(false);
@@ -48,6 +52,10 @@ export default function Home() {
     setIsAboutMeVisible((prev) => !prev);
   }, []);
 
+  const onModeOptionClick = useCallback((mode: Mode) => {
+    setMode(mode);
+  }, []);
+
   const onAnimationComplete = useCallback((e: AnimationDefinition) => {
     setisAnimating(false);
   }, []);
@@ -55,13 +63,27 @@ export default function Home() {
   return (
     <>
       <AnimatePresence>
-        {!isPreloaded && <LoadingPage progress={progress} />}
+        {!mode && (
+          <LoadingPage onModeClick={onModeOptionClick} progress={progress} />
+        )}
       </AnimatePresence>
 
-      {isPreloaded && (
+      <Navigation
+        hasNavigated={isAboutMeVisible || isProjectDetailVisible}
+        onAboutMeClick={onAboutMeClick}
+        shouldShowLinks={isProjectDetailVisible}
+      />
+
+      <Badge />
+
+      {isPreloaded && mode && (
         <Container>
           <MouseFollower />
-          <Gallery onProjectClick={onProjectClick} />
+          {mode === Mode.GALLERY ? (
+            <Gallery onProjectClick={onProjectClick} />
+          ) : (
+            <ClassicView />
+          )}
 
           <AnimatePresence>
             {isProjectDetailVisible && (
@@ -72,12 +94,6 @@ export default function Home() {
           <AnimatePresence>
             {isAboutMeVisible && <AboutMe onAboutMeClick={onAboutMeClick} />}
           </AnimatePresence>
-
-          <Navigation
-            hasNavigated={isAboutMeVisible || isProjectDetailVisible}
-            onAboutMeClick={onAboutMeClick}
-            shouldShowLinks={isProjectDetailVisible}
-          />
 
           <PageTransition
             isAnimating={isAnimating}

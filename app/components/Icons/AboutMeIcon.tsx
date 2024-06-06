@@ -9,7 +9,7 @@ const AboutMeIcon = ({ isDark }: AboutMeIconProps) => {
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
-      fill={isDark ? "#f7f9f5" : "#0f0e0e"}
+      fill={isDark ? "#001a23" : "#001a23"}
       className="bi bi-person-rolodex"
       viewBox="0 0 16 16"
     >

@@ -9,6 +9,7 @@ export const Container = styled(motion.div)`
   background-color: #fdfffc;
   position: relative;
   overflow: hidden;
+  z-index: 0;
 `;
 
 export const InnerWrapper = styled(motion.div)`
@@ -55,7 +56,7 @@ export const CollectionName = styled(motion.h1).attrs({
   animate: { opacity: 1, y: 0 },
 })`
   font-weight: 900;
-  color: #ed1c24;
+  color: #102541;
   font-size: 5rem;
   text-align: center;
   line-height: 100rem;
@@ -67,8 +68,8 @@ export const ProjectInfoContainer = styled(motion.div).attrs({
 })`
   position: absolute;
   left: 0;
-  bottom: 0;
-  color: #090c9b;
+  bottom: 8%;
+  color: #04080f;
   padding: 2vw;
   z-index: 2;
 `;
