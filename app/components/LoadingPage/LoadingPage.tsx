@@ -6,9 +6,11 @@ import {
   LoadingBarContainer,
   ModeOption,
   OptionContainer,
+  Overlay,
   PreloaderText,
   Progress,
   ProgressBar,
+  SecondOverlay,
   SelectModeText,
 } from "./LoadingPage.styles";
 import { Mode } from "@/utils/types/app.types";
@@ -28,7 +30,7 @@ const LoadingPage = ({ progress, onModeClick }: LoadingPageProps) => {
     setIsModeSelected(true);
     setTimeout(() => {
       onModeClick(option);
-    }, 1000);
+    }, 2000);
   };
   return (
     <Container>
@@ -69,6 +71,9 @@ const LoadingPage = ({ progress, onModeClick }: LoadingPageProps) => {
           </AnimatePresence>
         </>
       )}
+
+      <Overlay />
+      <SecondOverlay />
     </Container>
   );
 };

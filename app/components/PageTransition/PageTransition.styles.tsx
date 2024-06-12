@@ -12,7 +12,7 @@ export const Container = styled(motion.div).attrs({
   width: 100vw;
   height: 100dvh;
   background-color: #04080f;
-  z-index: 2;
+  z-index: 99;
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -20,4 +20,8 @@ export const Container = styled(motion.div).attrs({
   font-weight: 300;
   color: #f2f2f2;
   font-size: 5rem;
+
+  svg {
+    width: 10%;
+  }
 `;

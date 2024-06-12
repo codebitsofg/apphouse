@@ -1,11 +1,7 @@
 "use client";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { AnimatePresence, AnimationDefinition } from "framer-motion";
-
-import styled from "styled-components";
-import useMousePosition from "@/utils/hooks/useMousePosition";
-import ProjectRect from "./components/ProjectRect/ProjectRect";
-import { Container } from "./styled";
+import { Container, LogoContainer } from "./styled";
 import Gallery from "./components/Gallery/Gallery";
 import ProjectDetail from "./components/ProjectDetail/ProjectDetail";
 import Navigation from "./components/Navigation/Navigation";
@@ -19,7 +15,8 @@ import usePreloder from "@/utils/hooks/usePreloader";
 import LoadingPage from "./components/LoadingPage/LoadingPage";
 import { Mode } from "@/utils/types/app.types";
 import ClassicView from "./components/ClassicView/ClassicView";
-import Badge from "./components/Badge/Badge";
+import BeratGencLogo from "./components/Icons/BeratGencLogo";
+import Analytics from "./components/Analytics";
 
 export default function Home() {
   const { isPreloaded, progress } = usePreloder();
@@ -52,9 +49,17 @@ export default function Home() {
     setIsAboutMeVisible((prev) => !prev);
   }, []);
 
-  const onModeOptionClick = useCallback((mode: Mode) => {
-    setMode(mode);
-  }, []);
+  const onModeOptionClick = useCallback(
+    (newMode?: Mode) => {
+      let newModeDetermined: Mode = 1;
+      if (mode == Mode.GALLERY) newModeDetermined = Mode.CLASSIC;
+      if (mode == Mode.CLASSIC) newModeDetermined = Mode.GALLERY;
+      setMode(newMode ?? newModeDetermined);
+      !newMode && setisAnimating(true);
+      setIsProjectDetailVisible(false);
+    },
+    [mode]
+  );
 
   const onAnimationComplete = useCallback((e: AnimationDefinition) => {
     setisAnimating(false);
@@ -62,28 +67,40 @@ export default function Home() {
 
   return (
     <>
+      <Analytics />
+
       <AnimatePresence>
         {!mode && (
           <LoadingPage onModeClick={onModeOptionClick} progress={progress} />
         )}
       </AnimatePresence>
 
-      <Navigation
-        hasNavigated={isAboutMeVisible || isProjectDetailVisible}
-        onAboutMeClick={onAboutMeClick}
-        shouldShowLinks={isProjectDetailVisible}
-      />
+      <MouseFollower />
 
-      <Badge />
+      {mode && (
+        <Navigation
+          hasNavigated={isAboutMeVisible || isProjectDetailVisible}
+          onAboutMeClick={onAboutMeClick}
+          shouldShowLinks={isProjectDetailVisible}
+          onModeSwitch={onModeOptionClick}
+        />
+      )}
+
+      {mode && (
+        <LogoContainer>
+          <BeratGencLogo />
+        </LogoContainer>
+      )}
 
       {isPreloaded && mode && (
         <Container>
-          <MouseFollower />
-          {mode === Mode.GALLERY ? (
-            <Gallery onProjectClick={onProjectClick} />
-          ) : (
-            <ClassicView />
-          )}
+          <AnimatePresence mode="wait">
+            {mode === Mode.GALLERY ? (
+              <Gallery key={"23323"} onProjectClick={onProjectClick} />
+            ) : (
+              <ClassicView key={"sd"} />
+            )}
+          </AnimatePresence>
 
           <AnimatePresence>
             {isProjectDetailVisible && (

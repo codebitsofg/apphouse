@@ -7,17 +7,20 @@ import GlobeIcon from "../Icons/GlobeIcon";
 import { AnimatePresence, LayoutGroup } from "framer-motion";
 import LinkedinLogo from "../Icons/LinkedinLogo";
 import ChangeModeIcon from "../Icons/ChangeModeIcon";
+import { Mode } from "@/utils/types/app.types";
 
 interface NavigationProps {
   onAboutMeClick: () => void;
   hasNavigated: boolean;
   shouldShowLinks: boolean;
+  onModeSwitch: (mode?: Mode) => void;
 }
 
 const Navigation = ({
   onAboutMeClick,
   hasNavigated,
   shouldShowLinks,
+  onModeSwitch,
 }: NavigationProps) => {
   const { onHoverStartStore, onHoverEndStore, links } = useStore();
 
@@ -31,7 +34,7 @@ const Navigation = ({
     <S.Container layout>
       <AnimatePresence key={"lkeyyy"} mode="popLayout">
         {shouldShowLinks && (
-          <S.LinkContainer layout key={"thekey"}>
+          <S.LinkContainer layout key={"theddkey"}>
             <S.Link href={links.repo}>
               <S.TabItemContainer {...props}>
                 <GitIcon />
@@ -46,9 +49,8 @@ const Navigation = ({
           </S.LinkContainer>
         )}
       </AnimatePresence>
-
       <S.TabItemContainer
-        key={"mykey"}
+        key={"thekfgffey"}
         {...props}
         layout
         onClick={onAboutMeClick}
@@ -56,24 +58,23 @@ const Navigation = ({
         <AboutMeIcon isDark={hasNavigated} />
       </S.TabItemContainer>
       <S.TabItemContainer
-        key={"mykey"}
+        {...props}
+        key={"kssey"}
+        layout
+        onClick={() => onModeSwitch()}
+      >
+        <S.TabText>
+          <ChangeModeIcon /> Mode
+        </S.TabText>
+      </S.TabItemContainer>
+      <S.TabItemContainer
+        key={"mykedddy"}
         {...props}
         layout
         onClick={onAboutMeClick}
       >
         <S.Link href={links.repo}>
           <LinkedinLogo />
-        </S.Link>
-      </S.TabItemContainer>
-
-      <S.TabItemContainer
-        key={"mykey"}
-        {...props}
-        layout
-        onClick={onAboutMeClick}
-      >
-        <S.Link href={links.repo}>
-          <ChangeModeIcon />
         </S.Link>
       </S.TabItemContainer>
     </S.Container>

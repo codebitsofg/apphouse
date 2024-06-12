@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import * as S from "./PageTransition.styles";
 import { AnimationDefinition, useAnimationControls } from "framer-motion";
+import BeratGencLogo from "../Icons/BeratGencLogo";
 
 interface PTProps {
   onAnimationComplete: (e: AnimationDefinition) => void;
@@ -18,7 +19,9 @@ const PageTransition = ({ onAnimationComplete, isAnimating }: PTProps) => {
   }, [isAnimating]);
 
   return (
-    <S.Container animate={controls} onAnimationComplete={onAnimationComplete} />
+    <S.Container animate={controls} onAnimationComplete={onAnimationComplete}>
+      <BeratGencLogo />
+    </S.Container>
   );
 };
 

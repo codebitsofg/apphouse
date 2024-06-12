@@ -29,8 +29,8 @@ const MouseFollower = () => {
   return (
     <Container
       style={{
-        left: mousePosition.x! - 10 ?? 0,
-        top: mousePosition.y! - 10 ?? 0,
+        left: mousePosition.x! - 2 ?? 0,
+        top: mousePosition.y! - 2 ?? 0,
         opacity: mousePosition.x ? 1 : 0,
       }}
     >

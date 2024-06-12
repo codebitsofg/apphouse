@@ -18,18 +18,18 @@ export const Container = styled(motion.div)`
 
 export const Circle = styled(motion.div)<CircleProps>(
   ({ isHovered }) => css`
-    width: 3vw;
-    height: 3vw;
-    border-radius: 50%;
+    width: 1vw;
+    height: 1vw;
     border: 1px solid gray;
     transition: all ease-in-out 0.3s;
+    background-color: #04080f;
     scale: ${isHovered ? 0.6 : 1};
 
     ${isHovered &&
     css`
-      background-color: #0f0e0e;
+      background-color: #04080f;
       scale: 1.2;
-      border: 6px solid white;
+      border: 9px solid white;
     `}
   `
 );

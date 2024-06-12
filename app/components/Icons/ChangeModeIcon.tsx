@@ -7,8 +7,8 @@ const ChangeModeIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="8"
+      height="8"
       fill="#001a23"
       className="bi-arrow-clockwise bi"
       viewBox="0 0 16 16"

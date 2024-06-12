@@ -28,7 +28,7 @@ const Gallery = ({ onProjectClick }: GalleryProps) => {
   }, []);
 
   return (
-    <S.Container ref={parentContainer}>
+    <S.Container key={"22442"} ref={parentContainer}>
       <S.CollectionNameContainer>
         <S.CollectionName key={category}>{category}</S.CollectionName>
       </S.CollectionNameContainer>

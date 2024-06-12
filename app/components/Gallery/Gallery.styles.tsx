@@ -3,10 +3,18 @@ import { transition } from "@/utils/config";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Container = styled(motion.div)`
+export const Container = styled(motion.div).attrs({
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.1,
+      delay: 0.2,
+    },
+  },
+})`
   width: 100vw;
   height: 100vh;
-  background-color: #fdfffc;
+  
   position: relative;
   overflow: hidden;
   z-index: 0;
@@ -68,7 +76,7 @@ export const ProjectInfoContainer = styled(motion.div).attrs({
 })`
   position: absolute;
   left: 0;
-  bottom: 8%;
+  bottom: 1%;
   color: #04080f;
   padding: 2vw;
   z-index: 2;

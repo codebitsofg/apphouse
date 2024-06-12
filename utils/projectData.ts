@@ -3,7 +3,7 @@ export default [
     rectPosition: { top: "40%", left: "0" },
     projectName: "Univversecam",
     mediaPath: "universecam",
-    liveLink: "https://univversecam.vercel.app/",
+    liveLink: "https://unniversecam.beratgenc.live/",
     repoLink: "https://github.com/soberbat/univversecam",
     shortDesc:
       "A Three.js & Next.js app designed & written with optimal modularity in mind.",
@@ -126,9 +126,79 @@ export default [
   },
 
   {
+    rectPosition: { top: "80%", left: "-30%" },
+    projectName: "PATI",
+    liveLink:
+      "http://infrastructurestack-nextjssitebucketbd1a5941-isspgruxxmoy.s3-website.eu-central-1.amazonaws.com/",
+    repoLink: "https://github.com/soberbat/task-manager",
+    mediaPath: "petapp",
+    shortDesc: "A resume creation tool made with Next.js and Redux",
+    mainTakeAway: ["flkfsfkkfssk"],
+    codeBreakDown: [
+      {
+        codeSnippet: ` 
+    export default async function Login(email: string, password: string) {
+      try {
+        return await axios.post(prodEndpoint, { email, password }, axiosConfig);
+      } catch (error) {
+        return { status: 401 };
+      }
+    }      
+    `,
+        text: "Function that makes the actual <span>login request</span> to the server. Although, there is a bit room for improvments on error handling it fulfills its core function.",
+      },
+    ],
+  },
+
+  {
+    rectPosition: { top: "30%", left: "70%" },
+    projectName: "HEIC TO JPEG Converter",
+    mediaPath: "heic",
+    repoLink: "https://github.com/soberbat/heic-to-jpeg",
+    liveLink: "https://heictojpeg.beratgenc.live/",
+    shortDesc: "A Dockerized backend API deployed as GCR service ",
+    mainTakeAway: [
+      "The app is a fully functioning HEIC to JPEG converter. It's frontend and backend are<span> deployed as a seperate Google Cloud Run service.</span>",
+      "The backend handles the recieved form data from the frontend using<span> multer</span> and processes the image and changes its format as JPEG.",
+      "The frontend is responsible for making the requests with the data to the backend and display the returned data in an <span>asynchronous fashion.</span>",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `
+        async function fromHEICToJPEG(inputBuffer) {
+          try {
+            const data = await convert({
+              buffer: inputBuffer,
+              format: "JPEG",
+              quality: 1,
+            });
+
+            return data;
+          } catch (error) {
+            console.error("Error converting HEIC to JPEG:", error);
+            throw error;
+          }
+        }
+      `,
+        text: "The main function that converts the HEIC input into JPEG. It is an asynchronous function that takes an inputBuffer representing the HEIC image data. It utilizes the heic-convert library to perform the actual conversion.",
+      },
+      {
+        codeSnippet: `
+      docker build .  --platform linux/amd64 -t  europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest
+
+      docker push europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest                           
+
+      gcloud run deploy strapi-cms  --image europe-west1-docker.pkg.dev/dev-sphere-410611/demo/the-dot-cms:latest
+      `,
+
+        text: "Some <span>gcloud CLI</span> commands for updating & deploying the API. The initial command builds a <span> Docker </span> image with specified tags. Later, the built image is pushed to a the <span>Google Container Registry</span>, to be used in deployment. Finally the API deployment to Google Cloud Run is executed.",
+      },
+    ],
+  },
+  {
     rectPosition: { top: "100%", left: "-50%" },
     projectName: "Task Manager",
-    liveLink: "https://app.taskermanager.site/",
+    liveLink: "https://application.taskermanager.site/",
     repoLink: "https://github.com/soberbat/task-manager",
     mediaPath: "tasker",
     shortDesc: "  Threejs & Nextjs application aimed at modularity",
@@ -216,380 +286,25 @@ export default [
   },
 
   {
-    rectPosition: { top: "-40%", left: "-50%" },
-    projectName: "Awab Alsaati Portfolio",
-    mediaPath: "alsaati",
-    liveLink: "https://www.awabalsaati.com/",
-    repoLink: "https://github.com/soberbat/awabsfolio",
-    shortDesc:
-      "A client work featuring, XHR powered preloader mechanism and a Zustand powered state management strategy.",
-    mainTakeAway: [
-      "This project's entire production cycle, from development through testing to deployment, is managed by me. The application is the product of precise translation design into code.",
-      "Prominent features include a <span>preloader implemented using class syntax, custom hooks,</span> and the utilization of<span> Zustand </span>as a state managager",
-      "Another part of the app is how data types are being transformed into one another using methods available on them.",
-    ],
+    rectPosition: { top: "80%", left: "-30%" },
+    projectName: "Resume Creation Tool",
+    liveLink: "http://resumemaker.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/task-manager",
+    mediaPath: "resume",
+    shortDesc: "A resume creation tool made with Next.js and Redux",
+    mainTakeAway: ["flkfsfkkfssk"],
     codeBreakDown: [
       {
-        codeSnippet: `
-        class Preloader {
-          handleRequestEnd;
-          handleProgress;
-          urlsToPreload: PreloadUrlConfig;
-          preloadedSources: PreloadUrlConfig;
-          loadedImages = 0;
-          imageCount = 60;
-          progress = 0;
-        
-          constructor({ handleRequestEnd, handleProgress }: IPreloader) {
-            this.handleRequestEnd = handleRequestEnd;
-            this.handleProgress = handleProgress;
-            this.urlsToPreload = createImageUrls();
-            this.preloadedSources = {};
-            this.preloadAll();
-          }
-        
-          addPrefix = (url: string) => "/images/works/url";
-        
-          onLoad = (resolve: Resolve, xhr: XMLHttpRequest) => {
-            this.loadedImages++;
-        
-            const percantage = this.loadedImages / this.imageCount;
-            this.handleProgress(Math.ceil(percantage * 100));
-        
-            if (this.loadedImages === this.imageCount) {
-              this.handleRequestEnd(this.preloadedSources);
-            }
-        
-            resolve(URL.createObjectURL(xhr.response));
-          };
-        
-          preload = (url: string) => {
-            return new Promise((resolve: Resolve, _) => {
-              const xhr = new XMLHttpRequest();
-              xhr.onload = () => this.onLoad(resolve, xhr);
-        
-              xhr.open("GET", url, true);
-              xhr.responseType = "blob";
-              xhr.send(null);
-            });
-          };
-        
-          preloadAll = async () => {
-            for (const key in this.urlsToPreload) {
-              this.preloadedSources[key] = await Promise.all(
-                this.urlsToPreload[key].map(async (url) => {
-                  if (Array.isArray(url)) {
-                    return await Promise.all(
-                      url.map(async (url) => await this.preload(this.addPrefix(url)))
-                    );
-                  }
-        
-                  return await this.preload(this.addPrefix(url));
-                })
-              );
-            }
-          };
-        }
-        
-        export default Preloader;
+        codeSnippet: ` 
+    export default async function Login(email: string, password: string) {
+      try {
+        return await axios.post(prodEndpoint, { email, password }, axiosConfig);
+      } catch (error) {
+        return { status: 401 };
+      }
+    }      
     `,
-        text: "A <span>XHR backed preloading mechanism</span> written with class syntax. Displays overall loading progress for better user experience. It creates URL's to be used throughout the app.",
-      },
-      {
-        codeSnippet: ` 
-        const usePreloder = () => {
-          const [isPreloaded, setisPreloaded] = useState<boolean>(false);
-          const { setImageUrls } = useStore();
-          const [progress, setProgress] = useState(0);
-          const preloader = useRef<Preloader | null>(null);
-        
-          const handleRequestEnd = (imageUrls: PreloadUrlConfig) => {
-            setImageUrls(imageUrls);
-            setisPreloaded(true);
-          };
-        
-          const handleProgress = (progress: number) => {
-            setProgress(progress);
-          };
-        
-          useEffect(() => {
-            preloader.current = new Preloader({ handleRequestEnd, handleProgress });
-          }, []);
-        
-          return { isPreloaded, progress };
-        };
-        
-        export default usePreloder;
-      `,
-        text: "A <span>custom hook </span>to isolate preloading logic from the app. It saves the returned urls to the Zustand store and returns the loaded and progress state to be used in the UI.",
-      },
-      {
-        codeSnippet: ` 
-      const scaleX = useSpring(useTransform(motionValProgres, [0, 100], [0, 1]), {
-        stiffness: 10,
-        damping: 15,
-      });
-      `,
-        text: "<span>Framer motion API's </span> working together in action to interpolate input and smoothly animate.",
-      },
-      {
-        codeSnippet: ` 
-        interface IPageBackground {
-          className?: string;
-        }
-        
-        const PageBackground = ({ className }: IPageBackground) => {
-          return (
-            <S.Container className={className}>
-              <S.ColorOverlay />
-              <S.BackgroundImage />
-            </S.Container>
-          );
-        };
-        
-        export default PageBackground;
-      `,
-        text: "Page background component that is being used on pages.",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "40%", left: "-50%" },
-    projectName: "Canvas Art",
-    mediaPath: "canvas",
-    liveLink: "https://canvas-art-soberbat.vercel.app/",
-    repoLink: "https://github.com/soberbat/canvas-art",
-    shortDesc: "An HTML Canvas app written using class syntax",
-    mainTakeAway: [
-      "This app is an interactive <span>HTML Canvas</span> that generates artistic patterns based on randomly generated data. The whole idea of this project was to explore how class syntax can be utilized as a means of separating logic and writing efficient code. There are two classes that works together for the end result.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `  
-    init() {
-      this.symbolsCount += 10;
-      const isVertical = Math.random() < 0.5 ? true : false;
-  
-      this.y = this.getRandomArbitrary(0, window.innerHeight - 0);
-      this.x = this.getRandomArbitrary(window.innerWidth - 0, 0);
-      const color = this.randColor();
-      this.context.font = this.fontSize + "px monospace";
-  
-      [...Array(10).fill(0)].map(
-        (_, i) =>
-          (this.symbols[i + this.symbolsCount] = new Symbol({
-            x: this.x,
-            y: this.y,
-            isVertical,
-            context: this.context,
-            color,
-          }))
-      );
-    `,
-        text: "This code bit creates vertical lines seen on the page. The Symbol class instances are what we see as 0's and 1's. They are being being drawn into the canvas with random positions, and colors. All these are being handled with class specific functions and this way we're keeping the logic seperated from outside world but as one in the class itself.",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "-30%", left: "0%" },
-    projectName: "Scroll Triggered Story",
-    liveLink: "https://scroll-triggered-story.vercel.app",
-    repoLink: "https://github.com/soberbat/scroll-triggered-story",
-    mediaPath: "story",
-    shortDesc:
-      "An attempt to get as close as possible to a WebFlow page using React and Typescript.",
-    mainTakeAway: [
-      "This project is yet another attempt to replicate a <span>Webflow</span> page that is animated using <span>scroll input.</span>",
-      "This version of the app is written using <span> Typescript, React. </span>  And the UI is animated using framer motion API's.",
-      "I particulary payed attention to the readability of the code. The concrete and solid feel of the code makes it easier to read.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: ` 
-      interface CornerProps {
-        className?: string;
-      }
-      
-      const Corners: React.FC<CornerProps> = ({ className }) => {
-        const positionConfig = Object.values(CornerPosition);
-      
-        return (
-          <Container className={className}>
-            {positionConfig.map((pos, i) => (
-              <CornerWrap key={i} position={pos}>
-                <Corner />
-              </CornerWrap>
-            ))}
-          </Container>
-        );
-      };
-      
-      export default Corners;
-      `,
-        text: "The component iterates through corner positions using an <span>enum</span>, and renders a Corner component for each position, reusability of this creates a unified appearence.",
-      },
-      {
-        codeSnippet: `
-      
-      export interface IRotatingCircle {
-        scrollProgress: MotionValue<number>;
-      }
-      
-      const RotatingCircle: FC<IRotatingCircle> = ({ scrollProgress }) => {
-        const isMobile = isMobileDevice();
-        const [currentSegment, setCurrentSegment] = useState<Segment>(0);
-        const transformOutput = [-100, isMobile ? -25 : -43];
-        const translate = useTransform(scrollProgress, [0.06, 0.08], transformOutput);
-      
-        const evalueCurrentSegment = useCallback((latestScrollPosition: number) => {
-          const currentSegment =
-            latestScrollPosition < SegmentThreshold.HistorySegment // ENUM
-              ? Segment.History
-              : latestScrollPosition < SegmentThreshold.OriginSegment // ENUM
-              ? Segment.Origin
-              : Segment.Symbol;
-
-          setCurrentSegment(currentSegment);
-        }, []);
-      
-        useMotionValueEvent(scrollProgress, "change", evalueCurrentSegment);
-      
-        return (
-          <S.Container translate={translate}>
-            <S.TransformContainer currentSegment={currentSegment}>
-              {Segments.map(({ name, style }, i) => (
-                <S.Segment key={i} isActive={i === currentSegment} style={style}>
-                  <S.InnerSegmentContainer currentSegment={currentSegment}>
-                    <S.RotatedSquare />
-                    <S.Name>{name}</S.Name>
-                  </S.InnerSegmentContainer>
-                </S.Segment>
-              ))}
-            </S.TransformContainer>
-          </S.Container>
-        );
-      };
-      
-      export default RotatingCircle;
-      
-      `,
-        text: "This component utilizes various features of the <span>Framer Motion API's</span> for animations, such as useTransform and event handling with useMotionValueEvent. These features creates smooth interactive animations based on the scroll progress input. TypeScript enums are used to define constants like SegmentThreshold and Segment, assuring a <span>type-safe</span> way to work with predefined values.",
-      },
-      {
-        codeSnippet: `
-      export default (breakpoint: string, styles: string | any) => css"
-        @media screen and (min-width: (breakpoint)) {
-          {styles}
-        }";
-      `,
-        text: "Using template literals in combination with styled-components, this function generates CSS rules wrapped in a media query that targets different screens. By <span>encapsulating styling logic</span> within the function, the responsive layout was built easily.",
-      },
-      {
-        codeSnippet: ` 
-      export const TransformContainer = styled(motion.div).attrs<IInnerContainer>(
-        ({ currentSegment }) => ({
-          animate: {
-            rotate: "(evaluateCircleRotation(currentSegment))deg",
-          },
-          transition: {
-            ...infoFlowConfig,
-          },
-          initial: { rotate: "160deg" },
-        })
-      )"
-        width: 100%;
-        height: 100%;
-        border: 2px solid (color);
-        border-radius: 9999px;
-        position: relative;
-      ";
-      
-      `,
-        text: "An example of <span>styled-components and framer-motion </span> used together",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "110%", left: "1%" },
-    projectName: "The Dot",
-    mediaPath: "dot",
-    repoLink: "https://github.com/soberbat/theDot",
-    liveLink: "https://the-dot-zeta.vercel.app",
-    shortDesc:
-      "A crisp UI implementation featuring Graphql connection to a designated Strapi CMS, layout calculations.",
-
-    mainTakeAway: [
-      "The project was initiated out of curiosity inspired by observing the dot's movement on a web page. I was very curious about the underlying logic and implementation. And I've come up with my solution to that. <span>Intersection Observer API</span> is what's used as a result.",
-      "Another interesting aspect is the fact that the application data is being fetched from a designated custom made <span>Headless CMS</span> (using Strapi), written by me. <span>GraphQL</span> is utilized for precise data fetching.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `
-    const refcallback = (node: HTMLDivElement | null) => {
-      if (node) {
-        setparentNode(node);
-        parentRef.current = node;
-      }
-    };
-
-    `,
-        text: "A <span>ref callback</span> implementation. This allows for imperative operations on DOM elements.",
-      },
-      {
-        codeSnippet: `
-      import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
-
-      let client: ApolloClient<any> | null = null;
-
-      export const initClient = () => {
-        if (!client || typeof window === "undefined") {
-          client = new ApolloClient({
-            link: new HttpLink({
-              uri: process.env.NEXT_PUBLIC_CMS_URL,
-            }),
-
-            cache: new InMemoryCache({ addTypename: false }),
-          });
-        }
-
-        return client;
-      };
-      `,
-
-        text: "<span>Apollo client</span> initalizer. This initializer creates an instance of the Apollo client for efficient GraphQL data fetching and caching. It is the linking point to the backend API.",
-      },
-      {
-        codeSnippet: `
-      export default function DetectIntersect(
-        setActiveBlock: React.Dispatch<React.SetStateAction<number | null>>,
-        children: HTMLCollection
-      ) {
-        const targets = Array.from(children);
-      
-        let callback = (entries: IntersectionObserverEntry[]) => {
-          entries.forEach((entry: IntersectionObserverEntry) => {
-            const id = parseInt(entry.target.id);
-            if (entry.isIntersecting) {
-              setActiveBlock((prevIdx) => (prevIdx !== id ? id + 1 : id + 1));
-            } else {
-              if (id === 0) {
-                setActiveBlock(0);
-              }
-            }
-          });
-        };
-      
-        let observer = new IntersectionObserver(callback, { rootMargin });
-      
-        targets.forEach((target) => observer.observe(target));
-      
-        return { targets, observer };
-      }
-      `,
-        text: "The IntersectionObserver API is being used for animating the dot, which is the signature feature of the application. It converts the HTMLCollection into an array of targets, then initializes an <span>IntersectionObserver instance</span> that takes a callback function which updates the active block based on whether each target is intersecting with the viewport(with and offsett).",
+        text: "Function that makes the actual <span>login request</span> to the server. Although, there is a bit room for improvments on error handling it fulfills its core function.",
       },
     ],
   },
@@ -599,7 +314,7 @@ export default [
     projectName: "Music Gallery",
     mediaPath: "gallery",
     repoLink: "https://github.com/soberbat/music-gallery",
-    liveLink: "https://sound-azure.vercel.app",
+    liveLink: "https://sound.beratgenc.live/",
     shortDesc:
       "React & Three.js application with a custom player and linked navigation system",
     mainTakeAway: [
@@ -756,47 +471,298 @@ export default [
   },
 
   {
-    rectPosition: { top: "30%", left: "70%" },
-    projectName: "HEIC TO JPEG Converter",
-    mediaPath: "heic",
-    repoLink: "https://github.com/soberbat/heic-to-jpeg",
-    liveLink: "https://heic-convert-frontend-7egxgsovaq-ew.a.run.app/",
-    shortDesc: "A Dockerized backend API deployed as GCR service ",
+    rectPosition: { top: "-40%", left: "-50%" },
+    projectName: "Awab Alsaati Portfolio",
+    mediaPath: "alsaati",
+    liveLink: "https://www.awabalsaati.com/",
+    repoLink: "https://github.com/soberbat/awabsfolio",
+    shortDesc:
+      "A client work featuring, XHR powered preloader mechanism and a Zustand powered state management strategy.",
     mainTakeAway: [
-      "The app is a fully functioning HEIC to JPEG converter. It's frontend and backend are<span> deployed as a seperate Google Cloud Run service.</span>",
-      "The backend handles the recieved form data from the frontend using<span> multer</span> and processes the image and changes its format as JPEG.",
-      "The frontend is responsible for making the requests with the data to the backend and display the returned data in an <span>asynchronous fashion.</span>",
+      "This project's entire production cycle, from development through testing to deployment, is managed by me. The application is the product of precise translation design into code.",
+      "Prominent features include a <span>preloader implemented using class syntax, custom hooks,</span> and the utilization of<span> Zustand </span>as a state managager",
+      "Another part of the app is how data types are being transformed into one another using methods available on them.",
     ],
     codeBreakDown: [
       {
         codeSnippet: `
-        async function fromHEICToJPEG(inputBuffer) {
-          try {
-            const data = await convert({
-              buffer: inputBuffer,
-              format: "JPEG",
-              quality: 1,
-            });
-
-            return data;
-          } catch (error) {
-            console.error("Error converting HEIC to JPEG:", error);
-            throw error;
+        class Preloader {
+          handleRequestEnd;
+          handleProgress;
+          urlsToPreload: PreloadUrlConfig;
+          preloadedSources: PreloadUrlConfig;
+          loadedImages = 0;
+          imageCount = 60;
+          progress = 0;
+        
+          constructor({ handleRequestEnd, handleProgress }: IPreloader) {
+            this.handleRequestEnd = handleRequestEnd;
+            this.handleProgress = handleProgress;
+            this.urlsToPreload = createImageUrls();
+            this.preloadedSources = {};
+            this.preloadAll();
           }
+        
+          addPrefix = (url: string) => "/images/works/url";
+        
+          onLoad = (resolve: Resolve, xhr: XMLHttpRequest) => {
+            this.loadedImages++;
+        
+            const percantage = this.loadedImages / this.imageCount;
+            this.handleProgress(Math.ceil(percantage * 100));
+        
+            if (this.loadedImages === this.imageCount) {
+              this.handleRequestEnd(this.preloadedSources);
+            }
+        
+            resolve(URL.createObjectURL(xhr.response));
+          };
+        
+          preload = (url: string) => {
+            return new Promise((resolve: Resolve, _) => {
+              const xhr = new XMLHttpRequest();
+              xhr.onload = () => this.onLoad(resolve, xhr);
+        
+              xhr.open("GET", url, true);
+              xhr.responseType = "blob";
+              xhr.send(null);
+            });
+          };
+        
+          preloadAll = async () => {
+            for (const key in this.urlsToPreload) {
+              this.preloadedSources[key] = await Promise.all(
+                this.urlsToPreload[key].map(async (url) => {
+                  if (Array.isArray(url)) {
+                    return await Promise.all(
+                      url.map(async (url) => await this.preload(this.addPrefix(url)))
+                    );
+                  }
+        
+                  return await this.preload(this.addPrefix(url));
+                })
+              );
+            }
+          };
         }
+        
+        export default Preloader;
+    `,
+        text: "A <span>XHR backed preloading mechanism</span> written with class syntax. Displays overall loading progress for better user experience. It creates URL's to be used throughout the app.",
+      },
+      {
+        codeSnippet: ` 
+        const usePreloder = () => {
+          const [isPreloaded, setisPreloaded] = useState<boolean>(false);
+          const { setImageUrls } = useStore();
+          const [progress, setProgress] = useState(0);
+          const preloader = useRef<Preloader | null>(null);
+        
+          const handleRequestEnd = (imageUrls: PreloadUrlConfig) => {
+            setImageUrls(imageUrls);
+            setisPreloaded(true);
+          };
+        
+          const handleProgress = (progress: number) => {
+            setProgress(progress);
+          };
+        
+          useEffect(() => {
+            preloader.current = new Preloader({ handleRequestEnd, handleProgress });
+          }, []);
+        
+          return { isPreloaded, progress };
+        };
+        
+        export default usePreloder;
       `,
-        text: "The main function that converts the HEIC input into JPEG. It is an asynchronous function that takes an inputBuffer representing the HEIC image data. It utilizes the heic-convert library to perform the actual conversion.",
+        text: "A <span>custom hook </span>to isolate preloading logic from the app. It saves the returned urls to the Zustand store and returns the loaded and progress state to be used in the UI.",
+      },
+      {
+        codeSnippet: ` 
+      const scaleX = useSpring(useTransform(motionValProgres, [0, 100], [0, 1]), {
+        stiffness: 10,
+        damping: 15,
+      });
+      `,
+        text: "<span>Framer motion API's </span> working together in action to interpolate input and smoothly animate.",
+      },
+      {
+        codeSnippet: ` 
+        interface IPageBackground {
+          className?: string;
+        }
+        
+        const PageBackground = ({ className }: IPageBackground) => {
+          return (
+            <S.Container className={className}>
+              <S.ColorOverlay />
+              <S.BackgroundImage />
+            </S.Container>
+          );
+        };
+        
+        export default PageBackground;
+      `,
+        text: "Page background component that is being used on pages.",
+      },
+    ],
+  },
+
+  {
+    rectPosition: { top: "40%", left: "-50%" },
+    projectName: "Canvas Art",
+    mediaPath: "canvas",
+    liveLink: "https://canvasart.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/canvas-art",
+    shortDesc: "An HTML Canvas app written using class syntax",
+    mainTakeAway: [
+      "This app is an interactive <span>HTML Canvas</span> that generates artistic patterns based on randomly generated data. The whole idea of this project was to explore how class syntax can be utilized as a means of separating logic and writing efficient code. There are two classes that works together for the end result.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `  
+    init() {
+      this.symbolsCount += 10;
+      const isVertical = Math.random() < 0.5 ? true : false;
+  
+      this.y = this.getRandomArbitrary(0, window.innerHeight - 0);
+      this.x = this.getRandomArbitrary(window.innerWidth - 0, 0);
+      const color = this.randColor();
+      this.context.font = this.fontSize + "px monospace";
+  
+      [...Array(10).fill(0)].map(
+        (_, i) =>
+          (this.symbols[i + this.symbolsCount] = new Symbol({
+            x: this.x,
+            y: this.y,
+            isVertical,
+            context: this.context,
+            color,
+          }))
+      );
+    `,
+        text: "This code bit creates vertical lines seen on the page. The Symbol class instances are what we see as 0's and 1's. They are being being drawn into the canvas with random positions, and colors. All these are being handled with class specific functions and this way we're keeping the logic seperated from outside world but as one in the class itself.",
+      },
+    ],
+  },
+
+  {
+    rectPosition: { top: "-30%", left: "0%" },
+    projectName: "Scroll Triggered Story",
+    liveLink: "https://scrollstory.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/scroll-triggered-story",
+    mediaPath: "story",
+    shortDesc:
+      "An attempt to get as close as possible to a WebFlow page using React and Typescript.",
+    mainTakeAway: [
+      "This project is yet another attempt to replicate a <span>Webflow</span> page that is animated using <span>scroll input.</span>",
+      "This version of the app is written using <span> Typescript, React. </span>  And the UI is animated using framer motion API's.",
+      "I particulary payed attention to the readability of the code. The concrete and solid feel of the code makes it easier to read.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: ` 
+      interface CornerProps {
+        className?: string;
+      }
+      
+      const Corners: React.FC<CornerProps> = ({ className }) => {
+        const positionConfig = Object.values(CornerPosition);
+      
+        return (
+          <Container className={className}>
+            {positionConfig.map((pos, i) => (
+              <CornerWrap key={i} position={pos}>
+                <Corner />
+              </CornerWrap>
+            ))}
+          </Container>
+        );
+      };
+      
+      export default Corners;
+      `,
+        text: "The component iterates through corner positions using an <span>enum</span>, and renders a Corner component for each position, reusability of this creates a unified appearence.",
       },
       {
         codeSnippet: `
-      docker build .  --platform linux/amd64 -t  europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest
+      
+      export interface IRotatingCircle {
+        scrollProgress: MotionValue<number>;
+      }
+      
+      const RotatingCircle: FC<IRotatingCircle> = ({ scrollProgress }) => {
+        const isMobile = isMobileDevice();
+        const [currentSegment, setCurrentSegment] = useState<Segment>(0);
+        const transformOutput = [-100, isMobile ? -25 : -43];
+        const translate = useTransform(scrollProgress, [0.06, 0.08], transformOutput);
+      
+        const evalueCurrentSegment = useCallback((latestScrollPosition: number) => {
+          const currentSegment =
+            latestScrollPosition < SegmentThreshold.HistorySegment // ENUM
+              ? Segment.History
+              : latestScrollPosition < SegmentThreshold.OriginSegment // ENUM
+              ? Segment.Origin
+              : Segment.Symbol;
 
-      docker push europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest                           
-
-      gcloud run deploy strapi-cms  --image europe-west1-docker.pkg.dev/dev-sphere-410611/demo/the-dot-cms:latest
+          setCurrentSegment(currentSegment);
+        }, []);
+      
+        useMotionValueEvent(scrollProgress, "change", evalueCurrentSegment);
+      
+        return (
+          <S.Container translate={translate}>
+            <S.TransformContainer currentSegment={currentSegment}>
+              {Segments.map(({ name, style }, i) => (
+                <S.Segment key={i} isActive={i === currentSegment} style={style}>
+                  <S.InnerSegmentContainer currentSegment={currentSegment}>
+                    <S.RotatedSquare />
+                    <S.Name>{name}</S.Name>
+                  </S.InnerSegmentContainer>
+                </S.Segment>
+              ))}
+            </S.TransformContainer>
+          </S.Container>
+        );
+      };
+      
+      export default RotatingCircle;
+      
       `,
-
-        text: "Some <span>gcloud CLI</span> commands for updating & deploying the API. The initial command builds a <span> Docker </span> image with specified tags. Later, the built image is pushed to a the <span>Google Container Registry</span>, to be used in deployment. Finally the API deployment to Google Cloud Run is executed.",
+        text: "This component utilizes various features of the <span>Framer Motion API's</span> for animations, such as useTransform and event handling with useMotionValueEvent. These features creates smooth interactive animations based on the scroll progress input. TypeScript enums are used to define constants like SegmentThreshold and Segment, assuring a <span>type-safe</span> way to work with predefined values.",
+      },
+      {
+        codeSnippet: `
+      export default (breakpoint: string, styles: string | any) => css"
+        @media screen and (min-width: (breakpoint)) {
+          {styles}
+        }";
+      `,
+        text: "Using template literals in combination with styled-components, this function generates CSS rules wrapped in a media query that targets different screens. By <span>encapsulating styling logic</span> within the function, the responsive layout was built easily.",
+      },
+      {
+        codeSnippet: ` 
+      export const TransformContainer = styled(motion.div).attrs<IInnerContainer>(
+        ({ currentSegment }) => ({
+          animate: {
+            rotate: "(evaluateCircleRotation(currentSegment))deg",
+          },
+          transition: {
+            ...infoFlowConfig,
+          },
+          initial: { rotate: "160deg" },
+        })
+      )"
+        width: 100%;
+        height: 100%;
+        border: 2px solid (color);
+        border-radius: 9999px;
+        position: relative;
+      ";
+      
+      `,
+        text: "An example of <span>styled-components and framer-motion </span> used together",
       },
     ],
   },
@@ -805,7 +771,8 @@ export default [
     rectPosition: { top: "-35%", left: "50%" },
     projectName: "Session Auth",
     mediaPath: "sessionauth",
-    liveLink: "https://cookie-auth-7egxgsovaq-ew.a.run.app",
+    liveLink:
+      "https://auth-with-session.in3a4agovd8hi.eu-central-1.cs.amazonlightsail.com/",
     repoLink: "https://github.com/soberbat/auth-service",
     shortDesc:
       "A Dockerized backend API featuring Redis Cache, Cookie Based Authentication and Database interactions",
@@ -906,53 +873,10 @@ export default [
   },
 
   {
-    rectPosition: { top: "110%", left: "60%" },
-    projectName: "The Dot CMS",
-    mediaPath: "dotcms",
-    liveLink: "https://strapi-cms-7egxgsovaq-ew.a.run.app/",
-    repoLink: "https://github.com/soberbat/strapi-instance",
-    shortDesc: "The headless CMS powering The Dot project.",
-    mainTakeAway: [
-      "This project features how a <span>headless CMS</span> can be used for a way to store data. Instead of hardcoding the data to the app, and having to re-run build process, data is being stored in a CMS where a graphical user interface can be used to make it both easy for the developer and for the content editors.",
-      "The flexibility of Strapi makes it very easy to display any kind of data from images to text to selections.",
-      "The data is being stored to a <span>MySQL database and Google Cloud Storage</span> as storing the images",
-      "Any change on the CMS is immediately reflected on the frontend.",
-      "The CMS is deployed a <span>GCR service.</span>",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `
-      module.exports = ({ env }) => ({
-        upload: {
-          config: {
-            provider: "@strapi-community/strapi-provider-upload-google-cloud-storage",
-            providerOptions: {
-              bucketName: env("BUCKET_NAME"),
-              publicFiles: true,
-              uniform: false,
-              basePath: "",
-            },
-          },
-        },
-        graphql: {
-          config: {
-            defaultLimit: 1000,
-            maxLimit: 2000,
-          },
-        },
-      });      
-      `,
-
-        text: "The config file for plugings. First one configures the <span>Google Cloud Storage</span>, and the other one increases the graphql pagination limit.",
-      },
-    ],
-  },
-
-  {
     rectPosition: { top: "70%", left: "30%" },
     projectName: "Task Manager Backend",
     mediaPath: "taskerapi",
-    liveLink: "https://api.taskermanager.site",
+    liveLink: "https://backend.taskermanager.site",
     repoLink: "https://github.com/soberbat/task-manager",
     shortDesc: "Fully automated dockerized GCR service written with Nest.js.",
     mainTakeAway: [

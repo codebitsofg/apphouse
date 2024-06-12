@@ -3,28 +3,30 @@ import { mediaLarge } from "@/utils/media";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import css from "styled-jsx/css";
+import { Overlay } from "../LoadingPage/LoadingPage.styles";
 
 export const Container = styled(motion.div).attrs({
   ...opacityConfig,
-  transition: { delay: 1.5, duration: 0.5 },
+  transition: { delay: 2, duration: 0.5 },
 })`
   position: fixed;
-  bottom: 1.5%;
   background-color: #fdfffcd0;
   border: 1px solid #04080f20;
   padding: 0.5% 1%;
-  border-radius: 20px;
+  border-radius: 2px;
   box-shadow: 0 0 10px #04080f20;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  transform: translate(-50%, 0%);
-  left: 50%;
-  z-index: 10;
-  height: auto;
-  width: 30%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  transform: translate(0, -50%);
+  top: 50%;
+  right: 0.3%;
+  z-index: 5;
+  height: 50%;
+  width: 4%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   ${mediaLarge(css`
     gap: 1vw;
@@ -41,8 +43,10 @@ export const AboutMe = styled.div`
 `;
 
 interface TabItemContainerProps {
-  isDark: boolean;
+  isDark?: boolean;
 }
+
+
 
 export const TabItemContainer = styled(motion.div)<TabItemContainerProps>`
   /* background-color: ${({ isDark }) => (isDark ? "#04080f" : "#f7f9f5")}; */
@@ -52,8 +56,10 @@ export const TabItemContainer = styled(motion.div)<TabItemContainerProps>`
   cursor: pointer;
   display: flex;
   align-items: center;
+
   justify-content: center;
   height: 8vw;
+  font-size: 0.7rem;
 
   position: relative;
 
@@ -75,6 +81,20 @@ export const TabItemContainer = styled(motion.div)<TabItemContainerProps>`
   `)}
 `;
 
+export const TabText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3vh;
+  border: 1px solid black;
+  padding: 0.3vh;
+  svg {
+    width: 70%;
+    height: 70%;
+  }
+`;
+
 export const Link = styled.a.attrs({
   target: "_blank",
 })`
@@ -83,11 +103,22 @@ export const Link = styled.a.attrs({
 
 export const LinkContainer = styled(motion.div).attrs({
   initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      delay: 1.2,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
   transition: { duration: 0.5 },
 })`
   display: flex;
+  flex-direction: column;
   gap: 3vw;
 
   ${mediaLarge(css`

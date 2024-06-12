@@ -1,11 +1,14 @@
 import { opacityConfig } from "@/utils/animationConfig";
 import { mediaLarge } from "@/utils/media";
 import { motion } from "framer-motion";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import css from "styled-jsx/css";
 
 export const Container = styled(motion.div).attrs({
   ...opacityConfig,
+  transition: {
+    duration: 0.3,
+  },
 })`
   width: 100vw;
   height: 100vh;
@@ -42,6 +45,7 @@ export const ProgressBar = styled.div`
   height: 100%;
   border-radius: 5px;
   background-color: #f7f9f5;
+  transition: all ease-in 0.3s;
 `;
 
 export const LoadingBarContainer = styled.div`
@@ -54,6 +58,9 @@ export const LoadingBarContainer = styled.div`
 
 export const OptionContainer = styled(motion.div).attrs({
   ...opacityConfig,
+  transition: {
+    duration: 0.5,
+  },
 })`
   width: 100%;
   height: 100%;
@@ -64,7 +71,7 @@ export const OptionContainer = styled(motion.div).attrs({
   gap: 1%;
   color: #f7f9f5;
 `;
-export const ModeOption = styled.div`
+export const ModeOption = styled(motion.div)`
   border: 1px #102541 solid;
   border-radius: 4px;
   font-weight: 200;
@@ -92,18 +99,43 @@ export const ModeOption = styled.div`
   `)}
 `;
 
-export const InnerOptionContainer = styled.div`
+export const InnerOptionContainer = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 2%;
 `;
 
 export const SelectModeText = styled(motion.h1).attrs({
   ...opacityConfig,
+  transition: {
+    duration: 0.5,
+  },
 })`
   font-size: 1.5vh;
   width: 25%;
   text-align: center;
   font-weight: 300;
   margin-bottom: 1%;
+`;
+
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #0f1c342b;
+  border-radius: 12px;
+  width: 20%;
+  height: 80%;
+  rotate: 30deg;
+`;
+
+export const SecondOverlay = styled(Overlay)`
+  top: 30%;
+  right: 5%;
+  left: unset;
+  width: 20%;
+  height: 100%;
+  rotate: 80deg;
+  z-index: 0;
 `;
