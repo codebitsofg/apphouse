@@ -1,7 +1,8 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { Overlay } from "../Gallery/Gallery.styles";
 import { motion } from "framer-motion";
 import { opacityConfig } from "@/utils/animationConfig";
+import { mediaLarge } from "@/utils/media";
 
 export const Container = styled(motion.div).attrs({
   animate: {
@@ -76,6 +77,17 @@ export const IconsContainer = styled.div`
   border-radius: 4px;
   align-items: center;
   padding: 1%;
+
+  a > svg {
+    width: 50%;
+    height: 50%;
+  }
+  ${mediaLarge(css`
+    a > svg {
+      width: 100%;
+      height: 100%;
+    }
+  `)}
 `;
 
 export const TechStackContainer = styled.div`
@@ -87,16 +99,23 @@ export const TechStackContainer = styled.div`
   align-items: flex-start;
   flex-direction: column;
   padding: 1%;
+  font-size: 0.5rem;
+
+  ${mediaLarge(css`
+    font-size: 1rem;
+  `)}
 `;
 
 export const TechStackTitle = styled.h3`
   font-weight: 400;
+  margin-top: 10%;
   margin-bottom: 5%;
 `;
 
 export const StackItem = styled.span`
   display: block;
   font-weight: 300;
+  margin-bottom: 1%;
 `;
 
 export const PlusIconContainer = styled.div`

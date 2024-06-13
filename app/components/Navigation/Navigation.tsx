@@ -37,45 +37,34 @@ const Navigation = ({
           <S.LinkContainer layout key={"theddkey"}>
             <S.Link href={links.repo}>
               <S.TabItemContainer {...props}>
-                <GitIcon />
+                <S.TabText>
+                  <GitIcon /> Code
+                </S.TabText>
               </S.TabItemContainer>
             </S.Link>
 
             <S.Link href={links.live}>
               <S.TabItemContainer {...props}>
-                <GlobeIcon />
+                <S.TabText>
+                  <GlobeIcon />
+                  Live
+                </S.TabText>
               </S.TabItemContainer>
             </S.Link>
           </S.LinkContainer>
         )}
       </AnimatePresence>
-      <S.TabItemContainer
-        key={"thekfgffey"}
-        {...props}
-        layout
-        onClick={onAboutMeClick}
-      >
-        <AboutMeIcon isDark={hasNavigated} />
+
+      <S.TabItemContainer {...props} layout onClick={onAboutMeClick}>
+        <S.TabText>
+          <AboutMeIcon isDark={hasNavigated} />
+          About
+        </S.TabText>
       </S.TabItemContainer>
-      <S.TabItemContainer
-        {...props}
-        key={"kssey"}
-        layout
-        onClick={() => onModeSwitch()}
-      >
+      <S.TabItemContainer {...props} layout onClick={() => onModeSwitch()}>
         <S.TabText>
           <ChangeModeIcon /> Mode
         </S.TabText>
-      </S.TabItemContainer>
-      <S.TabItemContainer
-        key={"mykedddy"}
-        {...props}
-        layout
-        onClick={onAboutMeClick}
-      >
-        <S.Link href={links.repo}>
-          <LinkedinLogo />
-        </S.Link>
       </S.TabItemContainer>
     </S.Container>
   );

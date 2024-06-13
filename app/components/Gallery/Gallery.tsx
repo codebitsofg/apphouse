@@ -46,18 +46,20 @@ const Gallery = ({ onProjectClick }: GalleryProps) => {
 
       <S.InnerWrapper style={{ ...style }}>
         <S.BoxContainer>
-          {projectData.map(({ rectPosition: { top, left } }, i) => (
-            <ProjectRect
-              key={i}
-              onHoverStart={() => onHoverStart(i)}
-              onHoverEnd={onHoverEnd}
-              onClick={() => onProjectClick(i)}
-              top={top}
-              left={left}
-            >
-              {i + 1}
-            </ProjectRect>
-          ))}
+          {projectData.map(
+            ({ rectPosition: { top, left }, projectName }, i) => (
+              <ProjectRect
+                key={i}
+                onHoverStart={() => onHoverStart(i)}
+                onHoverEnd={onHoverEnd}
+                onClick={() => onProjectClick(i)}
+                top={top}
+                left={left}
+              >
+                {projectName}
+              </ProjectRect>
+            )
+          )}
         </S.BoxContainer>
       </S.InnerWrapper>
     </S.Container>

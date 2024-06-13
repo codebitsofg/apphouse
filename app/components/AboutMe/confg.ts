@@ -1,10 +1,21 @@
 export const skills = {
   Languages: ["Javascript", "Typescript", "SQL", "Python", "Solidity"],
+  "State Management Libraries": ["Redux.js", "Zustand.js"],
+  "IAC Tools": ["AWS CDK", "Terraform", "SST", "PULUMI"],
+  "Version Control and Deployment": [
+    "Version Control with Git",
+    "CI/CD pipelines",
+    "GitHub Actions",
+    "Gitflow",
+    "AWS",
+    "Google Cloud Run",
+  ],
   "JavaScript Libraries and Frameworks": [
     "React.js",
     "Next.js",
     "React Native",
   ],
+  Databases: ["MySQL", "MongoDB", "Redis Cache", "Postgres", "DynamoDB", "RDS"],
   "Styling and Animation": [
     "Styled Components",
     "SCSS",
@@ -13,11 +24,9 @@ export const skills = {
     "GSAP",
     "CSS Modules",
   ],
-  Databases: ["MySQL", "MongoDB", "Redis Cache"],
-  "State Management Libraries": ["Redux.js", "Zustand.js"],
+  "API Management": ["GraphQL", "Axios", "Fetch", "SWR"],
   "Graphics and Animation": ["Three.js"],
   "Server-side Frameworks": ["Express.js", "Nest.js", "Strapi.js"],
-  "API Interaction Solutions": ["GraphQL", "Axios", "Fetch"],
   "Web Technologies and Standards": [
     "HTTP",
     "Responsive Design Principles",
@@ -25,31 +34,51 @@ export const skills = {
     "Analytics Implementation",
     "RESTful API design principles",
   ],
-  "Version Control and Deployment": [
-    "Version Control with Git",
-    "CI/CD pipelines",
-    "GitHub Actions",
-    "Gitflow",
-    "Google Cloud Run",
-  ],
-  "Design and Collaboration Tools": ["Figma"],
+
+  "Design and Collaboration Tools": ["Figma", "Adobe Illustator"],
 };
 
-export const detailPoints = [
-  "Developed projects using SCRUM methodology.",
-  "Contributed using Git and Gitflow.",
-  "Translated designs into reusable, responsive components.",
-  "Written React with Next.js.",
-  "Heavily used Typescript and styled-components.",
-  "Utilized Web and Node APIs.",
-  "Managed State with various solutions such as React Context, Redux, and Zustand.",
-  "Used Docker along the development processes.",
-  "Utilized GraphQL for data fetching and i18n.",
-  "Used WebGL and Playcanvas in immersive applications.",
-  "Set up routes for handling user input on the backend.",
-  "Debugged code.",
-  "Implemented Google and Adobe analytics.",
-  "In KPIs; developed backend applications with Nest.js, Express.js, and deployed them using Google Cloud Run services.",
+export const workHistory = [
+  {
+    companyName: "Rototip",
+    title: "Full Stack Software Engineer",
+    details: [
+      "Developed projects using SCRUM methodology.",
+      "Contributed using Git and Gitflow.",
+      "Translated designs into reusable, responsive components.",
+      "Written React with Next.js.",
+      "Heavily used Typescript and styled-components.",
+      "Utilized Web and Node APIs.",
+      "Managed State with various solutions such as React Context, Redux, and Zustand.",
+      "Used Docker along the development processes.",
+      "Utilized GraphQL for data fetching and i18n.",
+      "Used WebGL and Playcanvas in immersive applications.",
+      "Set up routes for handling user input on the backend.",
+      "Debugged code.",
+      "Implemented Google and Adobe analytics.",
+      "In KPIs; developed backend applications with Nest.js, Express.js, and deployed them using Google Cloud Run services.",
+    ],
+  },
+  {
+    companyName: "Le Polish Bureau",
+    title: "Frontend Developer",
+    details: [
+      "Developed projects using SCRUM methodology.",
+      "Contributed using Git and Gitflow.",
+      "Translated designs into reusable, responsive components.",
+      "Written React with Next.js.",
+      "Heavily used Typescript and styled-components.",
+      "Utilized Web and Node APIs.",
+      "Managed State with various solutions such as React Context, Redux, and Zustand.",
+      "Used Docker along the development processes.",
+      "Utilized GraphQL for data fetching and i18n.",
+      "Used WebGL and Playcanvas in immersive applications.",
+      "Set up routes for handling user input on the backend.",
+      "Debugged code.",
+      "Implemented Google and Adobe analytics.",
+      "In KPIs; developed backend applications with Nest.js, Express.js, and deployed them using Google Cloud Run services.",
+    ],
+  },
 ];
 
 export const detailParagraphs = [
@@ -59,4 +88,55 @@ export const detailParagraphs = [
   "As user interface development became naturel and familiar to me, I sought to explore more challenging and unfamiliar realms of software development. This led me to delve into Backend and DevOps technologies to understand how applications handle data and are deployed to end-users.",
   "During this phase, I acquired skills in writing CI/CD pipelines, containerization with Docker, and exploring the intricacies of server-side development. These experiences have been incredibly rewarding, and I'm enthusiastic about delving deeper into backend development.",
   "Recently, I relocated to Poland from Turkey. Now that I'm in a new country, I'm eager to seize the opportunity to explore different workplaces, meet new people, and embrace new approaches to development. I am open to remote work arrangements and am capable of working business-to-business.",
+];
+
+export const educationConfig = [
+  {
+    school: "Istanbul Bilgi University",
+    degree: "Communication And Design Management",
+    type: "Bachelors Degree",
+    year: "2021-2023",
+  },
+  {
+    school: "Istanbul Bilgi University",
+    degree: "Printing & Publishing Technologies",
+    type: "Certification",
+    year: "2019 - 2021",
+  },
+  {
+    school: "University of Michigan",
+    degree: "Interactivity with JavaScript",
+    type: "Certification",
+    year: "2023",
+  },
+  {
+    school: "Meta",
+    degree: "Programming with JavaScript",
+    type: "Certification",
+    year: "2023",
+  },
+  {
+    school: "freeCodeCamp",
+    degree: "Responsive Web Design",
+    type: "Certification",
+    year: "2022",
+  },
+  {
+    school: "Encode Club X BNB Chain",
+    degree: "Web3 & Solidity Bootcamp",
+    type: "Certification",
+    year: "2023",
+  },
+  {
+    school: "Udemy",
+    degree: "AWS Lambda Practical Guide",
+    type: "Certification",
+    year: "2024",
+  },
+  {
+    school: "Udemy",
+    degree: "The Modern Javascript Bootcamp",
+    type: "Certification",
+    year: "2021",
+  },
 ];

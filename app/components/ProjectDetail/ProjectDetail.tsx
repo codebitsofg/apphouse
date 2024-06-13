@@ -4,6 +4,7 @@ import CodeBlock from "../CodeBlock/CodeBlock";
 import SlideShow from "../SlideShow/SlideShow";
 import useStore from "@/app/store/useStore";
 import projectData from "@/utils/projectData";
+import { StackItem, TechStackTitle } from "../ClassicView/ClassicView.styles";
 
 interface ProjecDetailProps {
   project: Project;
@@ -11,7 +12,14 @@ interface ProjecDetailProps {
 }
 
 const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
-  const { projectName, codeBreakDown, mainTakeAway, mediaPath } = project;
+  const {
+    projectName,
+    codeBreakDown,
+    mainTakeAway,
+    mediaPath,
+    techStack,
+    deployment,
+  } = project;
   const { onHoverStartStore, onHoverEndStore, preloadedSources } = useStore();
 
   const gifUrl = preloadedSources.find(
@@ -44,6 +52,25 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
 
       <S.RightPanel>
         <SlideShow gifSource={gifUrl!} />
+        <S.TechStacksContainer>
+          <S.TechStackWrapper>
+            <TechStackTitle> [ Tech Stack ] </TechStackTitle>
+            {techStack?.map((item) => (
+              <StackItem key={item}>
+                {">"} {item}
+              </StackItem>
+            ))}
+          </S.TechStackWrapper>
+
+          <S.TechStackWrapper>
+            <TechStackTitle>[ Deployment Stack ]</TechStackTitle>
+            {deployment?.map((item) => (
+              <StackItem key={item}>
+                {">"} {item}
+              </StackItem>
+            ))}
+          </S.TechStackWrapper>
+        </S.TechStacksContainer>
       </S.RightPanel>
 
       <S.TitleContainer>

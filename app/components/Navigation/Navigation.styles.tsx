@@ -15,18 +15,17 @@ export const Container = styled(motion.div).attrs({
   padding: 0.5% 1%;
   border-radius: 2px;
   box-shadow: 0 0 10px #04080f20;
+  border-top-right-radius: 20px;
   border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  transform: translate(0, -50%);
-  top: 50%;
-  right: 0.3%;
+  transform: translate(-50%, 0);
+  bottom: 1.5%;
+  left: 50%;
   z-index: 5;
-  height: 50%;
-  width: 4%;
+  height: 7%;
+  width: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
 
   ${mediaLarge(css`
     gap: 1vw;
@@ -45,8 +44,6 @@ export const AboutMe = styled.div`
 interface TabItemContainerProps {
   isDark?: boolean;
 }
-
-
 
 export const TabItemContainer = styled(motion.div)<TabItemContainerProps>`
   /* background-color: ${({ isDark }) => (isDark ? "#04080f" : "#f7f9f5")}; */
@@ -81,17 +78,24 @@ export const TabItemContainer = styled(motion.div)<TabItemContainerProps>`
   `)}
 `;
 
+export const LinkedinWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+`;
+
 export const TabText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.3vh;
-  border: 1px solid black;
+  width: 3vw;
   padding: 0.3vh;
+
   svg {
-    width: 70%;
-    height: 70%;
+    width: 50%;
+    height: 50%;
   }
 `;
 
@@ -118,7 +122,7 @@ export const LinkContainer = styled(motion.div).attrs({
   transition: { duration: 0.5 },
 })`
   display: flex;
-  flex-direction: column;
+
   gap: 3vw;
 
   ${mediaLarge(css`

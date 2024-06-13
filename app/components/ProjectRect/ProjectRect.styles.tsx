@@ -19,7 +19,7 @@ export const Container = styled(motion.div).attrs({
     z-index: 99;
     height: 25vw;
     background-color: #f7f9f5;
-    color: #0f0e0ecc;
+    color: #04080f;
     font-weight: 100;
     font-size: 0.8rem;
     border-radius: 4px;
@@ -40,4 +40,5 @@ export const Container = styled(motion.div).attrs({
 
 export const Text = styled.span`
   pointer-events: none;
+  font-weight: 300;
 `;

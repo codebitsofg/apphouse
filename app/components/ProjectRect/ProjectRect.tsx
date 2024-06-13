@@ -14,7 +14,7 @@ interface ProjectRectProps {
 const ProjectRect = (props: ProjectRectProps) => {
   return (
     <S.Container {...props}>
-      <S.Text>Work {props.children}</S.Text>
+      <S.Text> {props.children}</S.Text>
     </S.Container>
   );
 };

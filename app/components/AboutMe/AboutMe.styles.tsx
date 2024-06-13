@@ -9,7 +9,7 @@ export const Container = styled(motion.div).attrs({
 })`
   width: 95vw;
   will-change: transform;
-  height: 95vh;
+  height: 97vh;
   background-color: #fdfffc;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -21,7 +21,6 @@ export const Container = styled(motion.div).attrs({
   border: 1px solid #04080f20;
   overflow: hidden;
   overflow-y: scroll;
-
   color: #0f0e0e;
   text-align: left;
 `;
@@ -44,16 +43,31 @@ export const Overlay = styled(motion.div).attrs({
 export const NameContainer = styled.h1`
   margin: 0;
   color: #04080f;
-  font-size: 7rem;
-  font-weight: 400;
+  font-size: 4rem;
+  font-weight: 800;
   text-transform: uppercase;
-  width: max-content;
+  padding: 6% 0;
+  padding-bottom: 1%;
+  width: 60%;
   margin: 0 auto;
-  text-align: center;
+  margin-bottom: 2%;
+  text-align: left;
+  border-bottom: 1px dotted #0f0e0e;
 `;
 
+export const BeratImage = styled.img.attrs({
+  src: "/berat.jpeg",
+})`
+  width: 10vw;
+  height: 10vw;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px dotted #0f0e0e;
+  margin-left: 2%;
+  margin-top: 2%;
+  box-shadow: 0 0 10px #04080f20;
+`;
 export const InfoContainer = styled.div`
-  align-items: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +104,7 @@ export const SectionTitle = styled.h4`
   width: max-content;
   color: #0f0e0e;
   font-weight: 400;
-  font-size: 3rem;
+  font-size: 2.8rem;
   padding-bottom: 0.5%;
   border-bottom: 1px dotted #0f0e0e;
   margin-bottom: 1%;
@@ -156,4 +170,17 @@ export const SecondaryTitle = styled.h5`
   border-bottom: 1px dotted #0f0e0e;
   margin-bottom: 1%;
   color: #8fbcf6;
+`;
+
+export const SocialsContainer = styled.div`
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+`;
+
+export const WorkContainer = styled.div`
+  margin-bottom: 5%;
 `;

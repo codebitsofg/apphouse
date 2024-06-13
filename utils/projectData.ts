@@ -1,10 +1,126 @@
 export default [
   {
+    rectPosition: { top: "120%", left: "50%" },
+    projectName: "PATI",
+    techStack: ["TypeScript", "Next.js", "Axios", "Tailwind CSS"],
+    deployment: [
+      "AWS Lambda",
+      "S3 Static Site Deployment",
+      "AWS CDK",
+      "DynamoDB",
+      "SQS",
+    ],
+    liveLink:
+      "http://infrastructurestack-nextjssitebucketbd1a5941-isspgruxxmoy.s3-website.eu-central-1.amazonaws.com/",
+    repoLink: "https://github.com/soberbat/pati",
+    mediaPath: "petapp",
+    shortDesc: "An Application ",
+    mainTakeAway: [
+      "I am visioning PATI to be the next pet adoptation platform in Turkey. There have been inhumane legalislations againts stray animals and the pet adoptation platforms play a huge role in helping our furry friends. That is why I decided to start a side project where I will be applying latest technology to fight for the cause. The first iteration is this landing page to collect user emails to sign them in to the newsletter.",
+      "I find it especially interesting because the whole app from API management to service communication to website hosting is AWS Cloud. And one can have many solutions to many problems with AWS cloud.",
+      "The repo is a monorepo initialized using NX. It follows microservices architecture. The API's are served as Lambda Functions, SQS queue communicates the email to email service from the user register service.",
+      "Emails are being sent using Sendgrid and the User data is being saved to DynamoDB",
+      "AWS CDK used as IAC tool.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: ` 
+        import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
+        import { Cors, EndpointType, LambdaRestApi } from "aws-cdk-lib/aws-apigateway";
+        import * as lambda from "aws-cdk-lib/aws-lambda";
+        import { Construct } from "constructs";
+        import * as sqs from "aws-cdk-lib/aws-sqs";
+        import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
+        
+        export default (scope: Construct) => {
+          const queue = new sqs.Queue(scope, "landing-email-queue");
+          const userEmailsTable = new dynamodb.Table(scope, "UserEmailsTable", {
+            partitionKey: { name: "email", type: dynamodb.AttributeType.STRING },
+          });
+        
+          const emailSender = new NodejsFunction(scope, "emailSender", {
+            entry: "../lambda/landing-functions/send-email.ts",
+            handler: "handler",
+          });
+          const userRegistrator = new NodejsFunction(scope, "userRegistrator", {
+            entry: "../lambda/landing-functions/register-users.ts",
+            handler: "handler",
+            environment: {
+              QUEUE_URL: queue.queueUrl,
+              TABLE_NAME: userEmailsTable.tableName,
+            },
+          });
+        
+          queue.grantConsumeMessages(emailSender);
+          queue.grantSendMessages(userRegistrator);
+          userEmailsTable.grantReadWriteData(userRegistrator);
+        
+          new lambda.EventSourceMapping(scope, "QueueEventSourceMapping", {
+            eventSourceArn: queue.queueArn,
+            target: emailSender,
+          });
+        
+          new LambdaRestApi(scope, "apigw", {
+            handler: userRegistrator,
+            endpointTypes: [EndpointType.EDGE],
+            defaultCorsPreflightOptions: {
+              allowOrigins: Cors.ALL_ORIGINS,
+              allowMethods: Cors.ALL_ORIGINS,
+              allowHeaders: Cors.DEFAULT_HEADERS,
+            },
+          });
+        };
+          
+    `,
+        text: "The provisioning of the API's. AWS CDK is being used as the IAC tool here to saves us from many many clicks.",
+      },
+      {
+        codeSnippet: `
+        import * as cdk from "aws-cdk-lib";
+        import * as s3 from "aws-cdk-lib/aws-s3";
+        import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
+        import { Construct } from "constructs";
+        
+        export default (scope: Construct) => {
+          const siteBucket = new s3.Bucket(scope, "NextjsSiteBucket", {
+            websiteIndexDocument: "index.html",
+            websiteErrorDocument: "404.html",
+            publicReadAccess: true,
+            blockPublicAccess: s3.BlockPublicAccess.BLOCK_ACLS,
+            removalPolicy: cdk.RemovalPolicy.DESTROY,
+            autoDeleteObjects: true,
+          });
+        
+          new s3deploy.BucketDeployment(scope, "DeployNextjsSite", {
+            sources: [s3deploy.Source.asset(".././web/out")],
+            destinationBucket: siteBucket,
+          });
+        
+          new cdk.CfnOutput(scope, "SiteURL", {
+            value: siteBucket.bucketWebsiteUrl,
+          });
+        };
+        `,
+        text: "The code bit that lets us serve our Next.js static export in an S3 Bucket. How cool is that?",
+      },
+    ],
+  },
+
+  {
     rectPosition: { top: "40%", left: "0" },
     projectName: "Univversecam",
     mediaPath: "universecam",
     liveLink: "https://unniversecam.beratgenc.live/",
     repoLink: "https://github.com/soberbat/univversecam",
+    techStack: [
+      "TypeScript",
+      "Three.js",
+      "Zustand.js",
+      "Framer Motion",
+      "Next.js",
+      "Styled Components",
+    ],
+    deployment: ["Vercel"],
     shortDesc:
       "A Three.js & Next.js app designed & written with optimal modularity in mind.",
     mainTakeAway: [
@@ -126,39 +242,24 @@ export default [
   },
 
   {
-    rectPosition: { top: "80%", left: "-30%" },
-    projectName: "PATI",
-    liveLink:
-      "http://infrastructurestack-nextjssitebucketbd1a5941-isspgruxxmoy.s3-website.eu-central-1.amazonaws.com/",
-    repoLink: "https://github.com/soberbat/task-manager",
-    mediaPath: "petapp",
-    shortDesc: "A resume creation tool made with Next.js and Redux",
-    mainTakeAway: ["flkfsfkkfssk"],
-    codeBreakDown: [
-      {
-        codeSnippet: ` 
-    export default async function Login(email: string, password: string) {
-      try {
-        return await axios.post(prodEndpoint, { email, password }, axiosConfig);
-      } catch (error) {
-        return { status: 401 };
-      }
-    }      
-    `,
-        text: "Function that makes the actual <span>login request</span> to the server. Although, there is a bit room for improvments on error handling it fulfills its core function.",
-      },
-    ],
-  },
-
-  {
     rectPosition: { top: "30%", left: "70%" },
     projectName: "HEIC TO JPEG Converter",
     mediaPath: "heic",
     repoLink: "https://github.com/soberbat/heic-to-jpeg",
     liveLink: "https://heictojpeg.beratgenc.live/",
+    techStack: [
+      "TypeScript",
+      "Node.js",
+      "Next.js",
+      "NX",
+      "Docker",
+      "Express.js",
+    ],
+    deployment: ["Google Cloud Run"],
     shortDesc: "A Dockerized backend API deployed as GCR service ",
     mainTakeAway: [
-      "The app is a fully functioning HEIC to JPEG converter. It's frontend and backend are<span> deployed as a seperate Google Cloud Run service.</span>",
+      "The app is a fully functioning HEIC to JPEG converter. The API and the web application are<span> deployed as a seperate Google Cloud Run services.</span>",
+      "NX used for monorepo initializer and the microservices architecture is implemented.",
       "The backend handles the recieved form data from the frontend using<span> multer</span> and processes the image and changes its format as JPEG.",
       "The frontend is responsible for making the requests with the data to the backend and display the returned data in an <span>asynchronous fashion.</span>",
     ],
@@ -195,13 +296,200 @@ export default [
       },
     ],
   },
+
+  {
+    rectPosition: { top: "-35%", left: "50%" },
+    projectName: "Session Auth",
+    mediaPath: "sessionauth",
+    liveLink:
+      "https://auth-with-session.in3a4agovd8hi.eu-central-1.cs.amazonlightsail.com/",
+    repoLink: "https://github.com/soberbat/auth-service",
+    techStack: ["Node.js"],
+    deployment: ["Terraform", "AWS Lightsail", "AWS RDS Postgres"],
+    shortDesc:
+      "A Dockerized backend API featuring Redis Cache, Cookie Based Authentication and Database interactions",
+    mainTakeAway: [
+      "The app is developed using <span>Express.js following MVC pattern</span>. It demonstrates how session authentication works on server side, with cookies. The cookies are stored using Redis Cache.",
+      "Terraform is used to provision the infrastructure. More specifically and RDS Postgres database and AWS Lightsail container deployment for the serving of the docker image",
+      "It features <span>SQL command execution</span> for database interactions for data retrieval & manipulation.",
+      "The code demonstrates clear and readable handling of multiple routes.",
+      "Read the API documentation on repository README for testing.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `
+          const mysql = require("mysql2");
+          require("dotenv").config();
+
+          const pool = mysql.createPool({
+            host: process.env.DB_HOSTNAME,
+            port: process.env.DB_PORT,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+            waitForConnections: true,
+            connectionLimit: 10,
+            queueLimit: 0,
+          });
+
+          module.exports = pool.promise();
+      `,
+        text: "Above sets up a <span>MySQL connection pool</span>. It configures the pool with environment variables. It exports the pool instance for use across the application.",
+      },
+      {
+        codeSnippet: `
+      checkIfUserExists: async function (username, password) {
+        try {
+          const [response] = await db.execute(sql.checkIfUserExist, [username]);
+          const userExist = response.length >= 1;
+    
+          if (!userExist) {
+            return { message: sql.userDoesntExist, isSuccesfull: false };
+          }
+    
+          const userData = response[0];
+          const isPasswordCorrect = module.exports.checkPassword(
+            userData,
+            password
+          );
+    
+          return {
+            isSuccesfull: isPasswordCorrect,
+            message: isPasswordCorrect ? sql.success : sql.wrongPassword,
+          };
+        } catch (error) {
+          console.log(error.sqlMessage);
+        }
+      },
+      `,
+        text: "This code snippet checks for the user's existence in the database using the pre-configured connection pool. It executes a <span>SQL query</span> from a config file to verify the user's existence.",
+      },
+      {
+        codeSnippet: `
+      
+        resource "aws_lightsail_container_service" "auth_with_session" {
+          name  = "auth-with-session"
+          power = "nano"
+          scale = 1
+          tags = {
+            version = "1.0.0"
+          }
+
+        }
+
+        resource "aws_lightsail_container_service_deployment_version" "session_auth_deployment" {
+          container {
+            container_name = "auth-with-session"
+            image          = "soberbosso/session-auth:latest"
+            ports = {
+              3001 = "HTTP"
+            }
+
+            # environment = {}
+          }
+
+          public_endpoint {
+            container_name = "auth-with-session"
+            container_port = 3001
+
+            health_check {
+              healthy_threshold   = 2
+              unhealthy_threshold = 2
+              timeout_seconds     = 2
+              interval_seconds    = 5
+              path                = "/"
+              success_codes       = "200-499"
+            }
+          }
+          service_name = aws_lightsail_container_service.auth_with_session.name
+        }
+      `,
+        text: "Terraform in action. It saves quite a lot of time and it is pretty straightforward once you get comfortable",
+      },
+      {
+        codeSnippet: ` 
+      const PORT = process.env.PORT;
+
+      const { corsOptions, sessionOptions } = require("./config");
+      const cookieParser = require("cookie-parser");
+      const session = require("express-session");
+      const bodyParser = require("body-parser");
+      const express = require("express");
+      const cors = require("cors");
+
+      const dashboardController = require("./controllers/dashboard.controller");
+      const logoutController = require("./controllers/logout.controller");
+      const signupController = require("./controllers/signup.controller");
+      const loginController = require("./controllers/login.controller");
+      const rootController = require("./controllers/root.controller");
+
+      const app = express();
+
+      app.use(cors(corsOptions));
+      app.use(cookieParser());
+      app.use(bodyParser.json());
+      app.use(bodyParser.urlencoded({ extended: true }));
+
+      app.enable("trust proxy");
+      app.use(session(sessionOptions));
+
+      app.get("/", rootController);
+      app.get("/dashboard", dashboardController);
+      app.post("/signup", signupController);
+      app.post("/logout", logoutController);
+      app.post("/login", loginController);
+
+      app.listen(PORT, () => console.log(---- App running on {PORT}));
+      `,
+        text: "Above sets up an <span>HTTP server with middlewares & defines multiple routes</span>, each handled by their controllers.",
+      },
+    ],
+  },
+
+  {
+    rectPosition: { top: "80%", left: "-30%" },
+    projectName: "Resume Creator",
+    liveLink: "http://resumemaker.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/r-resume",
+    techStack: ["JavaScript", "React.js", "Styled Components"],
+    deployment: ["Github Actions", "Google Cloud Run"],
+    mediaPath: "resume",
+    shortDesc: "A resume creation tool made with React.js and Redux",
+    mainTakeAway: [
+      "The app is a frontend app with complex data management handled by Redux.It lets you create your own resume to rock your interviews.",
+      "The app is styled using styled components and a very minimalistic design is implemented.",
+      "You can customize and then download your resume with it.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: ` 
+        import { configureStore } from "@reduxjs/toolkit";
+        import textSlice from "./textSlice";
+        import AccordionSlice from "./AccordionSlice";
+        import PropSlice from "./PropSlice";
+        
+        export default configureStore({
+          reducer: {
+            values: textSlice,
+            Accordions: AccordionSlice,
+            Properties: PropSlice,
+          },
+        });
+    `,
+        text: "Initialization of the Redux Store ",
+      },
+    ],
+  },
+
   {
     rectPosition: { top: "100%", left: "-50%" },
     projectName: "Task Manager",
+    techStack: ["TypeScript", "Next.js", "Docker", "Styled Components"],
+    deployment: ["Github Actions", "Google Cloud Run"],
     liveLink: "https://application.taskermanager.site/",
-    repoLink: "https://github.com/soberbat/task-manager",
+    repoLink: "https://github.com/soberbat/task-manager-frontend",
     mediaPath: "tasker",
-    shortDesc: "  Threejs & Nextjs application aimed at modularity",
+    shortDesc: "A Fullstack Task Management App",
     mainTakeAway: [
       "The frontend for the <span>Task Manager API</span>. Implementing the UI was valuable practise on seeing how<span> session cookies</span> can be implemented on the client side.",
       "The UI itself has many examples of modern web components, it includes many input components as well as sidebars, topbars, expanding Views & hover states.",
@@ -286,35 +574,19 @@ export default [
   },
 
   {
-    rectPosition: { top: "80%", left: "-30%" },
-    projectName: "Resume Creation Tool",
-    liveLink: "http://resumemaker.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/task-manager",
-    mediaPath: "resume",
-    shortDesc: "A resume creation tool made with Next.js and Redux",
-    mainTakeAway: ["flkfsfkkfssk"],
-    codeBreakDown: [
-      {
-        codeSnippet: ` 
-    export default async function Login(email: string, password: string) {
-      try {
-        return await axios.post(prodEndpoint, { email, password }, axiosConfig);
-      } catch (error) {
-        return { status: 401 };
-      }
-    }      
-    `,
-        text: "Function that makes the actual <span>login request</span> to the server. Although, there is a bit room for improvments on error handling it fulfills its core function.",
-      },
-    ],
-  },
-
-  {
     rectPosition: { top: "0%", left: "-30%" },
     projectName: "Music Gallery",
     mediaPath: "gallery",
     repoLink: "https://github.com/soberbat/music-gallery",
     liveLink: "https://sound.beratgenc.live/",
+    techStack: [
+      "TypeScript",
+      "Three.js",
+      "React.js",
+      "Styled Components",
+      "Framer Motion",
+    ],
+    deployment: ["Vercel"],
     shortDesc:
       "React & Three.js application with a custom player and linked navigation system",
     mainTakeAway: [
@@ -476,6 +748,14 @@ export default [
     mediaPath: "alsaati",
     liveLink: "https://www.awabalsaati.com/",
     repoLink: "https://github.com/soberbat/awabsfolio",
+    techStack: [
+      "TypeScript",
+      "Next.js",
+      "React.js",
+      "Styled Components",
+      "Framer Motion",
+    ],
+    deployment: ["Vercel"],
     shortDesc:
       "A client work featuring, XHR powered preloader mechanism and a Zustand powered state management strategy.",
     mainTakeAway: [
@@ -610,39 +890,111 @@ export default [
   },
 
   {
-    rectPosition: { top: "40%", left: "-50%" },
-    projectName: "Canvas Art",
-    mediaPath: "canvas",
-    liveLink: "https://canvasart.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/canvas-art",
-    shortDesc: "An HTML Canvas app written using class syntax",
+    rectPosition: { top: "70%", left: "30%" },
+    projectName: "Task Manager Backend",
+    mediaPath: "taskerapi",
+    liveLink: "https://backend.taskermanager.site",
+    techStack: ["Nest.js"],
+    deployment: ["Google Cloud Run", "Docker", "Github Actions"],
+    repoLink: "https://github.com/soberbat/task-manager",
+    shortDesc: "Fully automated dockerized GCR service written with Nest.js.",
     mainTakeAway: [
-      "This app is an interactive <span>HTML Canvas</span> that generates artistic patterns based on randomly generated data. The whole idea of this project was to explore how class syntax can be utilized as a means of separating logic and writing efficient code. There are two classes that works together for the end result.",
+      "A task manager API written using Nest.js, Nest CLI and Prisma as the ORM. It performs <span>CRUD operations an a MySQL</span> based database which includes several number of <span>tables with one-to-one, many-to-many, and one-to-many relationships.</span>",
+      "It uses redis as a cookie storage to save user session for authentication",
+      "The API endpoints are <span>documented using Swagger UI</span> for easy exploration and testing.",
+      "The app is fully <span>automated with Github Actions</span>. And features integrations with Google Cloud Products. Overall, application showcases <span>modern development practices and integration with industry standart tools.</span>",
     ],
     codeBreakDown: [
       {
-        codeSnippet: `  
-    init() {
-      this.symbolsCount += 10;
-      const isVertical = Math.random() < 0.5 ? true : false;
+        codeSnippet: `
+      
+      model EmployeeOnTeams {
+        teamId     Int
+        employeeId Int
+        team       Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+        employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+        @@id([teamId, employeeId])
+      }
+
+      model Project {
+        id          Int       @id @default(autoincrement())
+        name        String
+        description String?
+        tasks       Task[]
+        teamId      Int
+        employeeId  Int?
+        team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
+        employee    Employee? @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+      }
+      `,
+
+        text: "<span>Prisma schema definitions</span> for tables. The EmployeeOnTeams table establishes a many-to-many relationship between teams and employees. The Project table includes fields for name, description, tasks, and references to Team and Employee. Relationships are established using the @relation directive, specifying the fields and references for each relationship, with cascading deletion enabled.",
+      },
+      {
+        codeSnippet: `
+      assignTask(id: number, taskId: number) {
+        return this.databaseService.employee.update({
+          where: { id },
+          data: { tasks: { connect: { id: taskId } } }
+        })
+      }
+    
+      `,
+
+        text: "Function above showcases how easy it is to communicate with the database with <span>Prisma</span>. It offers very familiar syntax for interacting with the data modal by reducing the boilerplate code compared to traditional SQL queries.",
+      },
+      {
+        codeSnippet: `
+            @Patch('/update')
+            update(
+              @Body() updateEmployeeDto: Prisma.EmployeeUpdateInput,
+              @Req() request: Request
+            ) {
+              const userId = request.session.userId
+              return this.employeeService.update(userId, updateEmployeeDto)
+            }
+      `,
+        text: "One of the controllers for the Employee Table. When a request is being made, it extracts the userId from the session and updates only the related user.",
+      },
+      {
+        codeSnippet: `
+      async signin({ email, password }: Partial<Prisma.EmployeeCreateInput>) {
+        const user = await this.databaseService.employee.findUnique({
+          where: { email, password },
+          include: { teams: { include: { team: true } } }
+        })
+    
+        return user ? { userId: user.id, teamId: user.teams[0].teamId } : false
+      }
+    }
+      `,
+
+        text: "The service that looks up for the user on the database and returns user to the controller. Complex database operations is much more simplified with Prisma.",
+      },
+      {
+        codeSnippet: `
+        - name: Build and Push
+        env:
+          GCLOUD_PROJECT_ID: {{ secrets.GCLOUD_PROJECT_ID }}
+          REPO: {{ secrets.REPO }}
+        run: |
+          gcloud auth configure-docker europe-west1-docker.pkg.dev
+          docker build -t europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp:latest .
+          docker push europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp:latest
   
-      this.y = this.getRandomArbitrary(0, window.innerHeight - 0);
-      this.x = this.getRandomArbitrary(window.innerWidth - 0, 0);
-      const color = this.randColor();
-      this.context.font = this.fontSize + "px monospace";
-  
-      [...Array(10).fill(0)].map(
-        (_, i) =>
-          (this.symbols[i + this.symbolsCount] = new Symbol({
-            x: this.x,
-            y: this.y,
-            isVertical,
-            context: this.context,
-            color,
-          }))
-      );
-    `,
-        text: "This code bit creates vertical lines seen on the page. The Symbol class instances are what we see as 0's and 1's. They are being being drawn into the canvas with random positions, and colors. All these are being handled with class specific functions and this way we're keeping the logic seperated from outside world but as one in the class itself.",
+      - name: Deploy
+        env:
+          GCLOUD_PROJECT_ID: {{ secrets.GCLOUD_PROJECT_ID }}
+          REPO: {{ secrets.REPO }}
+        run: |
+          gcloud run deploy task-manager \
+            --region europe-west1 \
+            --image=europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp \
+            --allow-unauthenticated
+      `,
+
+        text: "A part of the workflow file that automates the application with multiple steps. It uses repository secrets for safety.",
       },
     ],
   },
@@ -653,6 +1005,8 @@ export default [
     liveLink: "https://scrollstory.beratgenc.live/",
     repoLink: "https://github.com/soberbat/scroll-triggered-story",
     mediaPath: "story",
+    techStack: ["TypeScript", "React.js", "Styled Components", "Framer Motion"],
+    deployment: ["Vercel"],
     shortDesc:
       "An attempt to get as close as possible to a WebFlow page using React and Typescript.",
     mainTakeAway: [
@@ -766,216 +1120,48 @@ export default [
       },
     ],
   },
-
   {
-    rectPosition: { top: "-35%", left: "50%" },
-    projectName: "Session Auth",
-    mediaPath: "sessionauth",
-    liveLink:
-      "https://auth-with-session.in3a4agovd8hi.eu-central-1.cs.amazonlightsail.com/",
-    repoLink: "https://github.com/soberbat/auth-service",
-    shortDesc:
-      "A Dockerized backend API featuring Redis Cache, Cookie Based Authentication and Database interactions",
+    rectPosition: { top: "40%", left: "-50%" },
+    projectName: "Canvas Art",
+    mediaPath: "canvas",
+    liveLink: "https://canvasart.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/canvas-art",
+    techStack: [
+      "TypeScript",
+      "React.js",
+      "HTML Canvas",
+      "Styled Components",
+      "Framer Motion",
+    ],
+    deployment: ["Vercel"],
+    shortDesc: "An HTML Canvas app written using class syntax",
     mainTakeAway: [
-      "The app is developed using <span>Express.js following MVC pattern</span>. It demonstrates how session authentication works on server side, with cookies. The cookies are stored using Redis Cache.",
-      "API has been <span>deployed as a Docker container using GCR.</span>",
-      "It features <span>SQL command execution</span> for database interactions for data retrieval & manipulation.",
-      "The code demonstrates clear and readable handling of multiple routes.",
-      "Read the API documentation on repository README for testing.",
+      "This app is an interactive <span>HTML Canvas</span> that generates artistic patterns based on randomly generated data. The whole idea of this project was to explore how class syntax can be utilized as a means of separating logic and writing efficient code. There are two classes that works together for the end result.",
     ],
     codeBreakDown: [
       {
-        codeSnippet: `
-          const mysql = require("mysql2");
-          require("dotenv").config();
-
-          const pool = mysql.createPool({
-            host: process.env.DB_HOSTNAME,
-            port: process.env.DB_PORT,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_NAME,
-            waitForConnections: true,
-            connectionLimit: 10,
-            queueLimit: 0,
-          });
-
-          module.exports = pool.promise();
-      `,
-        text: "Above sets up a <span>MySQL connection pool</span>. It configures the pool with environment variables. It exports the pool instance for use across the application.",
-      },
-      {
-        codeSnippet: `
-      checkIfUserExists: async function (username, password) {
-        try {
-          const [response] = await db.execute(sql.checkIfUserExist, [username]);
-          const userExist = response.length >= 1;
-    
-          if (!userExist) {
-            return { message: sql.userDoesntExist, isSuccesfull: false };
-          }
-    
-          const userData = response[0];
-          const isPasswordCorrect = module.exports.checkPassword(
-            userData,
-            password
-          );
-    
-          return {
-            isSuccesfull: isPasswordCorrect,
-            message: isPasswordCorrect ? sql.success : sql.wrongPassword,
-          };
-        } catch (error) {
-          console.log(error.sqlMessage);
-        }
-      },
-      `,
-        text: "This code snippet checks for the user's existence in the database using the pre-configured connection pool. It executes a <span>SQL query</span> from a config file to verify the user's existence.",
-      },
-      {
-        codeSnippet: ` 
-      const PORT = process.env.PORT;
-
-      const { corsOptions, sessionOptions } = require("./config");
-      const cookieParser = require("cookie-parser");
-      const session = require("express-session");
-      const bodyParser = require("body-parser");
-      const express = require("express");
-      const cors = require("cors");
-
-      const dashboardController = require("./controllers/dashboard.controller");
-      const logoutController = require("./controllers/logout.controller");
-      const signupController = require("./controllers/signup.controller");
-      const loginController = require("./controllers/login.controller");
-      const rootController = require("./controllers/root.controller");
-
-      const app = express();
-
-      app.use(cors(corsOptions));
-      app.use(cookieParser());
-      app.use(bodyParser.json());
-      app.use(bodyParser.urlencoded({ extended: true }));
-
-      app.enable("trust proxy");
-      app.use(session(sessionOptions));
-
-      app.get("/", rootController);
-      app.get("/dashboard", dashboardController);
-      app.post("/signup", signupController);
-      app.post("/logout", logoutController);
-      app.post("/login", loginController);
-
-      app.listen(PORT, () => console.log(---- App running on {PORT}));
-      `,
-        text: "Above sets up an <span>HTTP server with middlewares & defines multiple routes</span>, each handled by their controllers.",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "70%", left: "30%" },
-    projectName: "Task Manager Backend",
-    mediaPath: "taskerapi",
-    liveLink: "https://backend.taskermanager.site",
-    repoLink: "https://github.com/soberbat/task-manager",
-    shortDesc: "Fully automated dockerized GCR service written with Nest.js.",
-    mainTakeAway: [
-      "A task manager API written using Nest.js, Nest CLI and Prisma as the ORM. It performs <span>CRUD operations an a MySQL</span> based database which includes several number of <span>tables with one-to-one, many-to-many, and one-to-many relationships.</span>",
-      "It uses redis as a cookie storage to save user session for authentication",
-      "The API endpoints are <span>documented using Swagger UI</span> for easy exploration and testing.",
-      "The app is fully <span>automated with Github Actions</span>. And features integrations with Google Cloud Products. Overall, application showcases <span>modern development practices and integration with industry standart tools.</span>",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `
-      
-      model EmployeeOnTeams {
-        teamId     Int
-        employeeId Int
-        team       Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
-        employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-        @@id([teamId, employeeId])
-      }
-
-      model Project {
-        id          Int       @id @default(autoincrement())
-        name        String
-        description String?
-        tasks       Task[]
-        teamId      Int
-        employeeId  Int?
-        team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
-        employee    Employee? @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-      }
-      `,
-
-        text: "<span>Prisma schema definitions</span> for tables. The EmployeeOnTeams table establishes a many-to-many relationship between teams and employees. The Project table includes fields for name, description, tasks, and references to Team and Employee. Relationships are established using the @relation directive, specifying the fields and references for each relationship, with cascading deletion enabled.",
-      },
-      {
-        codeSnippet: `
-      assignTask(id: number, taskId: number) {
-        return this.databaseService.employee.update({
-          where: { id },
-          data: { tasks: { connect: { id: taskId } } }
-        })
-      }
-    
-      `,
-
-        text: "Function above showcases how easy it is to communicate with the database with <span>Prisma</span>. It offers very familiar syntax for interacting with the data modal by reducing the boilerplate code compared to traditional SQL queries.",
-      },
-      {
-        codeSnippet: `
-            @Patch('/update')
-            update(
-              @Body() updateEmployeeDto: Prisma.EmployeeUpdateInput,
-              @Req() request: Request
-            ) {
-              const userId = request.session.userId
-              return this.employeeService.update(userId, updateEmployeeDto)
-            }
-      `,
-        text: "One of the controllers for the Employee Table. When a request is being made, it extracts the userId from the session and updates only the related user.",
-      },
-      {
-        codeSnippet: `
-      async signin({ email, password }: Partial<Prisma.EmployeeCreateInput>) {
-        const user = await this.databaseService.employee.findUnique({
-          where: { email, password },
-          include: { teams: { include: { team: true } } }
-        })
-    
-        return user ? { userId: user.id, teamId: user.teams[0].teamId } : false
-      }
-    }
-      `,
-
-        text: "The service that looks up for the user on the database and returns user to the controller. Complex database operations is much more simplified with Prisma.",
-      },
-      {
-        codeSnippet: `
-        - name: Build and Push
-        env:
-          GCLOUD_PROJECT_ID: {{ secrets.GCLOUD_PROJECT_ID }}
-          REPO: {{ secrets.REPO }}
-        run: |
-          gcloud auth configure-docker europe-west1-docker.pkg.dev
-          docker build -t europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp:latest .
-          docker push europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp:latest
+        codeSnippet: `  
+    init() {
+      this.symbolsCount += 10;
+      const isVertical = Math.random() < 0.5 ? true : false;
   
-      - name: Deploy
-        env:
-          GCLOUD_PROJECT_ID: {{ secrets.GCLOUD_PROJECT_ID }}
-          REPO: {{ secrets.REPO }}
-        run: |
-          gcloud run deploy task-manager \
-            --region europe-west1 \
-            --image=europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp \
-            --allow-unauthenticated
-      `,
-
-        text: "A part of the workflow file that automates the application with multiple steps. It uses repository secrets for safety.",
+      this.y = this.getRandomArbitrary(0, window.innerHeight - 0);
+      this.x = this.getRandomArbitrary(window.innerWidth - 0, 0);
+      const color = this.randColor();
+      this.context.font = this.fontSize + "px monospace";
+  
+      [...Array(10).fill(0)].map(
+        (_, i) =>
+          (this.symbols[i + this.symbolsCount] = new Symbol({
+            x: this.x,
+            y: this.y,
+            isVertical,
+            context: this.context,
+            color,
+          }))
+      );
+    `,
+        text: "This code bit creates vertical lines seen on the page. The Symbol class instances are what we see as 0's and 1's. They are being being drawn into the canvas with random positions, and colors. All these are being handled with class specific functions and this way we're keeping the logic seperated from outside world but as one in the class itself.",
       },
     ],
   },

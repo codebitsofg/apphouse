@@ -51,10 +51,14 @@ export const DescriptionTitle = styled.h1`
   font-weight: 400;
   margin-bottom: 1vh;
   color: #001a23;
-  font-size: 3.4rem;
+  font-size: 2rem;
   border-bottom: 1px dotted gainsboro;
   width: max-content;
   padding-bottom: 0.5vh;
+
+  ${mediaLarge(css`
+    font-size: 3.4rem;
+  `)}
 `;
 
 export const DescriptionText = styled.p`
@@ -77,17 +81,28 @@ export const RightPanel = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   padding: 3% 5%;
 
   ${mediaLarge(css`
     flex: 5.5;
-    padding: unset;
+    padding: 4% 0;
     height: 100%;
   `)}
 `;
 
+export const TechStacksContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-top: 4%;
+`;
+
+export const TechStackWrapper = styled.div`
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+`;
 export const TitleContainer = styled.div`
   display: flex;
   position: fixed;

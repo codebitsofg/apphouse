@@ -20,49 +20,73 @@ import useStore from "@/app/store/useStore";
 import GlobeIcon from "../Icons/GlobeIcon";
 import GitIcon from "../Icons/GitIcon";
 import BeratGencLogo from "../Icons/BeratGencLogo";
+import { Link } from "../Navigation/Navigation.styles";
 
 const ClassicView = () => {
   const { onHoverStartStore, onHoverEndStore, preloadedSources } = useStore();
 
   return (
     <Container key={"ddddskfkfk"}>
-      {projectData.map(({ mediaPath, projectName, mainTakeAway }, i) => {
-        const gifUrl = preloadedSources.find(
-          ({ mediaPath: path }) => path === mediaPath
-        )?.url;
-        return (
-          <ProjectPreviewContainer key={`${i}-comp`}>
-            <ProjectImage src={gifUrl} />
+      {projectData.map(
+        (
+          {
+            mediaPath,
+            projectName,
+            mainTakeAway,
+            techStack,
+            deployment,
+            liveLink,
+            repoLink,
+          },
+          i
+        ) => {
+          const gifUrl = preloadedSources.find(
+            ({ mediaPath: path }) => path === mediaPath
+          )?.url;
+          return (
+            <ProjectPreviewContainer key={`${i}-comp`}>
+              <ProjectImage src={gifUrl} />
 
-            <TextContainer>
-              <ProjectTitleContainer>
-                <ProjectTitle>{projectName} </ProjectTitle>
-              </ProjectTitleContainer>
+              <TextContainer>
+                <ProjectTitleContainer>
+                  <ProjectTitle>{projectName} </ProjectTitle>
+                </ProjectTitleContainer>
 
-              {mainTakeAway.map((text) => (
-                <ProjectDesc
-                  key={text}
-                  dangerouslySetInnerHTML={{ __html: text }}
-                />
-              ))}
+                {mainTakeAway.map((text) => (
+                  <ProjectDesc
+                    key={text}
+                    dangerouslySetInnerHTML={{ __html: text }}
+                  />
+                ))}
 
-              <IconsContainer>
-                <GlobeIcon />
-                <GitIcon />
-              </IconsContainer>
-            </TextContainer>
+                <IconsContainer>
+                  <Link href={liveLink}>
+                    <GlobeIcon />
+                  </Link>
+                  <Link href={repoLink}>
+                    <GitIcon />
+                  </Link>
+                </IconsContainer>
+              </TextContainer>
 
-            <TechStackContainer>
-              <TechStackTitle>[ Tech Stack ]</TechStackTitle>
-              <StackItem> {">"} Three.js</StackItem>
-              <StackItem> {">"} Zustand.js</StackItem>
-              <StackItem> {">"} Github Actions</StackItem>
-              <StackItem></StackItem>
-              <StackItem></StackItem>
-            </TechStackContainer>
-          </ProjectPreviewContainer>
-        );
-      })}
+              <TechStackContainer>
+                <TechStackTitle>[ Tech Stack ]</TechStackTitle>
+                {techStack?.map((item) => (
+                  <StackItem key={item}>
+                    {">"} {item}
+                  </StackItem>
+                ))}
+                <TechStackTitle>[ Deployment Stack ]</TechStackTitle>
+                {deployment?.map((item) => (
+                  <StackItem key={item}>
+                    {">"} {item}
+                  </StackItem>
+                ))}
+              </TechStackContainer>
+            </ProjectPreviewContainer>
+          );
+        }
+      )}
 
       <PlusIconContainer>
         <PlusIcon />
