@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { mediaLarge } from "@/utils/media";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div``;
 
@@ -8,6 +9,11 @@ export const LogoContainer = styled.div`
   left: 1%;
   opacity: 0.7;
   z-index: 2;
-  width: 5%;
-  height: 5%;
+  width: 15%;
+  height: 15%;
+
+  ${mediaLarge(css`
+    width: 5%;
+    height: 5%;
+  `)}
 `;

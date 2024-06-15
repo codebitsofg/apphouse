@@ -41,4 +41,9 @@ export const Container = styled(motion.div).attrs({
 export const Text = styled.span`
   pointer-events: none;
   font-weight: 300;
+  font-size: 0.6rem;
+
+  ${mediaLarge(css`
+    font-size: 0.7rem;
+  `)}
 `;

@@ -10,7 +10,7 @@ export const Container = styled(motion.div).attrs({
   transition: { delay: 2, duration: 0.5 },
 })`
   position: fixed;
-  background-color: #fdfffcd0;
+  background-color: #fdfffc4f;
   border: 1px solid #04080f20;
   padding: 0.5% 1%;
   border-radius: 2px;
@@ -94,9 +94,16 @@ export const TabText = styled.div`
   padding: 0.3vh;
 
   svg {
-    width: 50%;
-    height: 50%;
+    width: 1.3vh;
+    height: 1.3vh;
   }
+
+  ${mediaLarge(css`
+    svg {
+      width: 40% important!;
+      height: 40% important!;
+    }
+  `)}
 `;
 
 export const Link = styled.a.attrs({

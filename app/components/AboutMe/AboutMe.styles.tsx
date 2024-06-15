@@ -43,7 +43,7 @@ export const Overlay = styled(motion.div).attrs({
 export const NameContainer = styled.h1`
   margin: 0;
   color: #04080f;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 800;
   text-transform: uppercase;
   padding: 6% 0;
@@ -104,11 +104,15 @@ export const SectionTitle = styled.h4`
   width: max-content;
   color: #0f0e0e;
   font-weight: 400;
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   padding-bottom: 0.5%;
   border-bottom: 1px dotted #0f0e0e;
   margin-bottom: 1%;
   color: #04080f;
+
+  ${mediaLarge(css`
+    font-size: 2.8rem;
+  `)}
 `;
 
 export const Row = styled.div`
@@ -133,7 +137,11 @@ export const ExperienceDetail = styled.div`
 export const DetailPoint = styled.span`
   display: block;
   margin-bottom: 0.5%;
-  font-size: 0.9rem;
+  font-size: 0rem;
+
+  ${mediaLarge(css`
+    font-size: 0.9rem;
+  `)}
 `;
 
 export const Bullet = styled.span`
@@ -147,6 +155,15 @@ export const Skill = styled.div`
   color: #f7f9f5;
   margin-bottom: 1%;
   border-radius: 3px;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${mediaLarge(css`
+    padding: 0.5%;
+    font-size: 0.9rem;
+  `)}
 `;
 
 export const ExperienceWrapper = styled.div`

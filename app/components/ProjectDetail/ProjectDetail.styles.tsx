@@ -80,6 +80,7 @@ export const PanelInnerContainer = styled.div`
 export const RightPanel = styled.div`
   flex: 1;
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 3% 5%;
@@ -93,14 +94,27 @@ export const RightPanel = styled.div`
 
 export const TechStacksContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  margin-top: 4%;
+  justify-content: flex-start;
+  margin: 4% 0;
+  padding-bottom: 2%;
+  gap: 2vh;
+  border-bottom: 1px dotted gainsboro;
 `;
 
 export const TechStackWrapper = styled.div`
   h3 {
     margin: 0;
+    margin-bottom: 2%;
     padding: 0;
+    font-size: 1rem;
+    color: #04080f;
+  }
+
+  span {
+    font-size: 0.8rem;
+    font-weight: 400;
   }
 `;
 export const TitleContainer = styled.div`

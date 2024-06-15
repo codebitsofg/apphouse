@@ -112,11 +112,15 @@ export const SelectModeText = styled(motion.h1).attrs({
     duration: 0.5,
   },
 })`
-  font-size: 1.5vh;
+  font-size: 1vh;
   width: 25%;
   text-align: center;
   font-weight: 300;
   margin-bottom: 1%;
+
+  ${mediaLarge(css`
+    font-size: 1.5vh;
+  `)}
 `;
 
 export const Overlay = styled.div`

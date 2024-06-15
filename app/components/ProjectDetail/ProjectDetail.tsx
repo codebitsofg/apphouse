@@ -31,6 +31,7 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
       <S.Panel>
         <S.SectionContainer>
           <S.DescriptionTitle>{projectName}</S.DescriptionTitle>
+
           {mainTakeAway.map((description, i) => (
             <S.DescriptionText
               key={i}
@@ -41,6 +42,26 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
 
         <S.SectionContainer>
           <S.SecondaryTitle>Code Breakdown</S.SecondaryTitle>
+
+          <S.TechStacksContainer>
+            <S.TechStackWrapper>
+              <TechStackTitle> [ Tech Stack ] </TechStackTitle>
+              {techStack?.map((item) => (
+                <StackItem key={item}>
+                  {">"} {item}
+                </StackItem>
+              ))}
+            </S.TechStackWrapper>
+
+            <S.TechStackWrapper>
+              <TechStackTitle>[ Deployment Stack ]</TechStackTitle>
+              {deployment?.map((item) => (
+                <StackItem key={item}>
+                  {">"} {item}
+                </StackItem>
+              ))}
+            </S.TechStackWrapper>
+          </S.TechStacksContainer>
           {codeBreakDown.map(({ text, codeSnippet }) => (
             <S.SectionContainer key={text}>
               <CodeBlock code={codeSnippet} />
@@ -52,25 +73,6 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
 
       <S.RightPanel>
         <SlideShow gifSource={gifUrl!} />
-        <S.TechStacksContainer>
-          <S.TechStackWrapper>
-            <TechStackTitle> [ Tech Stack ] </TechStackTitle>
-            {techStack?.map((item) => (
-              <StackItem key={item}>
-                {">"} {item}
-              </StackItem>
-            ))}
-          </S.TechStackWrapper>
-
-          <S.TechStackWrapper>
-            <TechStackTitle>[ Deployment Stack ]</TechStackTitle>
-            {deployment?.map((item) => (
-              <StackItem key={item}>
-                {">"} {item}
-              </StackItem>
-            ))}
-          </S.TechStackWrapper>
-        </S.TechStacksContainer>
       </S.RightPanel>
 
       <S.TitleContainer>

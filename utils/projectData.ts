@@ -14,7 +14,7 @@ export default [
       "http://infrastructurestack-nextjssitebucketbd1a5941-isspgruxxmoy.s3-website.eu-central-1.amazonaws.com/",
     repoLink: "https://github.com/soberbat/pati",
     mediaPath: "petapp",
-    shortDesc: "An Application ",
+    shortDesc: "Landing page for a pet adoptation platform",
     mainTakeAway: [
       "I am visioning PATI to be the next pet adoptation platform in Turkey. There have been inhumane legalislations againts stray animals and the pet adoptation platforms play a huge role in helping our furry friends. That is why I decided to start a side project where I will be applying latest technology to fight for the cause. The first iteration is this landing page to collect user emails to sign them in to the newsletter.",
       "I find it especially interesting because the whole app from API management to service communication to website hosting is AWS Cloud. And one can have many solutions to many problems with AWS cloud.",
