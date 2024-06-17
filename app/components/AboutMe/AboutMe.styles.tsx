@@ -23,6 +23,11 @@ export const Container = styled(motion.div).attrs({
   overflow-y: scroll;
   color: #0f0e0e;
   text-align: left;
+  padding-top: 10%;
+
+  ${mediaLarge(css`
+    padding-top: 0;
+  `)};
 `;
 
 export const Overlay = styled(motion.div).attrs({
@@ -137,7 +142,7 @@ export const ExperienceDetail = styled.div`
 export const DetailPoint = styled.span`
   display: block;
   margin-bottom: 0.5%;
-  font-size: 0rem;
+  font-size: 0.5rem;
 
   ${mediaLarge(css`
     font-size: 0.9rem;

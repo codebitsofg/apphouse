@@ -298,6 +298,175 @@ export default [
   },
 
   {
+    rectPosition: { top: "0%", left: "-30%" },
+    projectName: "Music Gallery",
+    mediaPath: "gallery",
+    repoLink: "https://github.com/soberbat/music-gallery",
+    liveLink: "https://sound.beratgenc.live/",
+    techStack: [
+      "TypeScript",
+      "Three.js",
+      "React.js",
+      "Styled Components",
+      "Framer Motion",
+    ],
+    deployment: ["Vercel"],
+    shortDesc:
+      "React & Three.js application with a custom player and linked navigation system",
+    mainTakeAway: [
+      "This app consists of <span>two classes</span>: Each pane originates from a custom class that extends the Three.Object3D class, while the Scene class handles rendering, controls the <span>general navigation flow</span>, and communicates with the React UI.",
+      "The navigation posed the greatest challenge in the project. You can control the app through scrolling and using two distinct UI navigation elements, all of which remain synchronized with each other. The scrolling navigation is implemented using a <span>debouncer.</span>",
+      "There is a custom music made react music player linked to the scene, allowing playback control through dragging and clicking. The data is communicated to both the Scene and the UI. So this is an another example of implementation of mouse events.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `
+      createMaterial = (texture: THREE.Texture, isPaneBase: boolean) => {
+        return new THREE.MeshBasicMaterial({
+          map: texture,
+          side: THREE.FrontSide,
+          transparent: !isPaneBase,
+        });
+      };
+
+      updateProgresOverlay = () => {
+        if (isNaN(this.trackProgres)) return;
+        const scaleX = (this.paneWidth * this.trackProgres) / 100;
+        this.progresOverlay!.scale.x = scaleX;
+      };
+
+      initVideoTexture = () => {
+        return new Promise<THREE.VideoTexture>((resolve) => {
+          const video = document.createElement("video");
+          video.src = this.getVideoSrc();
+          video.loop = true;
+          video.autoplay = true;
+          video.muted = true;
+    
+          video.oncanplaythrough = () => {
+            video.play();
+            resolve(new THREE.VideoTexture(video));
+          };
+        });
+      };
+      `,
+        text: "These function declarations belong to the Pane class and are written with the Clean Code Principles in mind. They are compliant as each function serves a single purpose with <span>descriptive names and modularity.</span>",
+      },
+      {
+        codeSnippet: `
+        interface ITabNavigation extends IEnvironment {
+          progres: number;
+        }
+        
+        const TabNavigation = memo(
+          ({ progres, onProgres }: Partial<ITabNavigation>) => {
+            const containerRef = useRef<HTMLDivElement | null>(null);
+            const progressModulo = progres! % PANECOUNT;
+            const [width, setwidth] = useState(0);
+        
+            const showIndex = useCallback(
+              (i: number) => (i === PANECOUNT ? 0 : i + 1),
+              []
+            );
+        
+            useEffect(() => {
+              if (!containerRef.current) return;
+              const { width } = containerRef.current.getBoundingClientRect();
+              setwidth(width);
+            }, []);
+        
+            return (
+              <Container>
+                <InnerContainer>
+                  <Panes width={width} activePane={progressModulo}>
+                    {[...Array(PANECOUNT + 1)].map((_, index) => (
+                      <PaneRec
+                        onClick={() => onProgres!(index)}
+                        isActivePane={index === progressModulo}
+                        ref={containerRef}
+                        key={index}
+                      >
+                        {showIndex(index)}
+                      </PaneRec>
+                    ))}
+                  </Panes>
+                </InnerContainer>
+                <BackgroundOverlay />
+              </Container>
+            );
+          }
+        );
+        
+        export default TabNavigation;
+      `,
+        text: "<span>Memoized component</span> above renders one of two UI navigations. It calculates the center point of the parent container<span> boundingClientRect API</span>. Then animates the child nodes based on the passed progress prop",
+      },
+      {
+        codeSnippet: `
+      const Environment = memo(
+        ({
+          sceneRef,
+          onProgres,
+          onPlay,
+          trackProgress,
+          onRotate,
+          onContentLoaded,
+        }: IEnvironment) => {
+          const rendererWrapper = useRef<HTMLDivElement | null>(null);
+      
+          useEffect(
+            () => sceneRef?.current?.setTrackProgress(trackProgress),
+            [trackProgress]
+          );
+      
+          useEffect(() => {
+            if (sceneRef)
+              !sceneRef.current &&
+                (async () => {
+                  sceneRef.current = new Scene({
+                    rendererContainer: rendererWrapper.current,
+                    handleProgress: onProgres!,
+                    onRotation: onRotate!,
+                    onPlay: onPlay!,
+                  });
+      
+                  await sceneRef.current.init();
+                  onContentLoaded();
+                  sceneRef.current.animate();
+                })();
+          }, []);
+      
+          return <Container ref={rendererWrapper} />;
+        }
+      );
+      
+      export default Environment;
+      `,
+        text: "Component above initializes the scene. It demonstrates how the useRef hook can be utilized to hold any value, including a class instance. By referencing the class, it becomes possible to utilize its methods and link the UI with the instance.",
+      },
+      {
+        codeSnippet: `
+      const onMouseMove = (e: MouseEvent) => {
+        if (!boundingBox) return;
+        const progressBarWidth = boundingBox?.width;
+        const leftOffset = boundingBox?.x;
+        const positionOnBar = e.clientX - leftOffset;
+        const position = (positionOnBar / progressBarWidth) * FULL_PERCENTAGE;
+        const withMouseOffset = position + MOUSE_OFFSET;
+        setTimeToSlideTo(Math.min(withMouseOffset, FULL_WIDTH_MINUS_HANDLE_OFFSET));
+      };
+    
+      useEffect(() => {
+        setBoundingBox(pBarRef.current && pBarRef.current.getBoundingClientRect());
+        document.addEventListener("mousemove", onMouseMove);
+      }, [pBarRef.current]);
+      `,
+        text: "Code above demonstrates Frontend math in action, achieving precise outcomes. It dynamically calculates the position of the slider handle based on mouse movement. By utilizing <span>bounding box measurements and mouse coordinates</span>, it determines the exact position to set the slider, giving an accurate representation of user input.",
+      },
+    ],
+  },
+
+  {
     rectPosition: { top: "-35%", left: "50%" },
     projectName: "Session Auth",
     mediaPath: "sessionauth",
@@ -569,175 +738,6 @@ export default [
       }      
       `,
         text: "Function that makes the actual <span>login request</span> to the server. Although, there is a bit room for improvments on error handling it fulfills its core function.",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "0%", left: "-30%" },
-    projectName: "Music Gallery",
-    mediaPath: "gallery",
-    repoLink: "https://github.com/soberbat/music-gallery",
-    liveLink: "https://sound.beratgenc.live/",
-    techStack: [
-      "TypeScript",
-      "Three.js",
-      "React.js",
-      "Styled Components",
-      "Framer Motion",
-    ],
-    deployment: ["Vercel"],
-    shortDesc:
-      "React & Three.js application with a custom player and linked navigation system",
-    mainTakeAway: [
-      "This app consists of <span>two classes</span>: Each pane originates from a custom class that extends the Three.Object3D class, while the Scene class handles rendering, controls the <span>general navigation flow</span>, and communicates with the React UI.",
-      "The navigation posed the greatest challenge in the project. You can control the app through scrolling and using two distinct UI navigation elements, all of which remain synchronized with each other. The scrolling navigation is implemented using a <span>debouncer.</span>",
-      "There is a custom music made react music player linked to the scene, allowing playback control through dragging and clicking. The data is communicated to both the Scene and the UI. So this is an another example of implementation of mouse events.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `
-      createMaterial = (texture: THREE.Texture, isPaneBase: boolean) => {
-        return new THREE.MeshBasicMaterial({
-          map: texture,
-          side: THREE.FrontSide,
-          transparent: !isPaneBase,
-        });
-      };
-
-      updateProgresOverlay = () => {
-        if (isNaN(this.trackProgres)) return;
-        const scaleX = (this.paneWidth * this.trackProgres) / 100;
-        this.progresOverlay!.scale.x = scaleX;
-      };
-
-      initVideoTexture = () => {
-        return new Promise<THREE.VideoTexture>((resolve) => {
-          const video = document.createElement("video");
-          video.src = this.getVideoSrc();
-          video.loop = true;
-          video.autoplay = true;
-          video.muted = true;
-    
-          video.oncanplaythrough = () => {
-            video.play();
-            resolve(new THREE.VideoTexture(video));
-          };
-        });
-      };
-      `,
-        text: "These function declarations belong to the Pane class and are written with the Clean Code Principles in mind. They are compliant as each function serves a single purpose with <span>descriptive names and modularity.</span>",
-      },
-      {
-        codeSnippet: `
-        interface ITabNavigation extends IEnvironment {
-          progres: number;
-        }
-        
-        const TabNavigation = memo(
-          ({ progres, onProgres }: Partial<ITabNavigation>) => {
-            const containerRef = useRef<HTMLDivElement | null>(null);
-            const progressModulo = progres! % PANECOUNT;
-            const [width, setwidth] = useState(0);
-        
-            const showIndex = useCallback(
-              (i: number) => (i === PANECOUNT ? 0 : i + 1),
-              []
-            );
-        
-            useEffect(() => {
-              if (!containerRef.current) return;
-              const { width } = containerRef.current.getBoundingClientRect();
-              setwidth(width);
-            }, []);
-        
-            return (
-              <Container>
-                <InnerContainer>
-                  <Panes width={width} activePane={progressModulo}>
-                    {[...Array(PANECOUNT + 1)].map((_, index) => (
-                      <PaneRec
-                        onClick={() => onProgres!(index)}
-                        isActivePane={index === progressModulo}
-                        ref={containerRef}
-                        key={index}
-                      >
-                        {showIndex(index)}
-                      </PaneRec>
-                    ))}
-                  </Panes>
-                </InnerContainer>
-                <BackgroundOverlay />
-              </Container>
-            );
-          }
-        );
-        
-        export default TabNavigation;
-      `,
-        text: "<span>Memoized component</span> above renders one of two UI navigations. It calculates the center point of the parent container<span> boundingClientRect API</span>. Then animates the child nodes based on the passed progress prop",
-      },
-      {
-        codeSnippet: `
-      const Environment = memo(
-        ({
-          sceneRef,
-          onProgres,
-          onPlay,
-          trackProgress,
-          onRotate,
-          onContentLoaded,
-        }: IEnvironment) => {
-          const rendererWrapper = useRef<HTMLDivElement | null>(null);
-      
-          useEffect(
-            () => sceneRef?.current?.setTrackProgress(trackProgress),
-            [trackProgress]
-          );
-      
-          useEffect(() => {
-            if (sceneRef)
-              !sceneRef.current &&
-                (async () => {
-                  sceneRef.current = new Scene({
-                    rendererContainer: rendererWrapper.current,
-                    handleProgress: onProgres!,
-                    onRotation: onRotate!,
-                    onPlay: onPlay!,
-                  });
-      
-                  await sceneRef.current.init();
-                  onContentLoaded();
-                  sceneRef.current.animate();
-                })();
-          }, []);
-      
-          return <Container ref={rendererWrapper} />;
-        }
-      );
-      
-      export default Environment;
-      `,
-        text: "Component above initializes the scene. It demonstrates how the useRef hook can be utilized to hold any value, including a class instance. By referencing the class, it becomes possible to utilize its methods and link the UI with the instance.",
-      },
-      {
-        codeSnippet: `
-      const onMouseMove = (e: MouseEvent) => {
-        if (!boundingBox) return;
-        const progressBarWidth = boundingBox?.width;
-        const leftOffset = boundingBox?.x;
-        const positionOnBar = e.clientX - leftOffset;
-        const position = (positionOnBar / progressBarWidth) * FULL_PERCENTAGE;
-        const withMouseOffset = position + MOUSE_OFFSET;
-        setTimeToSlideTo(Math.min(withMouseOffset, FULL_WIDTH_MINUS_HANDLE_OFFSET));
-      };
-    
-      useEffect(() => {
-        setBoundingBox(pBarRef.current && pBarRef.current.getBoundingClientRect());
-        document.addEventListener("mousemove", onMouseMove);
-      }, [pBarRef.current]);
-      `,
-        text: "Code above demonstrates Frontend math in action, achieving precise outcomes. It dynamically calculates the position of the slider handle based on mouse movement. By utilizing <span>bounding box measurements and mouse coordinates</span>, it determines the exact position to set the slider, giving an accurate representation of user input.",
       },
     ],
   },

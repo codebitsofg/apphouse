@@ -19,6 +19,6 @@ export type SetStartPos = React.Dispatch<React.SetStateAction<StartPos>>;
 export type SetTransform = React.Dispatch<React.SetStateAction<PanPosition>>;
 
 export enum Mode {
-  GALLERY = 1,
-  CLASSIC = 2,
+  GALLERY = 2,
+  CLASSIC = 1,
 }

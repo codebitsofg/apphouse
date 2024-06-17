@@ -23,7 +23,7 @@ interface LoadingPageProps {
 
 const LoadingPage = ({ progress, onModeClick }: LoadingPageProps) => {
   const isPreloaded = progress === 100;
-  const options = ["Gallery", "Classic"];
+  const options = ["Classic", "Gallery"];
   const [isModeSelected, setIsModeSelected] = useState(false);
 
   const handleOptionClick = (option: number) => {
@@ -50,7 +50,8 @@ const LoadingPage = ({ progress, onModeClick }: LoadingPageProps) => {
             {!isModeSelected ? (
               <OptionContainer key={"242442"}>
                 <SelectModeText>
-                  Select A Mode. You can switch between modes from navigation.
+                  Select A mode to view curated projects. You can switch between
+                  modes from the navigation.
                 </SelectModeText>
                 <InnerOptionContainer>
                   {options.map((mode, i) => (
