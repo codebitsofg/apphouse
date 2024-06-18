@@ -17,9 +17,9 @@ export default [
     shortDesc: "Landing page for a pet adoptation platform",
     mainTakeAway: [
       "I am visioning PATI to be the next pet adoptation platform in Turkey. There have been inhumane legalislations againts stray animals and the pet adoptation platforms play a huge role in helping our furry friends. That is why I decided to start a side project where I will be applying latest technology to fight for the cause. The first iteration is this landing page to collect user emails to sign them in to the newsletter.",
-      "I find it especially interesting because the whole app from API management to service communication to website hosting is AWS Cloud. And one can have many solutions to many problems with AWS cloud.",
-      "The repo is a monorepo initialized using NX. It follows microservices architecture. The API's are served as Lambda Functions, SQS queue communicates the email to email service from the user register service.",
-      "Emails are being sent using Sendgrid and the User data is being saved to DynamoDB",
+      "I find it especially interesting because the whole app from API management to service communication to website hosting is in the AWS Cloud. One can have many solutions to many problems with AWS cloud.",
+      "As for the repo it is a monorepo initialized using NX. It follows microservices architecture. The API's are served as Lambda Functions, SQS queue communicates the user data to email service from the user register service.",
+      "Emails are being sent using Sendgrid and the User data is being saved to DynamoDB.",
       "AWS CDK used as IAC tool.",
     ],
     codeBreakDown: [
@@ -478,8 +478,8 @@ export default [
     shortDesc:
       "A Dockerized backend API featuring Redis Cache, Cookie Based Authentication and Database interactions",
     mainTakeAway: [
-      "The app is developed using <span>Express.js following MVC pattern</span>. It demonstrates how session authentication works on server side, with cookies. The cookies are stored using Redis Cache.",
-      "Terraform is used to provision the infrastructure. More specifically and RDS Postgres database and AWS Lightsail container deployment for the serving of the docker image",
+      "The demo is developed using <span>Express.js following MVC pattern</span>. It demonstrates how session authentication works on server side, with cookies. The cookies are stored using Redis Cache.",
+      "Terraform is used to provision the infrastructure. RDS Postgres database and AWS Lightsail container deployment for the serving of the docker image is provisioned using IAC.",
       "It features <span>SQL command execution</span> for database interactions for data retrieval & manipulation.",
       "The code demonstrates clear and readable handling of multiple routes.",
       "Read the API documentation on repository README for testing.",
@@ -626,8 +626,7 @@ export default [
     shortDesc: "A resume creation tool made with React.js and Redux",
     mainTakeAway: [
       "The app is a frontend app with complex data management handled by Redux.It lets you create your own resume to rock your interviews.",
-      "The app is styled using styled components and a very minimalistic design is implemented.",
-      "You can customize and then download your resume with it.",
+      "The app is styled using styled components and a very minimalistic design is implemented. You can customize and then download your resume with it.",
     ],
     codeBreakDown: [
       {

@@ -9,7 +9,7 @@ export const Container = styled(motion.div).attrs({
 })`
   width: 95vw;
   will-change: transform;
-  height: 97vh;
+  height: 97dvh;
   background-color: #fdfffc;
   position: fixed;
   transform: translate(-50%, -50%);
