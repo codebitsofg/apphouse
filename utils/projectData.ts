@@ -1,5 +1,337 @@
 export default [
   {
+    rectPosition: { top: "40%", left: "0" },
+    projectName: "Univversecam",
+    mediaPath: "universecam",
+    liveLink: "https://unniversecam.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/univversecam",
+    techStack: [
+      "TypeScript",
+      "Three.js",
+      "Zustand.js",
+      "Framer Motion",
+      "Next.js",
+      "Styled Components",
+    ],
+    deployment: ["Vercel"],
+    shortDesc:
+      "A Three.js & Next.js app designed & written with optimal modularity in mind.",
+    mainTakeAway: [
+      "The application has a sophisticated UI controlled with state saved and managed with <span>React Context</span>. The UI is execution of a complex design featuring implementations of common web app elements such as select menus, carousel slides, and footers. ",
+      "Modularity is carefully conducted in the codebase, there are lots of room for flexibility. React user interface and the scene class updates one another based on user input. With a focus on modularity and synchronization, the application is a good example of modular UI and how it can be matched with immersive web experiences.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `
+        interface ISkewedContainer<T> {
+          children: T ;
+          canSelectMultiple?: boolean;
+          isActiveSlot?: boolean;
+          isChildImage: boolean;
+          onClick?: (scene: Scene) => void;
+        }
+        
+        const SkewedContainer = ({
+          children,
+          onClick,
+          canSelectMultiple,
+          isActiveSlot,
+          isChildImage,
+        }: ISkewedContainer) => {
+          const [isActive, setisActive] = useState(isActiveSlot);
+          const { sceneRef } = useContext(AppContext);
+        
+          const selectSlot = () => {
+            canSelectMultiple && setisActive(!isActive);
+            onClick && onClick(sceneRef);
+          };
+        
+          return (
+            <Wrapper isActive={isActiveSlot} onClick={selectSlot}>
+              <InnerWrapper>
+                {isChildImage ? <Image src={children} /> : children}
+              </InnerWrapper>
+            </Wrapper>
+          );
+        };
+        `,
+        text: "The component highlighted above is a highly adaptable one, capable of changing it appearance, and its behaviour based on props, serving as the fundamental component for most buttons within the app",
+      },
+      {
+        codeSnippet: `
+        const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+          x.set(-(((activeSlide + 1) * FULL_WIDTH) / SLIDE_COUNT));
+          setActiveSlide((activeSlide) =>
+            activeSlide < SLIDE_COUNT - 1 ? activeSlide + 1 : activeSlide
+          );
+      
+          !isNavigationActive && setIsFactionSearchVisible(false);
+        };
+        `,
+        text: "Main logic responsible for calculating the transformation of the <span>custom slider</span>. The parameterized numerical constants avoids the usage of magic numbers, for code readability.",
+      },
+      {
+        codeSnippet: `
+        loadModels = () => {
+          const planets = ["alien", "serenity", "tree", "beta"];
+    
+          const loader = new GLTFLoader();
+      
+          const planetLoadMap = planets.map((planet, i) => {
+            return new Promise((resolve, reject) => {
+              loader.load("/assets/planets/{planet}.glb", (scene) => {
+                const planetGroup = this.world.clone();
+                planetGroup.userData.planetName = planet;
+                planetGroup.position.set(0, 0, 0);
+      
+                (planetGroup as any).isPlanet = true;
+      
+                scene.scene.traverse((item) => {
+                  item.scale.set(1, 1, 1);
+                  item.position.set(0, 0, 0);
+                });
+      
+                planetGroup.add(scene.scene);
+                this.planets.push(planetGroup);
+                this.scene.add(planetGroup);
+                resolve(scene.scene);
+              });
+            });
+          });
+      
+          return Promise.all(planetLoadMap);
+        };
+        
+        `,
+        text: "Function above belongs to the class that renders the 3D Scene. It loads modals in an <span>asynchronous</span> way to ensure that the app is not accessible to the user before all necessary data has loaded.",
+      },
+      {
+        codeSnippet: `
+        <PlanetDetailRow data={{ title: "Planet Code", info: "Banu" }} />
+        `,
+        text: "Yet another example of calling a modular component with props.",
+      },
+      {
+        codeSnippet: `
+        export const SliderInnerWrapper = styled(motion.div).attrs({
+          transition: {
+            ease: "circInOut",
+            duration: 1,
+          },
+        })<ISlideCount>(
+          ({ slide }) => css"
+            width: ${`slide * 100%`};
+            height: 100%;
+            pointer-events: none;
+          "
+        );
+
+        //No animation config is being passed when calling the component.
+        <SliderInnerWrapper slide={slide}></SliderInnerWrapper>
+        `,
+        text: "Above showcases how <span>styled-components and framer-motion</span> can be used together to make sure that our component reads cleaner.",
+      },
+    ],
+  },
+
+  {
+    rectPosition: { top: "30%", left: "70%" },
+    projectName: "HEIC TO JPEG Converter",
+    mediaPath: "heic",
+    repoLink: "https://github.com/soberbat/heic-to-jpeg",
+    liveLink: "https://heictojpeg.beratgenc.live/",
+    techStack: [
+      "TypeScript",
+      "Node.js",
+      "Next.js",
+      "NX",
+      "Docker",
+      "Express.js",
+    ],
+    deployment: ["Google Cloud Run"],
+    shortDesc: "A Dockerized backend API deployed as GCR service ",
+    mainTakeAway: [
+      "The app is a fully functioning HEIC to JPEG converter. The API and the web application are<span> deployed as a seperate Google Cloud Run services.</span>",
+      "NX used for monorepo initializer and the microservices architecture is implemented.",
+      "The backend handles the recieved form data from the frontend using<span> multer</span> and processes the image and changes its format as JPEG.",
+      "The frontend is responsible for making the requests with the data to the backend and display the returned data in an <span>asynchronous fashion.</span>",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `
+        async function fromHEICToJPEG(inputBuffer) {
+          try {
+            const data = await convert({
+              buffer: inputBuffer,
+              format: "JPEG",
+              quality: 1,
+            });
+
+            return data;
+          } catch (error) {
+            console.error("Error converting HEIC to JPEG:", error);
+            throw error;
+          }
+        }
+      `,
+        text: "The main function that converts the HEIC input into JPEG. It is an asynchronous function that takes an inputBuffer representing the HEIC image data. It utilizes the heic-convert library to perform the actual conversion.",
+      },
+      {
+        codeSnippet: `
+      docker build .  --platform linux/amd64 -t  europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest
+
+      docker push europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest                           
+
+      gcloud run deploy strapi-cms  --image europe-west1-docker.pkg.dev/dev-sphere-410611/demo/the-dot-cms:latest
+      `,
+
+        text: "Some <span>gcloud CLI</span> commands for updating & deploying the API. The initial command builds a <span> Docker </span> image with specified tags. Later, the built image is pushed to a the <span>Google Container Registry</span>, to be used in deployment. Finally the API deployment to Google Cloud Run is executed.",
+      },
+    ],
+  },
+
+  {
+    rectPosition: { top: "80%", left: "-30%" },
+    projectName: "Resume Creator",
+    liveLink: "http://resumemaker.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/r-resume",
+    techStack: ["JavaScript", "React.js", "Styled Components"],
+    deployment: ["Github Actions", "Google Cloud Run"],
+    mediaPath: "resume",
+    shortDesc: "A resume creation tool made with React.js and Redux",
+    mainTakeAway: [
+      "The app is a frontend app with complex data management handled by Redux.It lets you create your own resume to rock your interviews.",
+      "The app is styled using styled components and a very minimalistic design is implemented. You can customize and then download your resume with it.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: ` 
+        import { configureStore } from "@reduxjs/toolkit";
+        import textSlice from "./textSlice";
+        import AccordionSlice from "./AccordionSlice";
+        import PropSlice from "./PropSlice";
+        
+        export default configureStore({
+          reducer: {
+            values: textSlice,
+            Accordions: AccordionSlice,
+            Properties: PropSlice,
+          },
+        });
+    `,
+        text: "Initialization of the Redux Store ",
+      },
+    ],
+  },
+
+  {
+    rectPosition: { top: "120%", left: "50%" },
+    projectName: "PATI",
+    techStack: ["TypeScript", "Next.js", "Axios", "Tailwind CSS"],
+    deployment: [
+      "AWS Lambda",
+      "S3 Static Site Deployment",
+      "AWS CDK",
+      "DynamoDB",
+      "SQS",
+    ],
+    liveLink:
+      "http://infrastructurestack-nextjssitebucketbd1a5941-isspgruxxmoy.s3-website.eu-central-1.amazonaws.com/",
+    repoLink: "https://github.com/soberbat/pati",
+    mediaPath: "petapp",
+    shortDesc: "Landing page for a pet adoptation platform",
+    mainTakeAway: [
+      "I am visioning PATI to be the next pet adoptation platform in Turkey. There have been inhumane legalislations againts stray animals and the pet adoptation platforms play a huge role in helping our furry friends. That is why I decided to start a side project where I will be applying latest technology to fight for the cause. The first iteration is this landing page to collect user emails to sign them in to the newsletter.",
+      "I find it especially interesting because the whole app from API management to service communication to website hosting is in the AWS Cloud. One can have many solutions to many problems with AWS cloud.",
+      "As for the repo it is a monorepo initialized using NX. It follows microservices architecture. The API's are served as Lambda Functions, SQS queue communicates the user data to email service from the user register service.",
+      "Emails are being sent using Sendgrid and the User data is being saved to DynamoDB.",
+      "AWS CDK used as IAC tool.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: ` 
+        import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
+        import { Cors, EndpointType, LambdaRestApi } from "aws-cdk-lib/aws-apigateway";
+        import * as lambda from "aws-cdk-lib/aws-lambda";
+        import { Construct } from "constructs";
+        import * as sqs from "aws-cdk-lib/aws-sqs";
+        import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
+        
+        export default (scope: Construct) => {
+          const queue = new sqs.Queue(scope, "landing-email-queue");
+          const userEmailsTable = new dynamodb.Table(scope, "UserEmailsTable", {
+            partitionKey: { name: "email", type: dynamodb.AttributeType.STRING },
+          });
+        
+          const emailSender = new NodejsFunction(scope, "emailSender", {
+            entry: "../lambda/landing-functions/send-email.ts",
+            handler: "handler",
+          });
+          const userRegistrator = new NodejsFunction(scope, "userRegistrator", {
+            entry: "../lambda/landing-functions/register-users.ts",
+            handler: "handler",
+            environment: {
+              QUEUE_URL: queue.queueUrl,
+              TABLE_NAME: userEmailsTable.tableName,
+            },
+          });
+        
+          queue.grantConsumeMessages(emailSender);
+          queue.grantSendMessages(userRegistrator);
+          userEmailsTable.grantReadWriteData(userRegistrator);
+        
+          new lambda.EventSourceMapping(scope, "QueueEventSourceMapping", {
+            eventSourceArn: queue.queueArn,
+            target: emailSender,
+          });
+        
+          new LambdaRestApi(scope, "apigw", {
+            handler: userRegistrator,
+            endpointTypes: [EndpointType.EDGE],
+            defaultCorsPreflightOptions: {
+              allowOrigins: Cors.ALL_ORIGINS,
+              allowMethods: Cors.ALL_ORIGINS,
+              allowHeaders: Cors.DEFAULT_HEADERS,
+            },
+          });
+        };
+          
+    `,
+        text: "The provisioning of the API's. AWS CDK is being used as the IAC tool here to saves us from many many clicks.",
+      },
+      {
+        codeSnippet: `
+        import * as cdk from "aws-cdk-lib";
+        import * as s3 from "aws-cdk-lib/aws-s3";
+        import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
+        import { Construct } from "constructs";
+        
+        export default (scope: Construct) => {
+          const siteBucket = new s3.Bucket(scope, "NextjsSiteBucket", {
+            websiteIndexDocument: "index.html",
+            websiteErrorDocument: "404.html",
+            publicReadAccess: true,
+            blockPublicAccess: s3.BlockPublicAccess.BLOCK_ACLS,
+            removalPolicy: cdk.RemovalPolicy.DESTROY,
+            autoDeleteObjects: true,
+          });
+        
+          new s3deploy.BucketDeployment(scope, "DeployNextjsSite", {
+            sources: [s3deploy.Source.asset(".././web/out")],
+            destinationBucket: siteBucket,
+          });
+        
+          new cdk.CfnOutput(scope, "SiteURL", {
+            value: siteBucket.bucketWebsiteUrl,
+          });
+        };
+        `,
+        text: "The code bit that lets us serve our Next.js static export in an S3 Bucket. How cool is that?",
+      },
+    ],
+  },
+
+  {
     rectPosition: { top: "0%", left: "-30%" },
     projectName: "Music Gallery",
     mediaPath: "gallery",
@@ -169,304 +501,6 @@ export default [
   },
 
   {
-    rectPosition: { top: "30%", left: "70%" },
-    projectName: "HEIC TO JPEG Converter",
-    mediaPath: "heic",
-    repoLink: "https://github.com/soberbat/heic-to-jpeg",
-    liveLink: "https://heictojpeg.beratgenc.live/",
-    techStack: [
-      "TypeScript",
-      "Node.js",
-      "Next.js",
-      "NX",
-      "Docker",
-      "Express.js",
-    ],
-    deployment: ["Google Cloud Run"],
-    shortDesc: "A Dockerized backend API deployed as GCR service ",
-    mainTakeAway: [
-      "The app is a fully functioning HEIC to JPEG converter. The API and the web application are<span> deployed as a seperate Google Cloud Run services.</span>",
-      "NX used for monorepo initializer and the microservices architecture is implemented.",
-      "The backend handles the recieved form data from the frontend using<span> multer</span> and processes the image and changes its format as JPEG.",
-      "The frontend is responsible for making the requests with the data to the backend and display the returned data in an <span>asynchronous fashion.</span>",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `
-        async function fromHEICToJPEG(inputBuffer) {
-          try {
-            const data = await convert({
-              buffer: inputBuffer,
-              format: "JPEG",
-              quality: 1,
-            });
-
-            return data;
-          } catch (error) {
-            console.error("Error converting HEIC to JPEG:", error);
-            throw error;
-          }
-        }
-      `,
-        text: "The main function that converts the HEIC input into JPEG. It is an asynchronous function that takes an inputBuffer representing the HEIC image data. It utilizes the heic-convert library to perform the actual conversion.",
-      },
-      {
-        codeSnippet: `
-      docker build .  --platform linux/amd64 -t  europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest
-
-      docker push europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest                           
-
-      gcloud run deploy strapi-cms  --image europe-west1-docker.pkg.dev/dev-sphere-410611/demo/the-dot-cms:latest
-      `,
-
-        text: "Some <span>gcloud CLI</span> commands for updating & deploying the API. The initial command builds a <span> Docker </span> image with specified tags. Later, the built image is pushed to a the <span>Google Container Registry</span>, to be used in deployment. Finally the API deployment to Google Cloud Run is executed.",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "120%", left: "50%" },
-    projectName: "PATI",
-    techStack: ["TypeScript", "Next.js", "Axios", "Tailwind CSS"],
-    deployment: [
-      "AWS Lambda",
-      "S3 Static Site Deployment",
-      "AWS CDK",
-      "DynamoDB",
-      "SQS",
-    ],
-    liveLink:
-      "http://infrastructurestack-nextjssitebucketbd1a5941-isspgruxxmoy.s3-website.eu-central-1.amazonaws.com/",
-    repoLink: "https://github.com/soberbat/pati",
-    mediaPath: "petapp",
-    shortDesc: "Landing page for a pet adoptation platform",
-    mainTakeAway: [
-      "I am visioning PATI to be the next pet adoptation platform in Turkey. There have been inhumane legalislations againts stray animals and the pet adoptation platforms play a huge role in helping our furry friends. That is why I decided to start a side project where I will be applying latest technology to fight for the cause. The first iteration is this landing page to collect user emails to sign them in to the newsletter.",
-      "I find it especially interesting because the whole app from API management to service communication to website hosting is in the AWS Cloud. One can have many solutions to many problems with AWS cloud.",
-      "As for the repo it is a monorepo initialized using NX. It follows microservices architecture. The API's are served as Lambda Functions, SQS queue communicates the user data to email service from the user register service.",
-      "Emails are being sent using Sendgrid and the User data is being saved to DynamoDB.",
-      "AWS CDK used as IAC tool.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: ` 
-        import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
-        import { Cors, EndpointType, LambdaRestApi } from "aws-cdk-lib/aws-apigateway";
-        import * as lambda from "aws-cdk-lib/aws-lambda";
-        import { Construct } from "constructs";
-        import * as sqs from "aws-cdk-lib/aws-sqs";
-        import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
-        
-        export default (scope: Construct) => {
-          const queue = new sqs.Queue(scope, "landing-email-queue");
-          const userEmailsTable = new dynamodb.Table(scope, "UserEmailsTable", {
-            partitionKey: { name: "email", type: dynamodb.AttributeType.STRING },
-          });
-        
-          const emailSender = new NodejsFunction(scope, "emailSender", {
-            entry: "../lambda/landing-functions/send-email.ts",
-            handler: "handler",
-          });
-          const userRegistrator = new NodejsFunction(scope, "userRegistrator", {
-            entry: "../lambda/landing-functions/register-users.ts",
-            handler: "handler",
-            environment: {
-              QUEUE_URL: queue.queueUrl,
-              TABLE_NAME: userEmailsTable.tableName,
-            },
-          });
-        
-          queue.grantConsumeMessages(emailSender);
-          queue.grantSendMessages(userRegistrator);
-          userEmailsTable.grantReadWriteData(userRegistrator);
-        
-          new lambda.EventSourceMapping(scope, "QueueEventSourceMapping", {
-            eventSourceArn: queue.queueArn,
-            target: emailSender,
-          });
-        
-          new LambdaRestApi(scope, "apigw", {
-            handler: userRegistrator,
-            endpointTypes: [EndpointType.EDGE],
-            defaultCorsPreflightOptions: {
-              allowOrigins: Cors.ALL_ORIGINS,
-              allowMethods: Cors.ALL_ORIGINS,
-              allowHeaders: Cors.DEFAULT_HEADERS,
-            },
-          });
-        };
-          
-    `,
-        text: "The provisioning of the API's. AWS CDK is being used as the IAC tool here to saves us from many many clicks.",
-      },
-      {
-        codeSnippet: `
-        import * as cdk from "aws-cdk-lib";
-        import * as s3 from "aws-cdk-lib/aws-s3";
-        import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
-        import { Construct } from "constructs";
-        
-        export default (scope: Construct) => {
-          const siteBucket = new s3.Bucket(scope, "NextjsSiteBucket", {
-            websiteIndexDocument: "index.html",
-            websiteErrorDocument: "404.html",
-            publicReadAccess: true,
-            blockPublicAccess: s3.BlockPublicAccess.BLOCK_ACLS,
-            removalPolicy: cdk.RemovalPolicy.DESTROY,
-            autoDeleteObjects: true,
-          });
-        
-          new s3deploy.BucketDeployment(scope, "DeployNextjsSite", {
-            sources: [s3deploy.Source.asset(".././web/out")],
-            destinationBucket: siteBucket,
-          });
-        
-          new cdk.CfnOutput(scope, "SiteURL", {
-            value: siteBucket.bucketWebsiteUrl,
-          });
-        };
-        `,
-        text: "The code bit that lets us serve our Next.js static export in an S3 Bucket. How cool is that?",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "40%", left: "0" },
-    projectName: "Univversecam",
-    mediaPath: "universecam",
-    liveLink: "https://unniversecam.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/univversecam",
-    techStack: [
-      "TypeScript",
-      "Three.js",
-      "Zustand.js",
-      "Framer Motion",
-      "Next.js",
-      "Styled Components",
-    ],
-    deployment: ["Vercel"],
-    shortDesc:
-      "A Three.js & Next.js app designed & written with optimal modularity in mind.",
-    mainTakeAway: [
-      "The application has a sophisticated UI controlled with state saved and managed with <span>React Context</span>. The UI is execution of a complex design featuring implementations of common web app elements such as select menus, carousel slides, and footers. ",
-      "Modularity is carefully conducted in the codebase, there are lots of room for flexibility. React user interface and the scene class updates one another based on user input. With a focus on modularity and synchronization, the application is a good example of modular UI and how it can be matched with immersive web experiences.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `
-        interface ISkewedContainer<T> {
-          children: T ;
-          canSelectMultiple?: boolean;
-          isActiveSlot?: boolean;
-          isChildImage: boolean;
-          onClick?: (scene: Scene) => void;
-        }
-        
-        const SkewedContainer = ({
-          children,
-          onClick,
-          canSelectMultiple,
-          isActiveSlot,
-          isChildImage,
-        }: ISkewedContainer) => {
-          const [isActive, setisActive] = useState(isActiveSlot);
-          const { sceneRef } = useContext(AppContext);
-        
-          const selectSlot = () => {
-            canSelectMultiple && setisActive(!isActive);
-            onClick && onClick(sceneRef);
-          };
-        
-          return (
-            <Wrapper isActive={isActiveSlot} onClick={selectSlot}>
-              <InnerWrapper>
-                {isChildImage ? <Image src={children} /> : children}
-              </InnerWrapper>
-            </Wrapper>
-          );
-        };
-        `,
-        text: "The component highlighted above is a highly adaptable one, capable of changing it appearance, and its behaviour based on props, serving as the fundamental component for most buttons within the app",
-      },
-      {
-        codeSnippet: `
-        const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
-          x.set(-(((activeSlide + 1) * FULL_WIDTH) / SLIDE_COUNT));
-          setActiveSlide((activeSlide) =>
-            activeSlide < SLIDE_COUNT - 1 ? activeSlide + 1 : activeSlide
-          );
-      
-          !isNavigationActive && setIsFactionSearchVisible(false);
-        };
-        `,
-        text: "Main logic responsible for calculating the transformation of the <span>custom slider</span>. The parameterized numerical constants avoids the usage of magic numbers, for code readability.",
-      },
-      {
-        codeSnippet: `
-        loadModels = () => {
-          const planets = ["alien", "serenity", "tree", "beta"];
-    
-          const loader = new GLTFLoader();
-      
-          const planetLoadMap = planets.map((planet, i) => {
-            return new Promise((resolve, reject) => {
-              loader.load("/assets/planets/{planet}.glb", (scene) => {
-                const planetGroup = this.world.clone();
-                planetGroup.userData.planetName = planet;
-                planetGroup.position.set(0, 0, 0);
-      
-                (planetGroup as any).isPlanet = true;
-      
-                scene.scene.traverse((item) => {
-                  item.scale.set(1, 1, 1);
-                  item.position.set(0, 0, 0);
-                });
-      
-                planetGroup.add(scene.scene);
-                this.planets.push(planetGroup);
-                this.scene.add(planetGroup);
-                resolve(scene.scene);
-              });
-            });
-          });
-      
-          return Promise.all(planetLoadMap);
-        };
-        
-        `,
-        text: "Function above belongs to the class that renders the 3D Scene. It loads modals in an <span>asynchronous</span> way to ensure that the app is not accessible to the user before all necessary data has loaded.",
-      },
-      {
-        codeSnippet: `
-        <PlanetDetailRow data={{ title: "Planet Code", info: "Banu" }} />
-        `,
-        text: "Yet another example of calling a modular component with props.",
-      },
-      {
-        codeSnippet: `
-        export const SliderInnerWrapper = styled(motion.div).attrs({
-          transition: {
-            ease: "circInOut",
-            duration: 1,
-          },
-        })<ISlideCount>(
-          ({ slide }) => css"
-            width: ${`slide * 100%`};
-            height: 100%;
-            pointer-events: none;
-          "
-        );
-
-        //No animation config is being passed when calling the component.
-        <SliderInnerWrapper slide={slide}></SliderInnerWrapper>
-        `,
-        text: "Above showcases how <span>styled-components and framer-motion</span> can be used together to make sure that our component reads cleaner.",
-      },
-    ],
-  },
-
-  {
     rectPosition: { top: "-35%", left: "50%" },
     projectName: "Session Auth",
     mediaPath: "sessionauth",
@@ -611,40 +645,6 @@ export default [
       app.listen(PORT, () => console.log(---- App running on {PORT}));
       `,
         text: "Above sets up an <span>HTTP server with middlewares & defines multiple routes</span>, each handled by their controllers.",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "80%", left: "-30%" },
-    projectName: "Resume Creator",
-    liveLink: "http://resumemaker.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/r-resume",
-    techStack: ["JavaScript", "React.js", "Styled Components"],
-    deployment: ["Github Actions", "Google Cloud Run"],
-    mediaPath: "resume",
-    shortDesc: "A resume creation tool made with React.js and Redux",
-    mainTakeAway: [
-      "The app is a frontend app with complex data management handled by Redux.It lets you create your own resume to rock your interviews.",
-      "The app is styled using styled components and a very minimalistic design is implemented. You can customize and then download your resume with it.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: ` 
-        import { configureStore } from "@reduxjs/toolkit";
-        import textSlice from "./textSlice";
-        import AccordionSlice from "./AccordionSlice";
-        import PropSlice from "./PropSlice";
-        
-        export default configureStore({
-          reducer: {
-            values: textSlice,
-            Accordions: AccordionSlice,
-            Properties: PropSlice,
-          },
-        });
-    `,
-        text: "Initialization of the Redux Store ",
       },
     ],
   },
