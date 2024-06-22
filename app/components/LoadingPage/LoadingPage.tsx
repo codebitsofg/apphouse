@@ -23,7 +23,7 @@ interface LoadingPageProps {
 
 const LoadingPage = ({ progress, onModeClick }: LoadingPageProps) => {
   const isPreloaded = progress === 100;
-  const options = ["Classic", "Gallery"];
+  const options = ["Gallery", "Classic"];
   const [isModeSelected, setIsModeSelected] = useState(false);
 
   const handleOptionClick = (option: number) => {
