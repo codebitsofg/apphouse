@@ -1,6 +1,6 @@
 import { mediaLarge } from "@/utils/media";
 import { motion } from "framer-motion";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 export const Container = styled(motion.div).attrs({
   initial: { opacity: 0 },
@@ -29,6 +29,44 @@ export const Container = styled(motion.div).attrs({
   ${mediaLarge(css`
     padding-top: 0;
   `)};
+`;
+
+const shimmer = keyframes`
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+`;
+
+export const Skeleton = styled.div`
+  background: linear-gradient(
+    to right,
+    #f0f0f0b7 25%,
+    #e0e0e0bf 50%,
+    #f0f0f0 75%
+  );
+  background-size: 1000px 100%;
+  animation: ${shimmer} 2s infinite linear;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 3px;
+  border: 1px dotted #0f0e0e;
+  margin-left: 2%;
+  margin-top: 2%;
+  box-shadow: 0 0 10px #04080f20;
+  display: inline-block;
+`;
+
+export const BeratImage = styled.img.attrs<{ isLoaded: boolean }>({
+  src: "/berat.jpeg",
+})`
+  width: 10vw;
+  height: 10vw;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px dotted #0f0e0e;
+  margin-left: 2%;
+  margin-top: 2%;
+  box-shadow: 0 0 10px #04080f20;
+  display: ${({ isLoaded }) => (isLoaded ? "inline" : "none")};
 `;
 
 export const Overlay = styled(motion.div).attrs({
@@ -61,18 +99,6 @@ export const NameContainer = styled.h1`
   border-bottom: 1px dotted #0f0e0e;
 `;
 
-export const BeratImage = styled.img.attrs({
-  src: "/berat.jpeg",
-})`
-  width: 10vw;
-  height: 10vw;
-  object-fit: cover;
-  border-radius: 3px;
-  border: 1px dotted #0f0e0e;
-  margin-left: 2%;
-  margin-top: 2%;
-  box-shadow: 0 0 10px #04080f20;
-`;
 export const InfoContainer = styled.div`
   display: flex;
   align-items: center;

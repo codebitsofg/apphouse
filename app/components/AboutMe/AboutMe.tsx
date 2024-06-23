@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import * as S from "./AboutMe.styles";
 import {
   detailParagraphs,
@@ -23,6 +23,7 @@ interface AboutMeProps {
 }
 const AboutMe = ({ onAboutMeClick }: AboutMeProps) => {
   const { onHoverStartStore, onHoverEndStore } = useStore();
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const props = {
     onHoverStart: onHoverStartStore,
@@ -33,7 +34,11 @@ const AboutMe = ({ onAboutMeClick }: AboutMeProps) => {
       <S.Container>
         <S.NameContainer>
           Fullstack Developer realizing complex solutions
-          <S.BeratImage />
+          <S.BeratImage
+            isLoaded={isImageLoaded}
+            onLoad={() => setIsImageLoaded(true)}
+          />
+          {!isImageLoaded && <S.Skeleton />}
         </S.NameContainer>
 
         {detailParagraphs.map((detail) => (
