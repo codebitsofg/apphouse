@@ -59,6 +59,20 @@ const ClassicView = () => {
                   />
                 ))}
 
+                <TechStackContainer>
+                  <TechStackTitle>[ Tech Stack ]</TechStackTitle>
+                  {techStack?.map((item) => (
+                    <StackItem key={item}>
+                      {"•"} {item}
+                    </StackItem>
+                  ))}
+                  {deployment?.map((item) => (
+                    <StackItem key={item}>
+                      {"•"} {item}
+                    </StackItem>
+                  ))}
+                </TechStackContainer>
+
                 <IconsContainer>
                   <Link href={liveLink}>
                     <GlobeIcon />
@@ -68,21 +82,6 @@ const ClassicView = () => {
                   </Link>
                 </IconsContainer>
               </TextContainer>
-
-              <TechStackContainer>
-                <TechStackTitle>[ Tech Stack ]</TechStackTitle>
-                {techStack?.map((item) => (
-                  <StackItem key={item}>
-                    {">"} {item}
-                  </StackItem>
-                ))}
-                <TechStackTitle>[ Deployment Stack ]</TechStackTitle>
-                {deployment?.map((item) => (
-                  <StackItem key={item}>
-                    {">"} {item}
-                  </StackItem>
-                ))}
-              </TechStackContainer>
             </ProjectPreviewContainer>
           );
         }

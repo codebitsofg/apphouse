@@ -191,7 +191,7 @@ export default [
   },
 
   {
-    rectPosition: { top: "80%", left: "-30%" },
+    rectPosition: { top: "120%", left: "-10%" },
     projectName: "Resume Creator",
     liveLink: "http://resumemaker.beratgenc.live/",
     repoLink: "https://github.com/soberbat/r-resume",

@@ -47,7 +47,7 @@ export default function Home() {
 
   const onAboutMeClick = useCallback(() => {
     setIsAboutMeVisible((prev) => !prev);
-  }, []);
+  }, [isAboutMeVisible]);
 
   const onModeOptionClick = useCallback(
     (newMode?: Mode) => {
@@ -57,6 +57,7 @@ export default function Home() {
       setMode(newMode ?? newModeDetermined);
       !newMode && setisAnimating(true);
       setIsProjectDetailVisible(false);
+      setIsAboutMeVisible(false);
     },
     [mode]
   );
@@ -81,7 +82,7 @@ export default function Home() {
         <Navigation
           hasNavigated={isAboutMeVisible || isProjectDetailVisible}
           onAboutMeClick={onAboutMeClick}
-          shouldShowLinks={isProjectDetailVisible}
+          shouldShowLinks={isProjectDetailVisible && !isAboutMeVisible}
           onModeSwitch={onModeOptionClick}
         />
       )}

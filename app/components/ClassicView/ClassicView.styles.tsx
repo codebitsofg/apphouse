@@ -45,8 +45,12 @@ export const ProjectPreviewContainer = styled.div`
 `;
 
 export const TextContainer = styled.div`
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
+
+  ${mediaLarge(css`
+    width: 50%;
+  `)}
 `;
 export const ProjectTitleContainer = styled.div`
   margin-top: 3%;
@@ -57,11 +61,15 @@ export const ProjectTitle = styled.h1`
 `;
 
 export const ProjectImage = styled.img`
-  width: 50%;
+  width: 80%;
   height: auto;
   border-radius: 5px;
   box-shadow: 0 0 10px #04080f20;
   border: 2px solid #04080f20;
+
+  ${mediaLarge(css`
+    width: 50%;
+  `)}
 `;
 
 export const ProjectDesc = styled.p`
@@ -91,31 +99,26 @@ export const IconsContainer = styled.div`
 `;
 
 export const TechStackContainer = styled.div`
-  position: absolute;
-  top: 10%;
-  left: 0%;
-  height: 250px;
   display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  padding: 1%;
-  font-size: 0.5rem;
+  align-items: baseline;
+  gap: 3%;
+  flex-wrap: wrap;
+  margin-top: 2%;
+  font-size: 0.7rem;
 
   ${mediaLarge(css`
-    font-size: 1rem;
+    font-size: 0.8rem;
   `)}
 `;
 
 export const TechStackTitle = styled.h3`
   font-weight: 400;
-  margin-top: 10%;
-  margin-bottom: 5%;
+  color: #000;
 `;
 
 export const StackItem = styled.span`
-  display: block;
-  font-weight: 300;
-  margin-bottom: 1%;
+  font-weight: 400;
+  margin: 0.5% 0%;
 `;
 
 export const PlusIconContainer = styled.div`

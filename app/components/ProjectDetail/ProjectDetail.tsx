@@ -43,25 +43,19 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
         <S.SectionContainer>
           <S.SecondaryTitle>Code Breakdown</S.SecondaryTitle>
 
-          <S.TechStacksContainer>
-            <S.TechStackWrapper>
-              <TechStackTitle> [ Tech Stack ] </TechStackTitle>
-              {techStack?.map((item) => (
-                <StackItem key={item}>
-                  {">"} {item}
-                </StackItem>
-              ))}
-            </S.TechStackWrapper>
-
-            <S.TechStackWrapper>
-              <TechStackTitle>[ Deployment Stack ]</TechStackTitle>
-              {deployment?.map((item) => (
-                <StackItem key={item}>
-                  {">"} {item}
-                </StackItem>
-              ))}
-            </S.TechStackWrapper>
-          </S.TechStacksContainer>
+          <S.TechStacksContainerDetail>
+            <TechStackTitle> [ Tech Stack ] </TechStackTitle>
+            {techStack?.map((item) => (
+              <StackItem key={item}>
+                {">"} {item}
+              </StackItem>
+            ))}
+            {deployment?.map((item) => (
+              <StackItem key={item}>
+                {">"} {item}
+              </StackItem>
+            ))}
+          </S.TechStacksContainerDetail>
           {codeBreakDown.map(({ text, codeSnippet }) => (
             <S.SectionContainer key={text}>
               <CodeBlock code={codeSnippet} />

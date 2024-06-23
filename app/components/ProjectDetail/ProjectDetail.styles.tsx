@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import styled, { css } from "styled-components";
 import { TabItemContainer } from "../Navigation/Navigation.styles";
 import { mediaLarge } from "@/utils/media";
+import { TechStackContainer } from "../ClassicView/ClassicView.styles";
 
 export const Container = styled(motion.div).attrs({
   ...opacityConfig,
@@ -92,16 +93,7 @@ export const RightPanel = styled.div`
   `)}
 `;
 
-export const TechStacksContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin: 4% 0;
-  padding-bottom: 2%;
-  gap: 2vh;
-  border-bottom: 1px dotted gainsboro;
-`;
+export const TechStacksContainerDetail = styled(TechStackContainer)``;
 
 export const TechStackWrapper = styled.div`
   h3 {
