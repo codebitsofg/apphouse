@@ -123,12 +123,17 @@ export const StackItem = styled.span`
 
 export const PlusIconContainer = styled.div`
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
 
   position: fixed;
   bottom: 2%;
   left: 2%;
+
+  ${mediaLarge(css`
+    width: 50px;
+    height: 50px;
+  `)}
 `;
 
 export const PlusIcon = styled.div`

@@ -332,6 +332,98 @@ export default [
   },
 
   {
+    rectPosition: { top: "100%", left: "-50%" },
+    projectName: "Task Manager",
+    techStack: ["TypeScript", "Next.js", "Docker", "Styled Components"],
+    deployment: ["Github Actions", "Google Cloud Run"],
+    liveLink: "https://application.taskermanager.site/",
+    repoLink: "https://github.com/soberbat/task-manager-frontend",
+    mediaPath: "tasker",
+    shortDesc: "A Fullstack Task Management App",
+    mainTakeAway: [
+      "The frontend for the <span>Task Manager API</span>. Implementing the UI was valuable practise on seeing how<span> session cookies</span> can be implemented on the client side.",
+      "The UI itself has many examples of modern web components, it includes many input components as well as sidebars, topbars, expanding Views & hover states.",
+      "Another part was also a good practice to see how <span>client and server</span> communicates in a production environment.",
+      "App is fully automated with <span>Github Actions Pipeline</span>. Automating the app was my first DevOps exploration.",
+      "A custom domain is configured both for the backend and the frontend to persist cookie.",
+      "Use test@user.com as login email and 1234 as password to test the app.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `
+      export async function middleware(request: NextRequest, response: NextResponse) {
+        const cookie = request.cookies.get("connect.sid");
+        const pathName = request.nextUrl.pathname;
+      
+        if (pathName.startsWith("/enter") || pathName.startsWith("/login")) {
+          if (cookie) {
+            const destinationUrl = new URL("/", new URL(request.url).origin);
+            const response = NextResponse.redirect(destinationUrl);
+            return response;
+          }
+        } else {
+          if (!cookie) {
+            const destinationUrl = new URL("/enter", new URL(request.url).origin);
+            const response = NextResponse.redirect(destinationUrl);
+            return response;
+          }
+        }
+      }
+      
+      export const config = {
+        matcher: ["/", "/enter"],
+      };
+      
+      `,
+        text: "<span>Middleware</span> that ensures the proper authentication handling by redirecting user appropriately based on their authentication status. It reads the cookie and handles the redirecting of the user on the server side.",
+      },
+      {
+        codeSnippet: ` 
+      export default {
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+          "Origin-Allow-Credentials": true,
+          "Access-Control-Allow-Credentials": true,
+        },
+      };
+      
+      `,
+        text: "The config file that makes it possible to pass the cookie and the authorization headers to the server on the following requests.",
+      },
+      {
+        codeSnippet: `
+      <UpdateTaskRow
+      src={"status"}
+      Updater={<PriorityUpdater updateTask={updateCurrentTask} />}
+      taskRowInnerComponent={
+        <ColoredCell color={getPriorityColor(priority)}>
+          {priority}
+        </ColoredCell>
+      }
+    >
+      Priority
+    </UpdateTaskRow>
+
+      `,
+        text: "Another exapmle of calling a modular component that takes components as props to change its style and functionality.",
+      },
+      {
+        codeSnippet: ` 
+      export default async function Login(email: string, password: string) {
+        try {
+          return await axios.post(prodEndpoint, { email, password }, axiosConfig);
+        } catch (error) {
+          return { status: 401 };
+        }
+      }      
+      `,
+        text: "Function that makes the actual <span>login request</span> to the server. Although, there is a bit room for improvments on error handling it fulfills its core function.",
+      },
+    ],
+  },
+
+  {
     rectPosition: { top: "0%", left: "-30%" },
     projectName: "Music Gallery",
     mediaPath: "gallery",
@@ -501,6 +593,153 @@ export default [
   },
 
   {
+    rectPosition: { top: "-40%", left: "-50%" },
+    projectName: "Awab Alsaati Portfolio",
+    mediaPath: "alsaati",
+    liveLink: "https://www.awabalsaati.com/",
+    repoLink: "https://github.com/soberbat/awabsfolio",
+    techStack: [
+      "TypeScript",
+      "Next.js",
+      "React.js",
+      "Styled Components",
+      "Framer Motion",
+    ],
+    deployment: ["Vercel"],
+    shortDesc:
+      "A client work featuring, XHR powered preloader mechanism and a Zustand powered state management strategy.",
+    mainTakeAway: [
+      "This project's entire production cycle, from development through testing to deployment, is managed by me. The application is the product of precise translation design into code.",
+      "Prominent features include a <span>preloader implemented using class syntax, custom hooks,</span> and the utilization of<span> Zustand </span>as a state managager",
+      "Another part of the app is how data types are being transformed into one another using methods available on them.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `
+        class Preloader {
+          handleRequestEnd;
+          handleProgress;
+          urlsToPreload: PreloadUrlConfig;
+          preloadedSources: PreloadUrlConfig;
+          loadedImages = 0;
+          imageCount = 60;
+          progress = 0;
+        
+          constructor({ handleRequestEnd, handleProgress }: IPreloader) {
+            this.handleRequestEnd = handleRequestEnd;
+            this.handleProgress = handleProgress;
+            this.urlsToPreload = createImageUrls();
+            this.preloadedSources = {};
+            this.preloadAll();
+          }
+        
+          addPrefix = (url: string) => "/images/works/url";
+        
+          onLoad = (resolve: Resolve, xhr: XMLHttpRequest) => {
+            this.loadedImages++;
+        
+            const percantage = this.loadedImages / this.imageCount;
+            this.handleProgress(Math.ceil(percantage * 100));
+        
+            if (this.loadedImages === this.imageCount) {
+              this.handleRequestEnd(this.preloadedSources);
+            }
+        
+            resolve(URL.createObjectURL(xhr.response));
+          };
+        
+          preload = (url: string) => {
+            return new Promise((resolve: Resolve, _) => {
+              const xhr = new XMLHttpRequest();
+              xhr.onload = () => this.onLoad(resolve, xhr);
+        
+              xhr.open("GET", url, true);
+              xhr.responseType = "blob";
+              xhr.send(null);
+            });
+          };
+        
+          preloadAll = async () => {
+            for (const key in this.urlsToPreload) {
+              this.preloadedSources[key] = await Promise.all(
+                this.urlsToPreload[key].map(async (url) => {
+                  if (Array.isArray(url)) {
+                    return await Promise.all(
+                      url.map(async (url) => await this.preload(this.addPrefix(url)))
+                    );
+                  }
+        
+                  return await this.preload(this.addPrefix(url));
+                })
+              );
+            }
+          };
+        }
+        
+        export default Preloader;
+    `,
+        text: "A <span>XHR backed preloading mechanism</span> written with class syntax. Displays overall loading progress for better user experience. It creates URL's to be used throughout the app.",
+      },
+      {
+        codeSnippet: ` 
+        const usePreloder = () => {
+          const [isPreloaded, setisPreloaded] = useState<boolean>(false);
+          const { setImageUrls } = useStore();
+          const [progress, setProgress] = useState(0);
+          const preloader = useRef<Preloader | null>(null);
+        
+          const handleRequestEnd = (imageUrls: PreloadUrlConfig) => {
+            setImageUrls(imageUrls);
+            setisPreloaded(true);
+          };
+        
+          const handleProgress = (progress: number) => {
+            setProgress(progress);
+          };
+        
+          useEffect(() => {
+            preloader.current = new Preloader({ handleRequestEnd, handleProgress });
+          }, []);
+        
+          return { isPreloaded, progress };
+        };
+        
+        export default usePreloder;
+      `,
+        text: "A <span>custom hook </span>to isolate preloading logic from the app. It saves the returned urls to the Zustand store and returns the loaded and progress state to be used in the UI.",
+      },
+      {
+        codeSnippet: ` 
+      const scaleX = useSpring(useTransform(motionValProgres, [0, 100], [0, 1]), {
+        stiffness: 10,
+        damping: 15,
+      });
+      `,
+        text: "<span>Framer motion API's </span> working together in action to interpolate input and smoothly animate.",
+      },
+      {
+        codeSnippet: ` 
+        interface IPageBackground {
+          className?: string;
+        }
+        
+        const PageBackground = ({ className }: IPageBackground) => {
+          return (
+            <S.Container className={className}>
+              <S.ColorOverlay />
+              <S.BackgroundImage />
+            </S.Container>
+          );
+        };
+        
+        export default PageBackground;
+      `,
+        text: "Page background component that is being used on pages.",
+      },
+    ],
+  },
+
+  {
     rectPosition: { top: "-35%", left: "50%" },
     projectName: "Session Auth",
     mediaPath: "sessionauth",
@@ -645,245 +884,6 @@ export default [
       app.listen(PORT, () => console.log(---- App running on {PORT}));
       `,
         text: "Above sets up an <span>HTTP server with middlewares & defines multiple routes</span>, each handled by their controllers.",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "100%", left: "-50%" },
-    projectName: "Task Manager",
-    techStack: ["TypeScript", "Next.js", "Docker", "Styled Components"],
-    deployment: ["Github Actions", "Google Cloud Run"],
-    liveLink: "https://application.taskermanager.site/",
-    repoLink: "https://github.com/soberbat/task-manager-frontend",
-    mediaPath: "tasker",
-    shortDesc: "A Fullstack Task Management App",
-    mainTakeAway: [
-      "The frontend for the <span>Task Manager API</span>. Implementing the UI was valuable practise on seeing how<span> session cookies</span> can be implemented on the client side.",
-      "The UI itself has many examples of modern web components, it includes many input components as well as sidebars, topbars, expanding Views & hover states.",
-      "Another part was also a good practice to see how <span>client and server</span> communicates in a production environment.",
-      "App is fully automated with <span>Github Actions Pipeline</span>. Automating the app was my first DevOps exploration.",
-      "A custom domain is configured both for the backend and the frontend to persist cookie.",
-      "The app is only available on Desktop.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `
-      export async function middleware(request: NextRequest, response: NextResponse) {
-        const cookie = request.cookies.get("connect.sid");
-        const pathName = request.nextUrl.pathname;
-      
-        if (pathName.startsWith("/enter") || pathName.startsWith("/login")) {
-          if (cookie) {
-            const destinationUrl = new URL("/", new URL(request.url).origin);
-            const response = NextResponse.redirect(destinationUrl);
-            return response;
-          }
-        } else {
-          if (!cookie) {
-            const destinationUrl = new URL("/enter", new URL(request.url).origin);
-            const response = NextResponse.redirect(destinationUrl);
-            return response;
-          }
-        }
-      }
-      
-      export const config = {
-        matcher: ["/", "/enter"],
-      };
-      
-      `,
-        text: "<span>Middleware</span> that ensures the proper authentication handling by redirecting user appropriately based on their authentication status. It reads the cookie and handles the redirecting of the user on the server side.",
-      },
-      {
-        codeSnippet: ` 
-      export default {
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          "Origin-Allow-Credentials": true,
-          "Access-Control-Allow-Credentials": true,
-        },
-      };
-      
-      `,
-        text: "The config file that makes it possible to pass the cookie and the authorization headers to the server on the following requests.",
-      },
-      {
-        codeSnippet: `
-      <UpdateTaskRow
-      src={"status"}
-      Updater={<PriorityUpdater updateTask={updateCurrentTask} />}
-      taskRowInnerComponent={
-        <ColoredCell color={getPriorityColor(priority)}>
-          {priority}
-        </ColoredCell>
-      }
-    >
-      Priority
-    </UpdateTaskRow>
-
-      `,
-        text: "Another exapmle of calling a modular component that takes components as props to change its style and functionality.",
-      },
-      {
-        codeSnippet: ` 
-      export default async function Login(email: string, password: string) {
-        try {
-          return await axios.post(prodEndpoint, { email, password }, axiosConfig);
-        } catch (error) {
-          return { status: 401 };
-        }
-      }      
-      `,
-        text: "Function that makes the actual <span>login request</span> to the server. Although, there is a bit room for improvments on error handling it fulfills its core function.",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "-40%", left: "-50%" },
-    projectName: "Awab Alsaati Portfolio",
-    mediaPath: "alsaati",
-    liveLink: "https://www.awabalsaati.com/",
-    repoLink: "https://github.com/soberbat/awabsfolio",
-    techStack: [
-      "TypeScript",
-      "Next.js",
-      "React.js",
-      "Styled Components",
-      "Framer Motion",
-    ],
-    deployment: ["Vercel"],
-    shortDesc:
-      "A client work featuring, XHR powered preloader mechanism and a Zustand powered state management strategy.",
-    mainTakeAway: [
-      "This project's entire production cycle, from development through testing to deployment, is managed by me. The application is the product of precise translation design into code.",
-      "Prominent features include a <span>preloader implemented using class syntax, custom hooks,</span> and the utilization of<span> Zustand </span>as a state managager",
-      "Another part of the app is how data types are being transformed into one another using methods available on them.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `
-        class Preloader {
-          handleRequestEnd;
-          handleProgress;
-          urlsToPreload: PreloadUrlConfig;
-          preloadedSources: PreloadUrlConfig;
-          loadedImages = 0;
-          imageCount = 60;
-          progress = 0;
-        
-          constructor({ handleRequestEnd, handleProgress }: IPreloader) {
-            this.handleRequestEnd = handleRequestEnd;
-            this.handleProgress = handleProgress;
-            this.urlsToPreload = createImageUrls();
-            this.preloadedSources = {};
-            this.preloadAll();
-          }
-        
-          addPrefix = (url: string) => "/images/works/url";
-        
-          onLoad = (resolve: Resolve, xhr: XMLHttpRequest) => {
-            this.loadedImages++;
-        
-            const percantage = this.loadedImages / this.imageCount;
-            this.handleProgress(Math.ceil(percantage * 100));
-        
-            if (this.loadedImages === this.imageCount) {
-              this.handleRequestEnd(this.preloadedSources);
-            }
-        
-            resolve(URL.createObjectURL(xhr.response));
-          };
-        
-          preload = (url: string) => {
-            return new Promise((resolve: Resolve, _) => {
-              const xhr = new XMLHttpRequest();
-              xhr.onload = () => this.onLoad(resolve, xhr);
-        
-              xhr.open("GET", url, true);
-              xhr.responseType = "blob";
-              xhr.send(null);
-            });
-          };
-        
-          preloadAll = async () => {
-            for (const key in this.urlsToPreload) {
-              this.preloadedSources[key] = await Promise.all(
-                this.urlsToPreload[key].map(async (url) => {
-                  if (Array.isArray(url)) {
-                    return await Promise.all(
-                      url.map(async (url) => await this.preload(this.addPrefix(url)))
-                    );
-                  }
-        
-                  return await this.preload(this.addPrefix(url));
-                })
-              );
-            }
-          };
-        }
-        
-        export default Preloader;
-    `,
-        text: "A <span>XHR backed preloading mechanism</span> written with class syntax. Displays overall loading progress for better user experience. It creates URL's to be used throughout the app.",
-      },
-      {
-        codeSnippet: ` 
-        const usePreloder = () => {
-          const [isPreloaded, setisPreloaded] = useState<boolean>(false);
-          const { setImageUrls } = useStore();
-          const [progress, setProgress] = useState(0);
-          const preloader = useRef<Preloader | null>(null);
-        
-          const handleRequestEnd = (imageUrls: PreloadUrlConfig) => {
-            setImageUrls(imageUrls);
-            setisPreloaded(true);
-          };
-        
-          const handleProgress = (progress: number) => {
-            setProgress(progress);
-          };
-        
-          useEffect(() => {
-            preloader.current = new Preloader({ handleRequestEnd, handleProgress });
-          }, []);
-        
-          return { isPreloaded, progress };
-        };
-        
-        export default usePreloder;
-      `,
-        text: "A <span>custom hook </span>to isolate preloading logic from the app. It saves the returned urls to the Zustand store and returns the loaded and progress state to be used in the UI.",
-      },
-      {
-        codeSnippet: ` 
-      const scaleX = useSpring(useTransform(motionValProgres, [0, 100], [0, 1]), {
-        stiffness: 10,
-        damping: 15,
-      });
-      `,
-        text: "<span>Framer motion API's </span> working together in action to interpolate input and smoothly animate.",
-      },
-      {
-        codeSnippet: ` 
-        interface IPageBackground {
-          className?: string;
-        }
-        
-        const PageBackground = ({ className }: IPageBackground) => {
-          return (
-            <S.Container className={className}>
-              <S.ColorOverlay />
-              <S.BackgroundImage />
-            </S.Container>
-          );
-        };
-        
-        export default PageBackground;
-      `,
-        text: "Page background component that is being used on pages.",
       },
     ],
   },
