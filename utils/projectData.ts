@@ -135,91 +135,93 @@ export default [
   },
 
   {
-    rectPosition: { top: "30%", left: "70%" },
-    projectName: "HEIC TO JPEG Converter",
-    mediaPath: "heic",
-    repoLink: "https://github.com/soberbat/heic-to-jpeg",
-    liveLink: "https://heictojpeg.beratgenc.live/",
-    techStack: [
-      "TypeScript",
-      "Node.js",
-      "Next.js",
-      "NX",
-      "Docker",
-      "Express.js",
-    ],
-    deployment: ["Google Cloud Run"],
-    shortDesc: "A Dockerized backend API deployed as GCR service ",
+    rectPosition: { top: "100%", left: "-50%" },
+    projectName: "Task Manager",
+    techStack: ["TypeScript", "Next.js", "Docker", "Styled Components"],
+    deployment: ["Github Actions", "Google Cloud Run"],
+    liveLink: "https://application.taskermanager.site/",
+    repoLink: "https://github.com/soberbat/task-manager-frontend",
+    mediaPath: "tasker",
+    shortDesc: "A Fullstack Task Management App",
     mainTakeAway: [
-      "The app is a fully functioning HEIC to JPEG converter. The API and the web application are<span> deployed as a seperate Google Cloud Run services.</span>",
-      "NX used for monorepo initializer and the microservices architecture is implemented.",
-      "The backend handles the recieved form data from the frontend using<span> multer</span> and processes the image and changes its format as JPEG.",
-      "The frontend is responsible for making the requests with the data to the backend and display the returned data in an <span>asynchronous fashion.</span>",
+      "The frontend for the <span>Task Manager API</span>. Implementing the UI was valuable practise on seeing how<span> session cookies</span> can be implemented on the client side.",
+      "The UI itself has many examples of modern web components, it includes many input components as well as sidebars, topbars, expanding Views & hover states.",
+      "Another part was also a good practice to see how <span>client and server</span> communicates in a production environment.",
+      "App is fully automated with <span>Github Actions Pipeline</span>. Automating the app was my first DevOps exploration.",
+      "A custom domain is configured both for the backend and the frontend to persist cookie.",
+      "Use test@user.com as login email and 1234 as password to test the app.",
     ],
     codeBreakDown: [
       {
         codeSnippet: `
-        async function fromHEICToJPEG(inputBuffer) {
-          try {
-            const data = await convert({
-              buffer: inputBuffer,
-              format: "JPEG",
-              quality: 1,
-            });
-
-            return data;
-          } catch (error) {
-            console.error("Error converting HEIC to JPEG:", error);
-            throw error;
+      export async function middleware(request: NextRequest, response: NextResponse) {
+        const cookie = request.cookies.get("connect.sid");
+        const pathName = request.nextUrl.pathname;
+      
+        if (pathName.startsWith("/enter") || pathName.startsWith("/login")) {
+          if (cookie) {
+            const destinationUrl = new URL("/", new URL(request.url).origin);
+            const response = NextResponse.redirect(destinationUrl);
+            return response;
+          }
+        } else {
+          if (!cookie) {
+            const destinationUrl = new URL("/enter", new URL(request.url).origin);
+            const response = NextResponse.redirect(destinationUrl);
+            return response;
           }
         }
+      }
+      
+      export const config = {
+        matcher: ["/", "/enter"],
+      };
+      
       `,
-        text: "The main function that converts the HEIC input into JPEG. It is an asynchronous function that takes an inputBuffer representing the HEIC image data. It utilizes the heic-convert library to perform the actual conversion.",
+        text: "<span>Middleware</span> that ensures the proper authentication handling by redirecting user appropriately based on their authentication status. It reads the cookie and handles the redirecting of the user on the server side.",
+      },
+      {
+        codeSnippet: ` 
+      export default {
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+          "Origin-Allow-Credentials": true,
+          "Access-Control-Allow-Credentials": true,
+        },
+      };
+      
+      `,
+        text: "The config file that makes it possible to pass the cookie and the authorization headers to the server on the following requests.",
       },
       {
         codeSnippet: `
-      docker build .  --platform linux/amd64 -t  europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest
+      <UpdateTaskRow
+      src={"status"}
+      Updater={<PriorityUpdater updateTask={updateCurrentTask} />}
+      taskRowInnerComponent={
+        <ColoredCell color={getPriorityColor(priority)}>
+          {priority}
+        </ColoredCell>
+      }
+    >
+      Priority
+    </UpdateTaskRow>
 
-      docker push europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest                           
-
-      gcloud run deploy strapi-cms  --image europe-west1-docker.pkg.dev/dev-sphere-410611/demo/the-dot-cms:latest
       `,
-
-        text: "Some <span>gcloud CLI</span> commands for updating & deploying the API. The initial command builds a <span> Docker </span> image with specified tags. Later, the built image is pushed to a the <span>Google Container Registry</span>, to be used in deployment. Finally the API deployment to Google Cloud Run is executed.",
+        text: "Another exapmle of calling a modular component that takes components as props to change its style and functionality.",
       },
-    ],
-  },
-
-  {
-    rectPosition: { top: "120%", left: "-10%" },
-    projectName: "Resume Creator",
-    liveLink: "http://resumemaker.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/r-resume",
-    techStack: ["JavaScript", "React.js", "Styled Components"],
-    deployment: ["Github Actions", "Google Cloud Run"],
-    mediaPath: "resume",
-    shortDesc: "A resume creation tool made with React.js and Redux",
-    mainTakeAway: [
-      "The app is a frontend app with complex data management handled by Redux.It lets you create your own resume to rock your interviews.",
-      "The app is styled using styled components and a very minimalistic design is implemented. You can customize and then download your resume with it.",
-    ],
-    codeBreakDown: [
       {
         codeSnippet: ` 
-        import { configureStore } from "@reduxjs/toolkit";
-        import textSlice from "./textSlice";
-        import AccordionSlice from "./AccordionSlice";
-        import PropSlice from "./PropSlice";
-        
-        export default configureStore({
-          reducer: {
-            values: textSlice,
-            Accordions: AccordionSlice,
-            Properties: PropSlice,
-          },
-        });
-    `,
-        text: "Initialization of the Redux Store ",
+      export default async function Login(email: string, password: string) {
+        try {
+          return await axios.post(prodEndpoint, { email, password }, axiosConfig);
+        } catch (error) {
+          return { status: 401 };
+        }
+      }      
+      `,
+        text: "Function that makes the actual <span>login request</span> to the server. Although, there is a bit room for improvments on error handling it fulfills its core function.",
       },
     ],
   },
@@ -332,93 +334,91 @@ export default [
   },
 
   {
-    rectPosition: { top: "100%", left: "-50%" },
-    projectName: "Task Manager",
-    techStack: ["TypeScript", "Next.js", "Docker", "Styled Components"],
-    deployment: ["Github Actions", "Google Cloud Run"],
-    liveLink: "https://application.taskermanager.site/",
-    repoLink: "https://github.com/soberbat/task-manager-frontend",
-    mediaPath: "tasker",
-    shortDesc: "A Fullstack Task Management App",
+    rectPosition: { top: "30%", left: "70%" },
+    projectName: "HEIC TO JPEG Converter",
+    mediaPath: "heic",
+    repoLink: "https://github.com/soberbat/heic-to-jpeg",
+    liveLink: "https://heictojpeg.beratgenc.live/",
+    techStack: [
+      "TypeScript",
+      "Node.js",
+      "Next.js",
+      "NX",
+      "Docker",
+      "Express.js",
+    ],
+    deployment: ["Google Cloud Run"],
+    shortDesc: "A Dockerized backend API deployed as GCR service ",
     mainTakeAway: [
-      "The frontend for the <span>Task Manager API</span>. Implementing the UI was valuable practise on seeing how<span> session cookies</span> can be implemented on the client side.",
-      "The UI itself has many examples of modern web components, it includes many input components as well as sidebars, topbars, expanding Views & hover states.",
-      "Another part was also a good practice to see how <span>client and server</span> communicates in a production environment.",
-      "App is fully automated with <span>Github Actions Pipeline</span>. Automating the app was my first DevOps exploration.",
-      "A custom domain is configured both for the backend and the frontend to persist cookie.",
-      "Use test@user.com as login email and 1234 as password to test the app.",
+      "The app is a fully functioning HEIC to JPEG converter. The API and the web application are<span> deployed as a seperate Google Cloud Run services.</span>",
+      "NX used for monorepo initializer and the microservices architecture is implemented.",
+      "The backend handles the recieved form data from the frontend using<span> multer</span> and processes the image and changes its format as JPEG.",
+      "The frontend is responsible for making the requests with the data to the backend and display the returned data in an <span>asynchronous fashion.</span>",
     ],
     codeBreakDown: [
       {
         codeSnippet: `
-      export async function middleware(request: NextRequest, response: NextResponse) {
-        const cookie = request.cookies.get("connect.sid");
-        const pathName = request.nextUrl.pathname;
-      
-        if (pathName.startsWith("/enter") || pathName.startsWith("/login")) {
-          if (cookie) {
-            const destinationUrl = new URL("/", new URL(request.url).origin);
-            const response = NextResponse.redirect(destinationUrl);
-            return response;
-          }
-        } else {
-          if (!cookie) {
-            const destinationUrl = new URL("/enter", new URL(request.url).origin);
-            const response = NextResponse.redirect(destinationUrl);
-            return response;
+        async function fromHEICToJPEG(inputBuffer) {
+          try {
+            const data = await convert({
+              buffer: inputBuffer,
+              format: "JPEG",
+              quality: 1,
+            });
+
+            return data;
+          } catch (error) {
+            console.error("Error converting HEIC to JPEG:", error);
+            throw error;
           }
         }
-      }
-      
-      export const config = {
-        matcher: ["/", "/enter"],
-      };
-      
       `,
-        text: "<span>Middleware</span> that ensures the proper authentication handling by redirecting user appropriately based on their authentication status. It reads the cookie and handles the redirecting of the user on the server side.",
-      },
-      {
-        codeSnippet: ` 
-      export default {
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          "Origin-Allow-Credentials": true,
-          "Access-Control-Allow-Credentials": true,
-        },
-      };
-      
-      `,
-        text: "The config file that makes it possible to pass the cookie and the authorization headers to the server on the following requests.",
+        text: "The main function that converts the HEIC input into JPEG. It is an asynchronous function that takes an inputBuffer representing the HEIC image data. It utilizes the heic-convert library to perform the actual conversion.",
       },
       {
         codeSnippet: `
-      <UpdateTaskRow
-      src={"status"}
-      Updater={<PriorityUpdater updateTask={updateCurrentTask} />}
-      taskRowInnerComponent={
-        <ColoredCell color={getPriorityColor(priority)}>
-          {priority}
-        </ColoredCell>
-      }
-    >
-      Priority
-    </UpdateTaskRow>
+      docker build .  --platform linux/amd64 -t  europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest
 
+      docker push europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest                           
+
+      gcloud run deploy strapi-cms  --image europe-west1-docker.pkg.dev/dev-sphere-410611/demo/the-dot-cms:latest
       `,
-        text: "Another exapmle of calling a modular component that takes components as props to change its style and functionality.",
+
+        text: "Some <span>gcloud CLI</span> commands for updating & deploying the API. The initial command builds a <span> Docker </span> image with specified tags. Later, the built image is pushed to a the <span>Google Container Registry</span>, to be used in deployment. Finally the API deployment to Google Cloud Run is executed.",
       },
+    ],
+  },
+
+  {
+    rectPosition: { top: "120%", left: "-10%" },
+    projectName: "Resume Creator",
+    liveLink: "http://resumemaker.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/r-resume",
+    techStack: ["JavaScript", "React.js", "Styled Components"],
+    deployment: ["Github Actions", "Google Cloud Run"],
+    mediaPath: "resume",
+    shortDesc: "A resume creation tool made with React.js and Redux",
+    mainTakeAway: [
+      "The app is a frontend app with complex data management handled by Redux.It lets you create your own resume to rock your interviews.",
+      "The app is styled using styled components and a very minimalistic design is implemented. You can customize and then download your resume with it.",
+    ],
+    codeBreakDown: [
       {
         codeSnippet: ` 
-      export default async function Login(email: string, password: string) {
-        try {
-          return await axios.post(prodEndpoint, { email, password }, axiosConfig);
-        } catch (error) {
-          return { status: 401 };
-        }
-      }      
-      `,
-        text: "Function that makes the actual <span>login request</span> to the server. Although, there is a bit room for improvments on error handling it fulfills its core function.",
+        import { configureStore } from "@reduxjs/toolkit";
+        import textSlice from "./textSlice";
+        import AccordionSlice from "./AccordionSlice";
+        import PropSlice from "./PropSlice";
+        
+        export default configureStore({
+          reducer: {
+            values: textSlice,
+            Accordions: AccordionSlice,
+            Properties: PropSlice,
+          },
+        });
+    `,
+        text: "Initialization of the Redux Store ",
       },
     ],
   },
@@ -740,6 +740,173 @@ export default [
   },
 
   {
+    rectPosition: { top: "-30%", left: "0%" },
+    projectName: "Scroll Triggered Story",
+    liveLink: "https://scrollstory.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/scroll-triggered-story",
+    mediaPath: "story",
+    techStack: ["TypeScript", "React.js", "Styled Components", "Framer Motion"],
+    deployment: ["Vercel"],
+    shortDesc:
+      "An attempt to get as close as possible to a WebFlow page using React and Typescript.",
+    mainTakeAway: [
+      "This project is yet another attempt to replicate a <span>Webflow</span> page that is animated using <span>scroll input.</span>",
+      "This version of the app is written using <span> Typescript, React. </span>  And the UI is animated using framer motion API's.",
+      "I particulary payed attention to the readability of the code. The concrete and solid feel of the code makes it easier to read.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: ` 
+      interface CornerProps {
+        className?: string;
+      }
+      
+      const Corners: React.FC<CornerProps> = ({ className }) => {
+        const positionConfig = Object.values(CornerPosition);
+      
+        return (
+          <Container className={className}>
+            {positionConfig.map((pos, i) => (
+              <CornerWrap key={i} position={pos}>
+                <Corner />
+              </CornerWrap>
+            ))}
+          </Container>
+        );
+      };
+      
+      export default Corners;
+      `,
+        text: "The component iterates through corner positions using an <span>enum</span>, and renders a Corner component for each position, reusability of this creates a unified appearence.",
+      },
+      {
+        codeSnippet: `
+      
+      export interface IRotatingCircle {
+        scrollProgress: MotionValue<number>;
+      }
+      
+      const RotatingCircle: FC<IRotatingCircle> = ({ scrollProgress }) => {
+        const isMobile = isMobileDevice();
+        const [currentSegment, setCurrentSegment] = useState<Segment>(0);
+        const transformOutput = [-100, isMobile ? -25 : -43];
+        const translate = useTransform(scrollProgress, [0.06, 0.08], transformOutput);
+      
+        const evalueCurrentSegment = useCallback((latestScrollPosition: number) => {
+          const currentSegment =
+            latestScrollPosition < SegmentThreshold.HistorySegment // ENUM
+              ? Segment.History
+              : latestScrollPosition < SegmentThreshold.OriginSegment // ENUM
+              ? Segment.Origin
+              : Segment.Symbol;
+
+          setCurrentSegment(currentSegment);
+        }, []);
+      
+        useMotionValueEvent(scrollProgress, "change", evalueCurrentSegment);
+      
+        return (
+          <S.Container translate={translate}>
+            <S.TransformContainer currentSegment={currentSegment}>
+              {Segments.map(({ name, style }, i) => (
+                <S.Segment key={i} isActive={i === currentSegment} style={style}>
+                  <S.InnerSegmentContainer currentSegment={currentSegment}>
+                    <S.RotatedSquare />
+                    <S.Name>{name}</S.Name>
+                  </S.InnerSegmentContainer>
+                </S.Segment>
+              ))}
+            </S.TransformContainer>
+          </S.Container>
+        );
+      };
+      
+      export default RotatingCircle;
+      
+      `,
+        text: "This component utilizes various features of the <span>Framer Motion API's</span> for animations, such as useTransform and event handling with useMotionValueEvent. These features creates smooth interactive animations based on the scroll progress input. TypeScript enums are used to define constants like SegmentThreshold and Segment, assuring a <span>type-safe</span> way to work with predefined values.",
+      },
+      {
+        codeSnippet: `
+      export default (breakpoint: string, styles: string | any) => css"
+        @media screen and (min-width: (breakpoint)) {
+          {styles}
+        }";
+      `,
+        text: "Using template literals in combination with styled-components, this function generates CSS rules wrapped in a media query that targets different screens. By <span>encapsulating styling logic</span> within the function, the responsive layout was built easily.",
+      },
+      {
+        codeSnippet: ` 
+      export const TransformContainer = styled(motion.div).attrs<IInnerContainer>(
+        ({ currentSegment }) => ({
+          animate: {
+            rotate: "(evaluateCircleRotation(currentSegment))deg",
+          },
+          transition: {
+            ...infoFlowConfig,
+          },
+          initial: { rotate: "160deg" },
+        })
+      )"
+        width: 100%;
+        height: 100%;
+        border: 2px solid (color);
+        border-radius: 9999px;
+        position: relative;
+      ";
+      
+      `,
+        text: "An example of <span>styled-components and framer-motion </span> used together",
+      },
+    ],
+  },
+  {
+    rectPosition: { top: "40%", left: "-50%" },
+    projectName: "Canvas Art",
+    mediaPath: "canvas",
+    liveLink: "https://canvasart.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/canvas-art",
+    techStack: [
+      "TypeScript",
+      "React.js",
+      "HTML Canvas",
+      "Styled Components",
+      "Framer Motion",
+    ],
+    deployment: ["Vercel"],
+    shortDesc: "An HTML Canvas app written using class syntax",
+    mainTakeAway: [
+      "This app is an interactive <span>HTML Canvas</span> that generates artistic patterns based on randomly generated data. The whole idea of this project was to explore how class syntax can be utilized as a means of separating logic and writing efficient code. There are two classes that works together for the end result.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `  
+    init() {
+      this.symbolsCount += 10;
+      const isVertical = Math.random() < 0.5 ? true : false;
+  
+      this.y = this.getRandomArbitrary(0, window.innerHeight - 0);
+      this.x = this.getRandomArbitrary(window.innerWidth - 0, 0);
+      const color = this.randColor();
+      this.context.font = this.fontSize + "px monospace";
+  
+      [...Array(10).fill(0)].map(
+        (_, i) =>
+          (this.symbols[i + this.symbolsCount] = new Symbol({
+            x: this.x,
+            y: this.y,
+            isVertical,
+            context: this.context,
+            color,
+          }))
+      );
+    `,
+        text: "This code bit creates vertical lines seen on the page. The Symbol class instances are what we see as 0's and 1's. They are being being drawn into the canvas with random positions, and colors. All these are being handled with class specific functions and this way we're keeping the logic seperated from outside world but as one in the class itself.",
+      },
+    ],
+  },
+
+  {
     rectPosition: { top: "-35%", left: "50%" },
     projectName: "Session Auth",
     mediaPath: "sessionauth",
@@ -994,173 +1161,6 @@ export default [
       `,
 
         text: "A part of the workflow file that automates the application with multiple steps. It uses repository secrets for safety.",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "-30%", left: "0%" },
-    projectName: "Scroll Triggered Story",
-    liveLink: "https://scrollstory.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/scroll-triggered-story",
-    mediaPath: "story",
-    techStack: ["TypeScript", "React.js", "Styled Components", "Framer Motion"],
-    deployment: ["Vercel"],
-    shortDesc:
-      "An attempt to get as close as possible to a WebFlow page using React and Typescript.",
-    mainTakeAway: [
-      "This project is yet another attempt to replicate a <span>Webflow</span> page that is animated using <span>scroll input.</span>",
-      "This version of the app is written using <span> Typescript, React. </span>  And the UI is animated using framer motion API's.",
-      "I particulary payed attention to the readability of the code. The concrete and solid feel of the code makes it easier to read.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: ` 
-      interface CornerProps {
-        className?: string;
-      }
-      
-      const Corners: React.FC<CornerProps> = ({ className }) => {
-        const positionConfig = Object.values(CornerPosition);
-      
-        return (
-          <Container className={className}>
-            {positionConfig.map((pos, i) => (
-              <CornerWrap key={i} position={pos}>
-                <Corner />
-              </CornerWrap>
-            ))}
-          </Container>
-        );
-      };
-      
-      export default Corners;
-      `,
-        text: "The component iterates through corner positions using an <span>enum</span>, and renders a Corner component for each position, reusability of this creates a unified appearence.",
-      },
-      {
-        codeSnippet: `
-      
-      export interface IRotatingCircle {
-        scrollProgress: MotionValue<number>;
-      }
-      
-      const RotatingCircle: FC<IRotatingCircle> = ({ scrollProgress }) => {
-        const isMobile = isMobileDevice();
-        const [currentSegment, setCurrentSegment] = useState<Segment>(0);
-        const transformOutput = [-100, isMobile ? -25 : -43];
-        const translate = useTransform(scrollProgress, [0.06, 0.08], transformOutput);
-      
-        const evalueCurrentSegment = useCallback((latestScrollPosition: number) => {
-          const currentSegment =
-            latestScrollPosition < SegmentThreshold.HistorySegment // ENUM
-              ? Segment.History
-              : latestScrollPosition < SegmentThreshold.OriginSegment // ENUM
-              ? Segment.Origin
-              : Segment.Symbol;
-
-          setCurrentSegment(currentSegment);
-        }, []);
-      
-        useMotionValueEvent(scrollProgress, "change", evalueCurrentSegment);
-      
-        return (
-          <S.Container translate={translate}>
-            <S.TransformContainer currentSegment={currentSegment}>
-              {Segments.map(({ name, style }, i) => (
-                <S.Segment key={i} isActive={i === currentSegment} style={style}>
-                  <S.InnerSegmentContainer currentSegment={currentSegment}>
-                    <S.RotatedSquare />
-                    <S.Name>{name}</S.Name>
-                  </S.InnerSegmentContainer>
-                </S.Segment>
-              ))}
-            </S.TransformContainer>
-          </S.Container>
-        );
-      };
-      
-      export default RotatingCircle;
-      
-      `,
-        text: "This component utilizes various features of the <span>Framer Motion API's</span> for animations, such as useTransform and event handling with useMotionValueEvent. These features creates smooth interactive animations based on the scroll progress input. TypeScript enums are used to define constants like SegmentThreshold and Segment, assuring a <span>type-safe</span> way to work with predefined values.",
-      },
-      {
-        codeSnippet: `
-      export default (breakpoint: string, styles: string | any) => css"
-        @media screen and (min-width: (breakpoint)) {
-          {styles}
-        }";
-      `,
-        text: "Using template literals in combination with styled-components, this function generates CSS rules wrapped in a media query that targets different screens. By <span>encapsulating styling logic</span> within the function, the responsive layout was built easily.",
-      },
-      {
-        codeSnippet: ` 
-      export const TransformContainer = styled(motion.div).attrs<IInnerContainer>(
-        ({ currentSegment }) => ({
-          animate: {
-            rotate: "(evaluateCircleRotation(currentSegment))deg",
-          },
-          transition: {
-            ...infoFlowConfig,
-          },
-          initial: { rotate: "160deg" },
-        })
-      )"
-        width: 100%;
-        height: 100%;
-        border: 2px solid (color);
-        border-radius: 9999px;
-        position: relative;
-      ";
-      
-      `,
-        text: "An example of <span>styled-components and framer-motion </span> used together",
-      },
-    ],
-  },
-  {
-    rectPosition: { top: "40%", left: "-50%" },
-    projectName: "Canvas Art",
-    mediaPath: "canvas",
-    liveLink: "https://canvasart.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/canvas-art",
-    techStack: [
-      "TypeScript",
-      "React.js",
-      "HTML Canvas",
-      "Styled Components",
-      "Framer Motion",
-    ],
-    deployment: ["Vercel"],
-    shortDesc: "An HTML Canvas app written using class syntax",
-    mainTakeAway: [
-      "This app is an interactive <span>HTML Canvas</span> that generates artistic patterns based on randomly generated data. The whole idea of this project was to explore how class syntax can be utilized as a means of separating logic and writing efficient code. There are two classes that works together for the end result.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `  
-    init() {
-      this.symbolsCount += 10;
-      const isVertical = Math.random() < 0.5 ? true : false;
-  
-      this.y = this.getRandomArbitrary(0, window.innerHeight - 0);
-      this.x = this.getRandomArbitrary(window.innerWidth - 0, 0);
-      const color = this.randColor();
-      this.context.font = this.fontSize + "px monospace";
-  
-      [...Array(10).fill(0)].map(
-        (_, i) =>
-          (this.symbols[i + this.symbolsCount] = new Symbol({
-            x: this.x,
-            y: this.y,
-            isVertical,
-            context: this.context,
-            color,
-          }))
-      );
-    `,
-        text: "This code bit creates vertical lines seen on the page. The Symbol class instances are what we see as 0's and 1's. They are being being drawn into the canvas with random positions, and colors. All these are being handled with class specific functions and this way we're keeping the logic seperated from outside world but as one in the class itself.",
       },
     ],
   },
