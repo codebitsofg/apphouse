@@ -56,7 +56,7 @@ export const Skeleton = styled.div`
 `;
 
 export const BeratImage = styled.img.attrs<{ isLoaded: boolean }>({
-  src: "/berat.jpeg",
+  src: "/beratsimg.jpeg",
 })`
   width: 10vw;
   height: 10vw;
