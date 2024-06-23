@@ -72,7 +72,11 @@ export default function Home() {
 
       <AnimatePresence>
         {!mode && (
-          <LoadingPage onModeClick={onModeOptionClick} progress={progress} />
+          <LoadingPage
+            onAboutMeClick={onAboutMeClick}
+            onModeClick={onModeOptionClick}
+            progress={progress}
+          />
         )}
       </AnimatePresence>
 
@@ -82,7 +86,7 @@ export default function Home() {
         <Navigation
           hasNavigated={isAboutMeVisible || isProjectDetailVisible}
           onAboutMeClick={onAboutMeClick}
-          shouldShowLinks={isProjectDetailVisible && !isAboutMeVisible}
+          shouldShowLinks={isProjectDetailVisible}
           onModeSwitch={onModeOptionClick}
         />
       )}
@@ -92,6 +96,10 @@ export default function Home() {
           <BeratGencLogo />
         </LogoContainer>
       )}
+
+      <AnimatePresence>
+        {isAboutMeVisible && <AboutMe onAboutMeClick={onAboutMeClick} />}
+      </AnimatePresence>
 
       {isPreloaded && mode && (
         <Container>
@@ -107,10 +115,6 @@ export default function Home() {
             {isProjectDetailVisible && (
               <ProjectDetail project={project} onClose={onProjectClose} />
             )}
-          </AnimatePresence>
-
-          <AnimatePresence>
-            {isAboutMeVisible && <AboutMe onAboutMeClick={onAboutMeClick} />}
           </AnimatePresence>
 
           <PageTransition

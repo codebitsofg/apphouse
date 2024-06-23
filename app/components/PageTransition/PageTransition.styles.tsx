@@ -12,7 +12,7 @@ export const Container = styled(motion.div).attrs({
   width: 100vw;
   height: 100dvh;
   background-color: #04080f;
-  z-index: 99;
+  z-index: 105;
   pointer-events: none;
   display: flex;
   align-items: center;

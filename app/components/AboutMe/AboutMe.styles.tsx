@@ -24,6 +24,7 @@ export const Container = styled(motion.div).attrs({
   color: #0f0e0e;
   text-align: left;
   padding-top: 10%;
+  z-index: 100;
 
   ${mediaLarge(css`
     padding-top: 0;

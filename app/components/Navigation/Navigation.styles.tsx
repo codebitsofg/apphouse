@@ -20,7 +20,7 @@ export const Container = styled(motion.div).attrs({
   transform: translate(-50%, 0);
   bottom: 1.5%;
   left: 50%;
-  z-index: 5;
+  z-index: 100;
   height: 7%;
   width: 40%;
   display: flex;

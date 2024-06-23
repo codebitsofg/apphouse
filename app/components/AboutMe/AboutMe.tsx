@@ -16,6 +16,7 @@ import useStore from "@/app/store/useStore";
 import GitIcon from "../Icons/GitIcon";
 import Education from "../Education/Education";
 import Work from "../Work/Work";
+import { GoBack, TitleContainer } from "../ProjectDetail/ProjectDetail.styles";
 
 interface AboutMeProps {
   onAboutMeClick: () => void;
@@ -79,6 +80,10 @@ const AboutMe = ({ onAboutMeClick }: AboutMeProps) => {
             );
           })}
         </S.Section>
+
+        <TitleContainer onClick={onAboutMeClick}>
+          <GoBack />
+        </TitleContainer>
       </S.Container>
 
       <S.Overlay />

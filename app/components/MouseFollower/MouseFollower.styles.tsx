@@ -7,7 +7,7 @@ interface CircleProps {
 }
 export const Container = styled(motion.div)`
   position: fixed;
-  z-index: 99;
+  z-index: 103;
   pointer-events: none;
   display: none;
 

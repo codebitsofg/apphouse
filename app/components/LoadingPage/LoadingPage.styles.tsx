@@ -56,6 +56,27 @@ export const LoadingBarContainer = styled.div`
   gap: 1%;
 `;
 
+export const WelcomeTextContainer = styled(motion.div).attrs({
+  ...opacityConfig,
+  transition: {
+    duration: 0.5,
+  },
+})`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2% 2%;
+  position: relative;
+  z-index: 2;
+`;
+
+export const WelcomeText = styled.h1`
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 300;
+`;
+
 export const OptionContainer = styled(motion.div).attrs({
   ...opacityConfig,
   transition: {

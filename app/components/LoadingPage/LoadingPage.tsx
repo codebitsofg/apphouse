@@ -12,16 +12,25 @@ import {
   ProgressBar,
   SecondOverlay,
   SelectModeText,
+  WelcomeText,
+  WelcomeTextContainer,
 } from "./LoadingPage.styles";
 import { Mode } from "@/utils/types/app.types";
 import { AnimatePresence, useAnimationControls } from "framer-motion";
+import { TabItemContainer, TabText } from "../Navigation/Navigation.styles";
+import AboutMeIcon from "../Icons/AboutMeIcon";
 
 interface LoadingPageProps {
   progress: number;
   onModeClick: (mode: Mode) => void;
+  onAboutMeClick: () => void;
 }
 
-const LoadingPage = ({ progress, onModeClick }: LoadingPageProps) => {
+const LoadingPage = ({
+  progress,
+  onModeClick,
+  onAboutMeClick,
+}: LoadingPageProps) => {
   const isPreloaded = progress === 100;
   const options = ["Gallery", "Classic"];
   const [isModeSelected, setIsModeSelected] = useState(false);
@@ -48,22 +57,35 @@ const LoadingPage = ({ progress, onModeClick }: LoadingPageProps) => {
         <>
           <AnimatePresence mode="wait">
             {!isModeSelected ? (
-              <OptionContainer key={"242442"}>
-                <SelectModeText>
-                  Select A mode to view curated projects. You can switch between
-                  modes from the navigation.
-                </SelectModeText>
-                <InnerOptionContainer>
-                  {options.map((mode, i) => (
-                    <ModeOption
-                      key={i}
-                      onClick={() => handleOptionClick(i + 1)}
-                    >
-                      {mode}
-                    </ModeOption>
-                  ))}
-                </InnerOptionContainer>
-              </OptionContainer>
+              <>
+                <WelcomeTextContainer>
+                  <WelcomeText> Welcome Onboard! </WelcomeText>
+
+                  <TabItemContainer onClick={onAboutMeClick}>
+                    <TabText>
+                      <AboutMeIcon isDark={false} />
+                      About
+                    </TabText>
+                  </TabItemContainer>
+                </WelcomeTextContainer>
+
+                <OptionContainer key={"242442"}>
+                  <SelectModeText>
+                    Select A mode to view curated projects. You can switch
+                    between modes from the navigation.
+                  </SelectModeText>
+                  <InnerOptionContainer>
+                    {options.map((mode, i) => (
+                      <ModeOption
+                        key={i}
+                        onClick={() => handleOptionClick(i + 1)}
+                      >
+                        {mode}
+                      </ModeOption>
+                    ))}
+                  </InnerOptionContainer>
+                </OptionContainer>
+              </>
             ) : (
               <SelectModeText key={"a"}>
                 Good Choice! Let us Begin!

@@ -57,7 +57,7 @@ const Navigation = ({
 
       <S.TabItemContainer {...props} layout onClick={onAboutMeClick}>
         <S.TabText>
-          <AboutMeIcon isDark={hasNavigated} />
+          <AboutMeIcon isDark={true} />
           About
         </S.TabText>
       </S.TabItemContainer>
