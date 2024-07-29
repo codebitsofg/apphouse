@@ -1,6 +1,118 @@
 export default [
   {
-    rectPosition: { top: "40%", left: "0" },
+    rectPosition: { top: "10%", left: "-20%" },
+    projectName: "Shore Blog",
+    mediaPath: "shore",
+    repoLink: "https://github.com/soberbat/shoreblog",
+    liveLink: "https://polite-florentine-f52a60.netlify.app/",
+    techStack: [
+      "TypeScript",
+      "Strapi CMS",
+      "shadcn",
+      "Next.js",
+      "Tailwindcss",
+      "Amazon S3",
+    ],
+    shortDesc: "A Jamstack Blog powered by Next.js and Strapi CMS",
+    mainTakeAway: [
+      "Skinshore is a static export of a Next.js blog where performance and SEO optimization is of importance.",
+      "Strapi CMS is used as the Headless CMS choice. The images are being served in an S3 bucket for production use.",
+      "Dynamic routes are configured and latest features of Next.js App Router is being used.",
+      "Shadcn is used for the carousel component to save some time.",
+      "Page level SEO optimizations are implemented for higher ranking in the search results.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `
+        module.exports = () => ({
+          upload: {
+            config: {
+              provider: "aws-s3",
+              providerOptions: {
+                accessKeyId: env("Access Key ID"),
+                secretAccessKey: env("Access Key"),
+                region: "eu-central-1",
+                params: {
+                  ACL: "public-read",
+                  Bucket: env("Bucket Name"),
+                },
+              },
+              actionOptions: {
+                upload: {},
+                uploadStream: {},
+                delete: {},
+              },
+            },
+          },
+        });
+        
+      `,
+        text: "The strapi config that saves the images to an S3 Bucket.",
+      },
+      {
+        codeSnippet: `
+        export async function generateStaticParams() {
+          const entries = await fetchCMSEntries()
+          return entries.map((entry) => ({
+            slug: entry.attributes.slug,
+          }))
+        }
+        
+        export async function generateMetadata(props: PageProps): Promise<Metadata> {
+          const { pageData, imgUrl } = await getPageData(props.params.slug)
+          return {
+            title: "Shore | {pageData?.title}",
+            keywords: [''],
+            description: pageData?.highlightedParagraph,
+            openGraph: { images: imgUrl },
+            applicationName: 'Shore',
+          }
+        }
+      `,
+        text: "Functions that introduced with Next.js 14. generateStaticParams creates the dynamic routes based on the data entries retrieved from the CMS.",
+      },
+
+      {
+        codeSnippet: `
+        const Home = async () => {
+          const entries = await fetchCMSEntries()
+          const filterEntries = (filter: EntryCategory) => {
+            return entries.filter(({ attributes: { category } }) => category === filter)
+          }
+        
+          return (
+            <main>
+              <Hero entries={filterEntries(EntryCategory.HERO)} />
+              <Divider />
+              <PostFlow entries={entries} />
+              <Divider />
+              <HorizontalFlowRow
+                title='Endişe'
+                entries={filterEntries(EntryCategory.ENDISE)}
+              />
+        
+              <Carousel text='Trendler' showMoreVisible={true} />
+              <Gallery entries={filterEntries(EntryCategory.İÇERİKLER)} />
+              <Divider />
+              <HorizontalFlowRow
+                title='Cilt Türleri'
+                entries={filterEntries(EntryCategory.CILTTURU)}
+              />
+              <Carousel text='İpuçları' showMoreVisible={true} />
+              <Divider />
+              <AboutUsExplainer />
+            </main>
+          )
+        }
+      `,
+
+        text: "Home page with reusable components",
+      },
+    ],
+  },
+
+  {
+    rectPosition: { top: "40%", left: "-50%" },
     projectName: "Univversecam",
     mediaPath: "universecam",
     liveLink: "https://unniversecam.beratgenc.live/",
@@ -18,6 +130,7 @@ export default [
       "A Three.js & Next.js app designed & written with optimal modularity in mind.",
     mainTakeAway: [
       "The application has a sophisticated UI controlled with state saved and managed with <span>React Context</span>. The UI is execution of a complex design featuring implementations of common web app elements such as select menus, carousel slides, and footers. ",
+      "A WebGL Typescript class is written to encapsulate and organize logic.",
       "Modularity is carefully conducted in the codebase, there are lots of room for flexibility. React user interface and the scene class updates one another based on user input. With a focus on modularity and synchronization, the application is a good example of modular UI and how it can be matched with immersive web experiences.",
     ],
     codeBreakDown: [
@@ -135,7 +248,7 @@ export default [
   },
 
   {
-    rectPosition: { top: "100%", left: "-50%" },
+    rectPosition: { top: "-30%", left: "0%" },
     projectName: "Task Manager",
     techStack: ["TypeScript", "Next.js", "Docker", "Styled Components"],
     deployment: ["Github Actions", "Google Cloud Run"],
@@ -144,10 +257,10 @@ export default [
     mediaPath: "tasker",
     shortDesc: "A Fullstack Task Management App",
     mainTakeAway: [
-      "The frontend for the <span>Task Manager API</span>. Implementing the UI was valuable practise on seeing how<span> session cookies</span> can be implemented on the client side.",
-      "The UI itself has many examples of modern web components, it includes many input components as well as sidebars, topbars, expanding Views & hover states.",
-      "Another part was also a good practice to see how <span>client and server</span> communicates in a production environment.",
-      "App is fully automated with <span>Github Actions Pipeline</span>. Automating the app was my first DevOps exploration.",
+      "Sesion cookies are being saves to the client from the Nest.js backend API for displaying user specific data ve login functionality.",
+      "The UI itself has many examples of modern web components, it includes react written forms components as well as sidebars, topbars, modals, expanding views & hover states.",
+      "It showcases <span>client and server</span> communication in a production environment.",
+      "App is fully automated with <span>Github Actions Pipelines</span>.",
       "A custom domain is configured both for the backend and the frontend to persist cookie.",
       "Use test@user.com as login email and 1234 as password to test the app.",
     ],
@@ -178,7 +291,7 @@ export default [
       };
       
       `,
-        text: "<span>Middleware</span> that ensures the proper authentication handling by redirecting user appropriately based on their authentication status. It reads the cookie and handles the redirecting of the user on the server side.",
+        text: "<span>Middleware</span> that redirects user appropriately based on their authentication status. It reads the cookie and handles the redirecting of the user on the server side.",
       },
       {
         codeSnippet: ` 
@@ -209,7 +322,7 @@ export default [
     </UpdateTaskRow>
 
       `,
-        text: "Another exapmle of calling a modular component that takes components as props to change its style and functionality.",
+        text: "An example of calling a modular component that takes components as props to change its style and functionality.",
       },
       {
         codeSnippet: ` 
@@ -221,13 +334,13 @@ export default [
         }
       }      
       `,
-        text: "Function that makes the actual <span>login request</span> to the server. Although, there is a bit room for improvments on error handling it fulfills its core function.",
+        text: "Function that makes the actual <span>login request</span> to the server.",
       },
     ],
   },
 
   {
-    rectPosition: { top: "120%", left: "50%" },
+    rectPosition: { top: "10%", left: "40%" },
     projectName: "PATI",
     techStack: ["TypeScript", "Next.js", "Axios", "Tailwind CSS"],
     deployment: [
@@ -243,10 +356,10 @@ export default [
     mediaPath: "petapp",
     shortDesc: "Landing page for a pet adoptation platform",
     mainTakeAway: [
-      "I am visioning PATI to be the next pet adoptation platform in Turkey. There have been inhumane legalislations againts stray animals and the pet adoptation platforms play a huge role in helping our furry friends. That is why I decided to start a side project where I will be applying latest technology to fight for the cause. The first iteration is this landing page to collect user emails to sign them in to the newsletter.",
+      "I decided to start a side project where I will be applying latest technology to practice. The first iteration is this landing page to collect user emails to sign them in to the newsletter.",
       "I find it especially interesting because the whole app from API management to service communication to website hosting is in the AWS Cloud. One can have many solutions to many problems with AWS cloud.",
-      "As for the repo it is a monorepo initialized using NX. It follows microservices architecture. The API's are served as Lambda Functions, SQS queue communicates the user data to email service from the user register service.",
-      "Emails are being sent using Sendgrid and the User data is being saved to DynamoDB.",
+      "It is a monorepo initialized using NX. It follows the microservices architecture. The API's are served as Lambda Functions, SQS queue communicates the user data to email service from the user register service.",
+      "Emails are being sent using Sendgrid and the user data is being saved to DynamoDB.",
       "AWS CDK used as IAC tool.",
     ],
     codeBreakDown: [
@@ -390,17 +503,18 @@ export default [
   },
 
   {
-    rectPosition: { top: "120%", left: "-10%" },
+    rectPosition: { top: "-40%", left: "-50%" },
     projectName: "Resume Creator",
     liveLink: "http://resumemaker.beratgenc.live/",
     repoLink: "https://github.com/soberbat/r-resume",
     techStack: ["JavaScript", "React.js", "Styled Components"],
-    deployment: ["Github Actions", "Google Cloud Run"],
     mediaPath: "resume",
     shortDesc: "A resume creation tool made with React.js and Redux",
     mainTakeAway: [
-      "The app is a frontend app with complex data management handled by Redux.It lets you create your own resume to rock your interviews.",
-      "The app is styled using styled components and a very minimalistic design is implemented. You can customize and then download your resume with it.",
+      "It lets you create your own resume to rock your interviews.",
+      "The app is a frontend app with complex data management handled by Redux. Multiple slices are being used for organizing the store for better a developer experience.",
+      "It is styled using styled components and a very minimalistic design is implemented. You can customize and then download your resume with it.",
+      "Reusable components are being used to save us some time.",
     ],
     codeBreakDown: [
       {
@@ -420,11 +534,40 @@ export default [
     `,
         text: "Initialization of the Redux Store ",
       },
+
+      {
+        codeSnippet: ` 
+        export default function Editor() {
+          const componentRef = useRef();
+          const handlePrint = useReactToPrint({
+            content: () => componentRef.current,
+            
+          });
+        
+          const visiblity = useSelector((state) => state.values.visibility);
+          const PreviewVisibility = useSelector(
+            (state) => state.Accordions.PreviewVisibility
+          );
+          
+          return (
+            <Wrapper previewVisibility={PreviewVisibility}>
+              <PageToPrint ref={componentRef} />
+              <Container>
+                <Button onClick={handlePrint}>Download 🥷🏼</Button>
+                <span>{visiblity && <SavingSpinner id="Spinner" />}</span>
+              </Container>
+            </Wrapper>
+          );
+        }
+        
+    `,
+        text: "The editor component that downloads the file to user machine. React and Redux hooks are featured here.",
+      },
     ],
   },
 
   {
-    rectPosition: { top: "0%", left: "-30%" },
+    rectPosition: { top: "60%", left: "10" },
     projectName: "Music Gallery",
     mediaPath: "gallery",
     repoLink: "https://github.com/soberbat/music-gallery",
@@ -593,7 +736,7 @@ export default [
   },
 
   {
-    rectPosition: { top: "-40%", left: "-50%" },
+    rectPosition: { top: "0%", left: "-60%" },
     projectName: "Awab Alsaati Portfolio",
     mediaPath: "alsaati",
     liveLink: "https://www.awabalsaati.com/",
@@ -740,7 +883,7 @@ export default [
   },
 
   {
-    rectPosition: { top: "-30%", left: "0%" },
+    rectPosition: { top: "100%", left: "-50%" },
     projectName: "Scroll Triggered Story",
     liveLink: "https://scrollstory.beratgenc.live/",
     repoLink: "https://github.com/soberbat/scroll-triggered-story",
@@ -861,7 +1004,7 @@ export default [
     ],
   },
   {
-    rectPosition: { top: "40%", left: "-50%" },
+    rectPosition: { top: "120%", left: "-10%" },
     projectName: "Canvas Art",
     mediaPath: "canvas",
     liveLink: "https://canvasart.beratgenc.live/",
@@ -1056,7 +1199,7 @@ export default [
   },
 
   {
-    rectPosition: { top: "70%", left: "30%" },
+    rectPosition: { top: "100%", left: "60%" },
     projectName: "Task Manager Backend",
     mediaPath: "taskerapi",
     liveLink: "https://backend.taskermanager.site",

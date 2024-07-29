@@ -15,7 +15,7 @@ class Preloader {
   urlsToPreload: string[];
   preloadedSources: PreloadedSources;
   loadedMedia = 0;
-  mediaCount = 11;
+  mediaCount = 12;
   progress = 0;
 
   constructor({ handleRequestEnd, handleProgress }: IPreloader) {
