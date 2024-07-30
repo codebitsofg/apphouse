@@ -4,7 +4,7 @@ export default [
     projectName: "Shore Blog",
     mediaPath: "shore",
     repoLink: "https://github.com/soberbat/shoreblog",
-    liveLink: "https://skknshore.com/",
+    liveLink: "https://polite-florentine-f52a60.netlify.app/",
     techStack: [
       "TypeScript",
       "Strapi CMS",
