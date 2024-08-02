@@ -33,7 +33,7 @@ const AboutMe = ({ onAboutMeClick }: AboutMeProps) => {
     <>
       <S.Container>
         <S.NameContainer>
-          Fullstack Developer realizing complex solutions
+          Web Developer realizing complex solutions
           <S.BeratImage
             isLoaded={isImageLoaded}
             onLoad={() => setIsImageLoaded(true)}

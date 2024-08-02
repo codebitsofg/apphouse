@@ -10,7 +10,6 @@ import PageTransition from "./components/PageTransition/PageTransition";
 import MouseFollower from "./components/MouseFollower/MouseFollower";
 import projectData from "@/utils/projectData";
 import useStore from "./store/useStore";
-import { useRouter } from "next/router";
 import usePreloder from "@/utils/hooks/usePreloader";
 import LoadingPage from "./components/LoadingPage/LoadingPage";
 import { Mode } from "@/utils/types/app.types";
@@ -33,7 +32,7 @@ export default function Home() {
   const onProjectClick = useCallback((i: number) => {
     const project = projectData[i];
     const { liveLink, repoLink, mediaPath } = project;
-
+    window.history.replaceState(null, "", mediaPath);
     setIsProjectDetailVisible(true);
     setLink(liveLink, repoLink);
     setisAnimating(true);
@@ -43,6 +42,7 @@ export default function Home() {
   const onProjectClose = useCallback(() => {
     setisAnimating(true);
     setIsProjectDetailVisible(false);
+    window.history.replaceState(null, "", "/");
   }, []);
 
   const onAboutMeClick = useCallback(() => {

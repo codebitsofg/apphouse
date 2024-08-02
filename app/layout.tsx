@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { M_PLUS_Code_Latin } from "next/font/google";
+import { useEffect } from "react";
 
 const mPlus = M_PLUS_Code_Latin({ subsets: ["latin"] });
 export const metadata: Metadata = {

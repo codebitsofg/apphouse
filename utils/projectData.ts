@@ -18,7 +18,7 @@ export default [
       "Skinshore is a static export of a Next.js blog where performance and SEO optimization is of importance.",
       "Strapi CMS is used as the Headless CMS choice. The images are being served in an S3 bucket for production use.",
       "Dynamic routes are configured and latest features of Next.js App Router is being used.",
-      "Shadcn is used for the carousel component to save some time.",
+      "Shadcn is used for some components to save some time.",
       "Page level SEO optimizations are implemented for higher ranking in the search results.",
     ],
     codeBreakDown: [
@@ -44,8 +44,7 @@ export default [
               },
             },
           },
-        });
-        
+        });   
       `,
         text: "The strapi config that saves the images to an S3 Bucket.",
       },
@@ -127,7 +126,7 @@ export default [
     ],
     deployment: ["Vercel"],
     shortDesc:
-      "A Three.js & Next.js app designed & written with optimal modularity in mind.",
+      "A Three.js & Next.js app designed & written with optimal modularity in mind",
     mainTakeAway: [
       "The application has a sophisticated UI controlled with state saved and managed with <span>React Context</span>. The UI is execution of a complex design featuring implementations of common web app elements such as select menus, carousel slides, and footers. ",
       "A WebGL Typescript class is written to encapsulate and organize logic.",
@@ -213,8 +212,7 @@ export default [
           });
       
           return Promise.all(planetLoadMap);
-        };
-        
+        };  
         `,
         text: "Function above belongs to the class that renders the 3D Scene. It loads modals in an <span>asynchronous</span> way to ensure that the app is not accessible to the user before all necessary data has loaded.",
       },
@@ -255,12 +253,12 @@ export default [
     liveLink: "https://application.taskermanager.site/",
     repoLink: "https://github.com/soberbat/task-manager-frontend",
     mediaPath: "tasker",
-    shortDesc: "A Fullstack Task Management App",
+    shortDesc: "A Next.js + Nest.js Fullstack Task Management App",
     mainTakeAway: [
-      "Sesion cookies are being saves to the client from the Nest.js backend API for displaying user specific data ve login functionality.",
-      "The UI itself has many examples of modern web components, it includes react written forms components as well as sidebars, topbars, modals, expanding views & hover states.",
+      "Here the sesion cookies are being stored in the client coming the Nest.js backend API for displaying user specific data.",
+      "The UI itself has many examples of modern web components, it includes forms components as well as sidebars, topbars, modals, expanding views & hover states.",
       "It showcases <span>client and server</span> communication in a production environment.",
-      "App is fully automated with <span>Github Actions Pipelines</span>.",
+      "The app is fully automated with <span>Github Actions Pipelines</span>.",
       "A custom domain is configured both for the backend and the frontend to persist cookie.",
       "Use test@user.com as login email and 1234 as password to test the app.",
     ],
@@ -288,8 +286,7 @@ export default [
       
       export const config = {
         matcher: ["/", "/enter"],
-      };
-      
+      };     
       `,
         text: "<span>Middleware</span> that redirects user appropriately based on their authentication status. It reads the cookie and handles the redirecting of the user on the server side.",
       },
@@ -302,8 +299,7 @@ export default [
           "Origin-Allow-Credentials": true,
           "Access-Control-Allow-Credentials": true,
         },
-      };
-      
+      };     
       `,
         text: "The config file that makes it possible to pass the cookie and the authorization headers to the server on the following requests.",
       },
@@ -354,7 +350,7 @@ export default [
       "http://infrastructurestack-nextjssitebucketbd1a5941-isspgruxxmoy.s3-website.eu-central-1.amazonaws.com/",
     repoLink: "https://github.com/soberbat/pati",
     mediaPath: "petapp",
-    shortDesc: "Landing page for a pet adoptation platform",
+    shortDesc: "A landing page for a pet adoptation platform",
     mainTakeAway: [
       "I decided to start a side project where I will be applying latest technology to practice. The first iteration is this landing page to collect user emails to sign them in to the newsletter.",
       "I find it especially interesting because the whole app from API management to service communication to website hosting is in the AWS Cloud. One can have many solutions to many problems with AWS cloud.",
@@ -409,8 +405,7 @@ export default [
               allowHeaders: Cors.DEFAULT_HEADERS,
             },
           });
-        };
-          
+        };         
     `,
         text: "The provisioning of the API's. AWS CDK is being used as the IAC tool here to saves us from many many clicks.",
       },
@@ -511,7 +506,7 @@ export default [
     mediaPath: "resume",
     shortDesc: "A resume creation tool made with React.js and Redux",
     mainTakeAway: [
-      "It lets you create your own resume to rock your interviews.",
+      "App lets you create your own resume to rock your interviews.",
       "The app is a frontend app with complex data management handled by Redux. Multiple slices are being used for organizing the store for better a developer experience.",
       "It is styled using styled components and a very minimalistic design is implemented. You can customize and then download your resume with it.",
       "Reusable components are being used to save us some time.",
@@ -581,11 +576,11 @@ export default [
     ],
     deployment: ["Vercel"],
     shortDesc:
-      "React & Three.js application with a custom player and linked navigation system",
+      "React & Three.js immersive app with a custom player and linked navigation system",
     mainTakeAway: [
       "This app consists of <span>two classes</span>: Each pane originates from a custom class that extends the Three.Object3D class, while the Scene class handles rendering, controls the <span>general navigation flow</span>, and communicates with the React UI.",
       "The navigation posed the greatest challenge in the project. You can control the app through scrolling and using two distinct UI navigation elements, all of which remain synchronized with each other. The scrolling navigation is implemented using a <span>debouncer.</span>",
-      "There is a custom music made react music player linked to the scene, allowing playback control through dragging and clicking. The data is communicated to both the Scene and the UI. So this is an another example of implementation of mouse events.",
+      "There is a custom made react music player linked to the scene, allowing playback control through dragging and clicking. The data is communicated to both the scene and the UI. Different kinds of listeners are heavily used together to make the interactions possible.",
     ],
     codeBreakDown: [
       {
@@ -749,12 +744,10 @@ export default [
       "Framer Motion",
     ],
     deployment: ["Vercel"],
-    shortDesc:
-      "A client work featuring, XHR powered preloader mechanism and a Zustand powered state management strategy.",
+    shortDesc: "A client work featuring, XHR powered preloader mechanism",
     mainTakeAway: [
-      "This project's entire production cycle, from development through testing to deployment, is managed by me. The application is the product of precise translation design into code.",
-      "Prominent features include a <span>preloader implemented using class syntax, custom hooks,</span> and the utilization of<span> Zustand </span>as a state managager",
-      "Another part of the app is how data types are being transformed into one another using methods available on them.",
+      "This project's entire production cycle, from development through testing to deployment, is managed by me. The application is the product of precise, pixel perfect, responsive translation design into code.",
+      "Prominent features include a <span>preloader implemented using class syntax, custom hooks,</span> and the utilization of<span> Zustand </span>as the state manager.",
     ],
     codeBreakDown: [
       {
@@ -964,8 +957,7 @@ export default [
         );
       };
       
-      export default RotatingCircle;
-      
+      export default RotatingCircle;  
       `,
         text: "This component utilizes various features of the <span>Framer Motion API's</span> for animations, such as useTransform and event handling with useMotionValueEvent. These features creates smooth interactive animations based on the scroll progress input. TypeScript enums are used to define constants like SegmentThreshold and Segment, assuring a <span>type-safe</span> way to work with predefined values.",
       },
@@ -1059,7 +1051,7 @@ export default [
     techStack: ["Node.js"],
     deployment: ["Terraform", "AWS Lightsail", "AWS RDS Postgres"],
     shortDesc:
-      "A Dockerized backend API featuring Redis Cache, Cookie Based Authentication and Database interactions",
+      "A cookie based authentication API featuring Redis Cache and database interactions",
     mainTakeAway: [
       "The demo is developed using <span>Express.js following MVC pattern</span>. It demonstrates how session authentication works on server side, with cookies. The cookies are stored using Redis Cache.",
       "Terraform is used to provision the infrastructure. RDS Postgres database and AWS Lightsail container deployment for the serving of the docker image is provisioned using IAC.",
@@ -1206,7 +1198,7 @@ export default [
     techStack: ["Nest.js"],
     deployment: ["Google Cloud Run", "Docker", "Github Actions"],
     repoLink: "https://github.com/soberbat/task-manager",
-    shortDesc: "Fully automated dockerized GCR service written with Nest.js.",
+    shortDesc: "Monolithic API written with Nest.js",
     mainTakeAway: [
       "A task manager API written using Nest.js, Nest CLI and Prisma as the ORM. It performs <span>CRUD operations an a MySQL</span> based database which includes several number of <span>tables with one-to-one, many-to-many, and one-to-many relationships.</span>",
       "It uses redis as a cookie storage to save user session for authentication",
@@ -1248,7 +1240,6 @@ export default [
           data: { tasks: { connect: { id: taskId } } }
         })
       }
-    
       `,
 
         text: "Function above showcases how easy it is to communicate with the database with <span>Prisma</span>. It offers very familiar syntax for interacting with the data modal by reducing the boilerplate code compared to traditional SQL queries.",
