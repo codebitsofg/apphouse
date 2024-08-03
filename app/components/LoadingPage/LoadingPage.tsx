@@ -19,6 +19,7 @@ import { Mode } from "@/utils/types/app.types";
 import { AnimatePresence, useAnimationControls } from "framer-motion";
 import { TabItemContainer, TabText } from "../Navigation/Navigation.styles";
 import AboutMeIcon from "../Icons/AboutMeIcon";
+import BeratGencLogo from "../Icons/BeratGencLogo";
 
 interface LoadingPageProps {
   progress: number;
@@ -45,8 +46,6 @@ const LoadingPage = ({
     <Container>
       {!isPreloaded ? (
         <>
-          <PreloaderText> Berat Genç | 2024 </PreloaderText>
-          <Progress>{progress}</Progress>
           <LoadingBarContainer>
             <LoadingBar>
               <ProgressBar style={{ width: `${progress}%` }} />
@@ -58,20 +57,9 @@ const LoadingPage = ({
           <AnimatePresence mode="wait">
             {!isModeSelected ? (
               <>
-                <WelcomeTextContainer>
-                  <WelcomeText> Welcome Onboard! </WelcomeText>
-
-                  <TabItemContainer onClick={onAboutMeClick}>
-                    <TabText>
-                      <AboutMeIcon isDark={false} />
-                      About
-                    </TabText>
-                  </TabItemContainer>
-                </WelcomeTextContainer>
-
                 <OptionContainer key={"242442"}>
                   <SelectModeText>
-                    Select A mode to view curated projects. You can switch
+                    Select a mode to view curated projects. You can switch
                     between modes from the navigation.
                   </SelectModeText>
                   <InnerOptionContainer>

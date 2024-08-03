@@ -7,31 +7,121 @@ import { Overlay } from "../LoadingPage/LoadingPage.styles";
 
 export const Container = styled(motion.div).attrs({
   ...opacityConfig,
-  transition: { delay: 2, duration: 0.5 },
 })`
   position: fixed;
-  background-color: #fdfffc4f;
-  border: 1px solid #04080f20;
-  padding: 0.5% 1%;
-  border-radius: 2px;
-  box-shadow: 0 0 10px #04080f20;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  transform: translate(-50%, 0);
-  bottom: 1.5%;
-  left: 50%;
+  top: 3%;
+  right: 1.5%;
   z-index: 100;
-  height: 7%;
-  width: 40%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   ${mediaLarge(css`
     gap: 1vw;
   `)}
 `;
 
+export const HamburgerButton = styled.div<{ isDark: boolean }>`
+  cursor: pointer;
+
+  ${({ isDark }) =>
+    isDark &&
+    `   
+  div {
+    background-color: black; 
+  }
+ 
+  `}
+`;
+
+export const Bar = styled.div<{ isOpen: boolean }>`
+  width: 1.5vw;
+  margin-bottom: 0.3vw;
+  height: 0.11vw;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+  transition-delay: 1s;
+  ${({ isOpen }) =>
+    isOpen &&
+    `
+    &:nth-child(1) {
+      transform: rotate(45deg) translateY(10px);
+    }
+    &:nth-child(2) {
+      opacity: 0;
+    }
+    &:nth-child(3) {
+      transform: rotate(-45deg) translateY(-10px);
+    }
+    background-color: black;
+  `}
+`;
+
+export const Wrapper = styled(motion.div).attrs({
+  animate: {
+    x: 0,
+    transition: {
+      ease: "anticipate",
+      duration: 1,
+    },
+  },
+  initial: {
+    x: "100%",
+  },
+  exit: {
+    x: "100%",
+    transition: {
+      ease: "easeInOut",
+      duration: 0.3,
+    },
+  },
+})`
+  background-color: #bac4b8;
+  width: 35vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  position: fixed;
+  z-index: 99;
+  color: #212121;
+`;
+
+export const NavItem = styled.div`
+  position: relative;
+  cursor: pointer;
+`;
+
+export const NavName = styled.h1`
+  text-align: left;
+  font-size: 4rem;
+  font-weight: 500;
+`;
+
+export const InnerContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+`;
+
+export const Details = styled.div`
+  position: fixed;
+  bottom: 4%;
+  display: flex;
+  width: 100%;
+`;
+
+export const MailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 0.6rem;
+  flex: 0.5;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const NavNumber = styled.span``;
+
+export const MiniItem = styled.span``;
 export const AboutMe = styled.div`
   background-image: url("/me.svg");
   width: 2vw;

@@ -25,3 +25,15 @@ export const Container = styled(motion.div).attrs({
     width: 10%;
   }
 `;
+
+export const TransitioningOverlay = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  transform-origin: top;
+`;
+
+export const InnerContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;

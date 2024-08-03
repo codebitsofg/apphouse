@@ -1,5 +1,4 @@
 import styled, { css, keyframes } from "styled-components";
-import { Overlay } from "../Gallery/Gallery.styles";
 import { motion } from "framer-motion";
 import { opacityConfig } from "@/utils/animationConfig";
 import { mediaLarge } from "@/utils/media";
@@ -19,17 +18,189 @@ export const Container = styled(motion.div).attrs({
 })`
   width: 100vw;
   height: 100vh;
-  overflow: scroll;
-
+  display: flex;
   top: 0;
   left: 0;
+  color: #141414;
   position: fixed;
-  display: flex;
-  flex-direction: column;
-  gap: 1%;
-  scroll-snap-type: y mandatory;
+  background-color: #faf6ef;
 `;
 
+export const InnerContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5%;
+  display: flex;
+`;
+
+export const UpperContainer = styled(motion.div)`
+  align-self: stretch;
+  padding: 0 1vw;
+  height: 25vh;
+`;
+
+export const Footer = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  align-items: center;
+  background-color: #f1ede7;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+
+  h4 {
+    margin: 0;
+  }
+  div {
+    align-items: center;
+    justify-content: center;
+    h4 {
+      margin: 0;
+    }
+
+    span {
+      margin: 0;
+    }
+  }
+`;
+
+export const AnimationContainer = styled(motion.div).attrs({
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+})`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1vw;
+`;
+export const Button = styled.div`
+  padding: 0.5vh;
+  font-size: 0.8rem;
+  border: 1px solid #141414;
+`;
+export const StackContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 9%;
+  height: 20vh;
+  font-weight: 500;
+  align-items: flex-start;
+`;
+export const StackTitle = styled.h4`
+  margin-bottom: 2vh;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+`;
+
+export const StackItem = styled.span`
+  background-color: #f1ede7;
+  padding: 0.3vh 0.8vh;
+  margin-bottom: 0.7vh;
+  font-size: 0.7rem;
+  display: inline-block;
+  border-radius: 0.4px;
+`;
+
+export const DescriptionContainer = styled.div`
+  width: 60%;
+`;
+
+export const Descriptions = styled.div`
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Description = styled(StackItem)`
+  background-color: transparent;
+`;
+
+export const Title = styled.span`
+  padding: 0 2%;
+  font-weight: 300;
+  display: block;
+  margin-bottom: 2vh;
+  font-size: 2.5rem;
+  width: max-content;
+  background-color: #f1ede7;
+  padding: 0.3vh 0.8vh;
+  border-radius: 2px;
+`;
+
+export const OverflowingContainer = styled(motion.div)`
+  width: 100vw;
+  overflow: hidden;
+`;
+
+export const ItemContainer = styled(motion.div)`
+  width: 200vw;
+  align-items: flex-start;
+  display: flex;
+  padding: 5% 5%;
+  gap: 0.2%;
+`;
+
+export const Item = styled(motion.div)`
+  background-color: #faf6ef;
+  cursor: pointer;
+  flex: 1;
+  transform-origin: top left;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #000000;
+`;
+
+export const BeratGencText = styled.h3`
+  position: absolute;
+  bottom: 7vh;
+  font-weight: 300;
+  right: 1vw;
+  font-size: 0.7rem;
+  width: 10%;
+  padding-bottom: 1vh;
+  text-align: right;
+`;
+
+export const ItemInnerContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+`;
+
+export const ProjectImage = styled.img`
+  width: 50%;
+  object-fit: contain;
+  height: 50%;
+`;
+
+export const Overlay = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* background-color: white; */
+  z-index: 1;
+  opacity: 0.7;
+`;
+
+///////
 export const ProjectPreviewContainer = styled.div`
   margin-bottom: 10%;
   border-radius: 4px;
@@ -42,6 +213,9 @@ export const ProjectPreviewContainer = styled.div`
   color: #04080f;
   position: relative;
   flex: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 `;
 
 export const TextContainer = styled.div`
@@ -60,108 +234,8 @@ export const ProjectTitle = styled.h1`
   font-weight: 400;
 `;
 
-export const ProjectImage = styled.img`
-  width: 80%;
-  height: auto;
-  border-radius: 5px;
-  box-shadow: 0 0 10px #04080f20;
-  border: 2px solid #04080f20;
-
-  ${mediaLarge(css`
-    width: 50%;
-  `)}
-`;
-
 export const ProjectDesc = styled.p`
   margin-bottom: 0.7%;
   font-size: 0.8rem;
   text-align: left;
-`;
-
-export const IconsContainer = styled.div`
-  margin-top: 2%;
-  display: flex;
-  gap: 2vw;
-  border-radius: 4px;
-  align-items: center;
-  padding: 1%;
-
-  a > svg {
-    width: 50%;
-    height: 50%;
-  }
-  ${mediaLarge(css`
-    a > svg {
-      width: 100%;
-      height: 100%;
-    }
-  `)}
-`;
-
-export const TechStackContainer = styled.div`
-  display: flex;
-  align-items: baseline;
-  gap: 3%;
-  flex-wrap: wrap;
-  margin-top: 2%;
-  font-size: 0.7rem;
-
-  ${mediaLarge(css`
-    font-size: 0.8rem;
-  `)}
-`;
-
-export const TechStackTitle = styled.h3`
-  font-weight: 400;
-  color: #000;
-`;
-
-export const StackItem = styled.span`
-  font-weight: 400;
-  margin: 0.5% 0%;
-`;
-
-export const PlusIconContainer = styled.div`
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-
-  position: fixed;
-  bottom: 2%;
-  left: 2%;
-
-  ${mediaLarge(css`
-    width: 50px;
-    height: 50px;
-  `)}
-`;
-
-export const PlusIcon = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-    background-color: #000;
-    border-radius: 2px;
-  }
-
-  &:before {
-    width: 90%;
-    height: 5%;
-    top: 50%;
-    left: 20%;
-    transform: translateY(-50%);
-  }
-
-  &:after {
-    width: 90%;
-    height: 5%;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
 `;

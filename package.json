@@ -11,8 +11,9 @@
   "dependencies": {
     "@studio-freight/react-lenis": "^0.0.45",
     "framer-motion": "^10.16.4",
+    "lenis": "^1.1.9",
     "next": "13.5.4",
-    "posthog-js": "^1.139.1",
+    "posthog-js": "^1.154.2",
     "prism-react-renderer": "^2.3.1",
     "react": "^18",
     "react-dom": "^18",

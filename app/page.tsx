@@ -32,7 +32,7 @@ export default function Home() {
   const onProjectClick = useCallback((i: number) => {
     const project = projectData[i];
     const { liveLink, repoLink, mediaPath } = project;
-    window.history.replaceState(null, "", mediaPath);
+    // window.history.replaceState(null, "", mediaPath);
     setIsProjectDetailVisible(true);
     setLink(liveLink, repoLink);
     setisAnimating(true);
@@ -42,7 +42,7 @@ export default function Home() {
   const onProjectClose = useCallback(() => {
     setisAnimating(true);
     setIsProjectDetailVisible(false);
-    window.history.replaceState(null, "", "/");
+    // window.history.replaceState(null, "", "/");
   }, []);
 
   const onAboutMeClick = useCallback(() => {
@@ -66,6 +66,7 @@ export default function Home() {
     setisAnimating(false);
   }, []);
 
+  console.log(mode === Mode.GALLERY);
   return (
     <>
       <Analytics />
@@ -84,16 +85,15 @@ export default function Home() {
 
       {mode && (
         <Navigation
-          hasNavigated={isAboutMeVisible || isProjectDetailVisible}
+          isDark={mode === Mode.CLASSIC}
           onAboutMeClick={onAboutMeClick}
-          shouldShowLinks={isProjectDetailVisible}
           onModeSwitch={onModeOptionClick}
         />
       )}
 
       {mode && (
         <LogoContainer>
-          <BeratGencLogo />
+          <BeratGencLogo isDark={mode === Mode.CLASSIC} />
         </LogoContainer>
       )}
 
@@ -107,7 +107,7 @@ export default function Home() {
             {mode === Mode.GALLERY ? (
               <Gallery key={"23323"} onProjectClick={onProjectClick} />
             ) : (
-              <ClassicView key={"sd"} />
+              <ClassicView key={"sfd"} />
             )}
           </AnimatePresence>
 

@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
+  AnimationContainer,
+  BeratGencText,
+  Button,
+  ButtonContainer,
   Container,
-  IconsContainer,
-  PlusIcon,
-  PlusIconContainer,
+  Description,
+  DescriptionContainer,
+  Descriptions,
+  Footer,
+  InnerContainer,
+  Item,
+  ItemContainer,
+  ItemInnerContainer,
+  OverflowingContainer,
+  Overlay,
   ProjectDesc,
   ProjectImage,
   ProjectPreviewContainer,
   ProjectTitle,
   ProjectTitleContainer,
+  StackContainer,
   StackItem,
-  TechStackContainer,
-  TechStackTitle,
+  StackTitle,
   TextContainer,
+  Title,
+  UpperContainer,
 } from "./ClassicView.styles";
 import projectData from "@/utils/projectData";
 import useStore from "@/app/store/useStore";
@@ -21,75 +34,121 @@ import GlobeIcon from "../Icons/GlobeIcon";
 import GitIcon from "../Icons/GitIcon";
 import BeratGencLogo from "../Icons/BeratGencLogo";
 import { Link } from "../Navigation/Navigation.styles";
+import styled from "styled-components";
+import {
+  AnimatePresence,
+  motion,
+  useAnimationControls,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { Project } from "@/utils/types/app.types";
 
 const ClassicView = () => {
   const { onHoverStartStore, onHoverEndStore, preloadedSources } = useStore();
+  const [heights, setHeights] = useState<{ [key: number]: string }>({});
+  useEffect(() => {
+    const newHeights: { [key: number]: string } = {};
+    projectData.forEach((_, i) => {
+      newHeights[i] = Math.random() > 0.5 ? "150px" : "220px";
+    });
+    setHeights(newHeights);
+  }, []);
+  const [hoveredProject, sethoveredProject] = useState<Project | null>();
+  const onHovered = (project: Project) => sethoveredProject(project);
+  const mouseX = useMotionValue(0);
+  const x = useTransform(
+    mouseX,
+    [0, window.innerWidth],
+    [0, -window.innerWidth]
+  );
+  const xSpring = useSpring(x, { damping: 30, stiffness: 100 });
+
+  const handleMouseMove = (event: any) => {
+    mouseX.set(event.clientX);
+  };
 
   return (
     <Container key={"ddddskfkfk"}>
-      {projectData.map(
-        (
-          {
-            mediaPath,
-            projectName,
-            mainTakeAway,
-            techStack,
-            deployment,
-            liveLink,
-            repoLink,
-          },
-          i
-        ) => {
-          const gifUrl = preloadedSources.find(
-            ({ mediaPath: path }) => path === mediaPath
-          )?.url;
-          return (
-            <ProjectPreviewContainer key={`${i}-comp`}>
-              <ProjectImage src={gifUrl} />
+      <InnerContainer>
+        <OverflowingContainer>
+          <ItemContainer
+            transition={{ duration: 1, ease: "anticipate" }}
+            style={{ x: xSpring }}
+            onMouseMove={handleMouseMove}
+            onHoverEnd={() => sethoveredProject(null)}
+          >
+            {projectData.map((project, i) => {
+              const { mediaPath } = project;
+              const gifUrl = preloadedSources.find(
+                ({ mediaPath: path }) => path === mediaPath
+              )?.url;
+              return (
+                <Item
+                  key={i}
+                  initial={{ flex: 1 }}
+                  whileHover={{ flex: 2 }}
+                  onHoverStart={() => {
+                    console.log(mediaPath);
+                    sethoveredProject(project);
+                  }}
+                  transition={{ duration: 1, ease: "anticipate" }}
+                  style={{ height: heights[i] }}
+                >
+                  <ItemInnerContainer>
+                    <Overlay />
+                    <ProjectImage src={gifUrl} />
+                  </ItemInnerContainer>
+                </Item>
+              );
+            })}
+          </ItemContainer>
+        </OverflowingContainer>
 
-              <TextContainer>
-                <ProjectTitleContainer>
-                  <ProjectTitle>{projectName} </ProjectTitle>
-                </ProjectTitleContainer>
+        <UpperContainer key={"presence"}>
+          <AnimatePresence mode="wait">
+            {hoveredProject && (
+              <AnimationContainer key={hoveredProject.repoLink}>
+                <DescriptionContainer>
+                  <Title>{hoveredProject.projectName}</Title>
 
-                {mainTakeAway.map((text) => (
-                  <ProjectDesc
-                    key={text}
-                    dangerouslySetInnerHTML={{ __html: text }}
-                  />
-                ))}
-
-                <TechStackContainer>
-                  <TechStackTitle>[ Tech Stack ]</TechStackTitle>
-                  {techStack?.map((item) => (
-                    <StackItem key={item}>
-                      {"•"} {item}
-                    </StackItem>
+                  <Descriptions>
+                    {hoveredProject.mainTakeAway.map((tk, i) => (
+                      <Description
+                        key={i}
+                        dangerouslySetInnerHTML={{ __html: tk }}
+                      />
+                    ))}
+                  </Descriptions>
+                </DescriptionContainer>
+                <StackContainer>
+                  <StackTitle>Tech Stack</StackTitle>
+                  {hoveredProject.deployment?.map((s, i) => (
+                    <StackItem key={i}> {s} </StackItem>
                   ))}
-                  {deployment?.map((item) => (
-                    <StackItem key={item}>
-                      {"•"} {item}
-                    </StackItem>
+                  {hoveredProject.techStack?.map((s, i) => (
+                    <StackItem key={i}> {s} </StackItem>
                   ))}
-                </TechStackContainer>
+                </StackContainer>
+              </AnimationContainer>
+            )}
+          </AnimatePresence>
+        </UpperContainer>
 
-                <IconsContainer>
-                  <Link href={liveLink}>
-                    <GlobeIcon />
-                  </Link>
-                  <Link href={repoLink}>
-                    <GitIcon />
-                  </Link>
-                </IconsContainer>
-              </TextContainer>
-            </ProjectPreviewContainer>
-          );
-        }
-      )}
+        <Footer>
+          {hoveredProject ? (
+            <AnimationContainer key={hoveredProject.liveLink}>
+              <StackTitle>{hoveredProject?.projectName} |</StackTitle>
+              <Description>{hoveredProject?.shortDesc}.</Description>
+            </AnimationContainer>
+          ) : (
+            <StackTitle>Hover over and click to launch the project.</StackTitle>
+          )}
+        </Footer>
 
-      <PlusIconContainer>
-        <PlusIcon />
-      </PlusIconContainer>
+        <BeratGencText>Berat Genç 2024 | Available for hire </BeratGencText>
+      </InnerContainer>
     </Container>
   );
 };

@@ -7,7 +7,7 @@ interface CodeBlockProps {
 const CodeBlock = ({ code }: CodeBlockProps) => {
   return (
     <Container>
-      <Highlight theme={themes.jettwaveDark} code={code} language="tsx">
+      <Highlight theme={themes.github} code={code} language="tsx">
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
             style={{

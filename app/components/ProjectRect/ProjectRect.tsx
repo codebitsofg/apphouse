@@ -9,12 +9,23 @@ interface ProjectRectProps {
   top: string;
   left: string;
   children: ReactNode;
+  mediaPath: string;
 }
 
 const ProjectRect = (props: ProjectRectProps) => {
+  const { preloadedSources } = useStore();
+  const gifUrl = preloadedSources.find(
+    ({ mediaPath: path }) => path === props.mediaPath
+  )?.url;
+
   return (
     <S.Container {...props}>
-      <S.Text> {props.children}</S.Text>
+      <S.InnerContainer>
+        <S.BgImage src={gifUrl} />
+        <S.Overlay>
+          <S.Text> {props.children}</S.Text>
+        </S.Overlay>
+      </S.InnerContainer>
     </S.Container>
   );
 };

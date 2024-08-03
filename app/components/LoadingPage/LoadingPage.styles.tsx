@@ -16,7 +16,7 @@ export const Container = styled(motion.div).attrs({
   top: 0;
   left: 0;
   z-index: 99;
-  background-color: #04080f;
+  background-color: black;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -26,6 +26,7 @@ export const Container = styled(motion.div).attrs({
 
 export const PreloaderText = styled.span`
   font-size: 0.8rem;
+  margin-bottom: 1vh;
 `;
 
 export const Progress = styled.span`
@@ -34,7 +35,7 @@ export const Progress = styled.span`
 
 export const LoadingBar = styled.div`
   font-weight: 400;
-  height: 5px;
+  height: 2px;
   border-radius: 5px;
   background-color: slategray;
   flex: 1;
@@ -49,7 +50,7 @@ export const ProgressBar = styled.div`
 `;
 
 export const LoadingBarContainer = styled.div`
-  width: 30%;
+  width: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,30 +99,31 @@ export const ModeOption = styled(motion.div)`
   font-weight: 200;
   width: 25vw;
   height: 25vw;
-  margin-right: 3%;
+  margin-bottom: 3%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 0.3s ease-in-out all;
-  background-color: #f7f9f5;
-  color: #0f0e0e;
+  background-color: #bac4b8;
+  color: #141414;
   cursor: pointer;
 
   &:hover {
     background-color: #0f0e0e;
     color: #f7f9f5;
-    border-color: #9dbde7;
+    border-color: white;
     box-shadow: 0 0 50px #9dbde760;
   }
 
   ${mediaLarge(css`
-    width: 12vw;
-    height: 12vw;
+    width: 16vw;
+    height: 5vw;
   `)}
 `;
 
 export const InnerOptionContainer = styled(motion.div)`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 2%;
@@ -148,7 +150,7 @@ export const Overlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #0f1c342b;
+  background-color: #0c0c0d;
   border-radius: 12px;
   width: 20%;
   height: 80%;
