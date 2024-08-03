@@ -42,23 +42,30 @@ export const UpperContainer = styled(motion.div)`
   height: 25vh;
 `;
 
+export const LinkTo = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+`;
+
 export const Footer = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
   left: 0;
   align-items: center;
+  justify-content: flex-start;
   background-color: #f1ede7;
   height: 5vh;
   display: flex;
-  justify-content: center;
+  padding-left: 1vw;
 
   h4 {
     margin: 0;
   }
   div {
     align-items: center;
-    justify-content: center;
     h4 {
       margin: 0;
     }
@@ -187,6 +194,7 @@ export const ProjectImage = styled.img`
   width: 50%;
   object-fit: contain;
   height: 50%;
+  pointer-events: all;
 `;
 
 export const Overlay = styled.div`

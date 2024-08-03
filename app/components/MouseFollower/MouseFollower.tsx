@@ -27,15 +27,17 @@ const MouseFollower = () => {
   }, []);
 
   return (
-    <Container
-      style={{
-        left: mousePosition.x! - 2 ?? 0,
-        top: mousePosition.y! - 2 ?? 0,
-        opacity: mousePosition.x ? 1 : 0,
-      }}
-    >
-      <Circle isHovered={isHovered} />
-    </Container>
+    typeof mousePosition.x === "number" && (
+      <Container
+        animate={{
+          left: mousePosition.x! + 20 ?? 0,
+          top: mousePosition.y! + 20 ?? 0,
+          transition: { type: "spring", damping: 30 },
+        }}
+      >
+        <Circle isHovered={isHovered} />
+      </Container>
+    )
   );
 };
 

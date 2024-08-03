@@ -94,7 +94,6 @@ export const OptionContainer = styled(motion.div).attrs({
   color: #f7f9f5;
 `;
 export const ModeOption = styled(motion.div)`
-  border: 1px #102541 solid;
   border-radius: 4px;
   font-weight: 200;
   width: 25vw;
@@ -109,24 +108,22 @@ export const ModeOption = styled(motion.div)`
   cursor: pointer;
 
   &:hover {
-    background-color: #0f0e0e;
+    background-color: #141414;
     color: #f7f9f5;
-    border-color: white;
-    box-shadow: 0 0 50px #9dbde760;
+    box-shadow: 0 0 40px #bac4b850;
   }
 
   ${mediaLarge(css`
-    width: 16vw;
-    height: 5vw;
+    width: 10vw;
+    height: 10vw;
   `)}
 `;
 
 export const InnerOptionContainer = styled(motion.div)`
   display: flex;
-  flex-direction: column;
+  gap: 2%;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2%;
 `;
 
 export const SelectModeText = styled(motion.h1).attrs({
@@ -139,11 +136,12 @@ export const SelectModeText = styled(motion.h1).attrs({
   width: 25%;
   text-align: center;
   font-weight: 300;
+  user-select: none;
   margin-bottom: 1%;
-
+  color: #bac4b8;
   ${mediaLarge(css`
     font-size: 1.5vh;
-  `)}
+  `)};
 `;
 
 export const Overlay = styled.div`

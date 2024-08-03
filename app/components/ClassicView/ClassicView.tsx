@@ -13,6 +13,7 @@ import {
   Item,
   ItemContainer,
   ItemInnerContainer,
+  LinkTo,
   OverflowingContainer,
   Overlay,
   ProjectDesc,
@@ -63,7 +64,7 @@ const ClassicView = () => {
     [0, window.innerWidth],
     [0, -window.innerWidth]
   );
-  const xSpring = useSpring(x, { damping: 30, stiffness: 100 });
+  const xSpring = useSpring(x, { damping: 30, stiffness: 40 });
 
   const handleMouseMove = (event: any) => {
     mouseX.set(event.clientX);
@@ -80,7 +81,7 @@ const ClassicView = () => {
             onHoverEnd={() => sethoveredProject(null)}
           >
             {projectData.map((project, i) => {
-              const { mediaPath } = project;
+              const { mediaPath, liveLink } = project;
               const gifUrl = preloadedSources.find(
                 ({ mediaPath: path }) => path === mediaPath
               )?.url;
@@ -98,7 +99,9 @@ const ClassicView = () => {
                 >
                   <ItemInnerContainer>
                     <Overlay />
-                    <ProjectImage src={gifUrl} />
+                    <LinkTo href={liveLink} target="_blank">
+                      <ProjectImage src={gifUrl} />
+                    </LinkTo>
                   </ItemInnerContainer>
                 </Item>
               );
@@ -143,7 +146,7 @@ const ClassicView = () => {
               <Description>{hoveredProject?.shortDesc}.</Description>
             </AnimationContainer>
           ) : (
-            <StackTitle>Hover over and click to launch the project.</StackTitle>
+            <StackTitle>Hover over and click to launch the project</StackTitle>
           )}
         </Footer>
 

@@ -173,7 +173,7 @@ export const InnerContainer = styled.div`
   position: relative;
   z-index: 1;
   scroll-behavior: smooth;
-  padding-bottom: 10%;
+  padding-bottom: 25%;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -217,6 +217,7 @@ export const FlexContainer = styled.div`
 
 export const TitleContainer = styled.div`
   gap: 6vh;
+  user-select: none;
   margin-bottom: 5vh;
   height: 100dvh;
   display: flex;
@@ -235,10 +236,12 @@ export const Title = styled.h1`
   color: white;
 `;
 
-export const ProjectDetailText = styled.p`
+export const ProjectDetailText = styled(motion.p)`
   font-size: 2rem;
-  line-height: 2rem;
-  line-height: 2.8rem;
+  background-color: #ffffff39;
+  filter: blur(60px);
+  line-height: 3rem;
+  border-radius: 100%;
   color: #d4d4d4;
   font-weight: 100;
   margin-bottom: 5%;
@@ -277,6 +280,7 @@ export const LinksContainer = styled.div`
 
 export const LinkContainer = styled.div`
   width: 100%;
+  cursor: pointer;
   padding: 5.1%;
   border: 0.8px solid #8e8d8e;
   color: white;
@@ -294,11 +298,15 @@ export const Media = styled.img`
 
 export const CodeBreakdownContainer = styled.div`
   padding: 5% 0;
+  p {
+    filter: blur(0px);
+  }
 `;
 
 export const CodeBreakdownContainerText = styled(ProjectDetailText)`
   font-size: 1.4rem;
-  line-height: 2rem;
+  line-height: 2.9rem;
+  background-color: transparent;
 `;
 export const CodeBreakdownTitle = styled(Title)`
   margin-bottom: 2%;
@@ -333,8 +341,9 @@ export const ThankYouText = styled.span`
 `;
 
 export const CloseProject = styled.h4`
-  position: absolute;
+  position: fixed;
   top: 3%;
+  user-select: none;
   right: 5%;
   font-weight: 300;
   color: #8e8d8e;

@@ -17,31 +17,31 @@ export const Container = styled(motion.div).attrs({
     left: ${left};
     width: 25vw;
     z-index: 99;
+    cursor: pointer;
     height: 25vw;
-    border-radius: 4px;
+    border-radius: 2px;
     position: absolute;
     transform-origin: center;
-    cursor: pointer;
-
+    align-items: center;
+    background-color: #0c0c0d;
     ${mediaLarge(css`
       width: 14vw;
-      height: 14vw;
+      height: 11vw;
     `)}
   `
 );
 
 export const BgImage = styled.img`
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  width: 70%;
+  height: 70%;
   object-fit: contain;
   top: 0;
   left: 0;
 `;
 
-export const Overlay = styled.div`
+export const Overlay = styled(motion.div)`
   background-color: #141414;
-  opacity: 0.9;
+  opacity: 0.6;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -56,14 +56,18 @@ export const Overlay = styled.div`
 export const InnerContainer = styled.div`
   width: 100%;
   height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 `;
 
 export const Text = styled.span`
   pointer-events: none;
-  font-weight: 500;
+  font-weight: 300;
   color: #bac4b8;
-  font-size: 0.7rem;
+  user-select: none;
+  font-size: 0.9rem;
   ${mediaLarge(css`
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   `)}
 `;

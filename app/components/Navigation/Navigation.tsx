@@ -3,6 +3,7 @@ import * as S from "./Navigation.styles";
 import useStore from "@/app/store/useStore";
 import { AnimatePresence } from "framer-motion";
 import { Mode } from "@/utils/types/app.types";
+import Link from "next/link";
 
 interface NavigationProps {
   onAboutMeClick: () => void;
@@ -63,9 +64,18 @@ const Navigation = ({
                   <S.MiniItem>+905530460739</S.MiniItem>
                 </S.MailContainer>
                 <S.MailContainer>
-                  <S.MiniItem>LINKEDIN</S.MiniItem>
-                  <S.MiniItem>MEDIUM</S.MiniItem>
-                  <S.MiniItem>GITHUB</S.MiniItem>
+                  <Link href={"https://www.linkedin.com/in/gencberat"}>
+                    <S.MiniItem>LINKEDIN</S.MiniItem>
+                  </Link>
+                  <Link
+                    target="_blank"
+                    href="https://medium.com/@beratgenc.dev"
+                  >
+                    <S.MiniItem>MEDIUM</S.MiniItem>
+                  </Link>
+                  <Link target="_blank" href="https://github.com/soberbat">
+                    <S.MiniItem>GITHUB</S.MiniItem>
+                  </Link>
                 </S.MailContainer>
               </S.Details>
             </S.InnerContainer>

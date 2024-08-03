@@ -27,12 +27,12 @@ import {
   Title,
   TitleContainer,
 } from "./ProjectDetail.styles";
-import { ReactLenis, useLenis } from "lenis/react";
 import { Project } from "@/utils/types/app.types";
 import SlideShow from "../SlideShow/SlideShow";
 import useStore from "@/app/store/useStore";
 import CodeBlock from "../CodeBlock/CodeBlock";
 import Lenis from "lenis";
+import Link from "next/link";
 
 interface ProjecDetailProps {
   project: Project;
@@ -48,9 +48,12 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
     codeBreakDown,
     mainTakeAway,
     mediaPath,
+    liveLink,
+    repoLink,
     techStack,
     deployment,
   } = project;
+  const canExecuteRef = useRef(true);
   const combinedArray = [...techStack, ...(deployment ?? [])];
   const combinedString = combinedArray.join(", ");
   const gifUrl = preloadedSources.find(
@@ -60,6 +63,11 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
     (time: number) => {
       lenis?.raf(time);
       requestAnimationFrame(raf);
+
+      if (lenis?.progress! > 0.97 && canExecuteRef.current) {
+        onClose();
+        canExecuteRef.current = false;
+      }
     },
     [lenis]
   );
@@ -85,7 +93,17 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
           <TitleContainer>
             <Title> {projectName} </Title>
 
-            <ProjectDetailText>
+            <ProjectDetailText
+              animate={{
+                scale: [1, 1.3, 1],
+                rotate: [0, 3, 0],
+                transition: {
+                  duration: 20,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                },
+              }}
+            >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ad
               ratione quas culpa possimus vel omnis. Quia eos omnis accusantium
               optio, libero natus incidunt laboriosam dolores et est. Quam,
@@ -109,8 +127,16 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
               </ProjectSpecContainer>
 
               <LinksContainer>
-                <LinkContainer>Launch App</LinkContainer>
-                <LinkContainer>View Source Code</LinkContainer>
+                <LinkContainer>
+                  <Link href={liveLink} target="_blank">
+                    Launch App
+                  </Link>
+                </LinkContainer>
+                <LinkContainer>
+                  <Link href={repoLink} target="_blank">
+                    View Source Code
+                  </Link>
+                </LinkContainer>
               </LinksContainer>
             </ProjectSpecsContainer>
           </TitleContainer>
@@ -123,7 +149,7 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
             <CodeBreakdownTitle> Code Breakdown </CodeBreakdownTitle>
 
             <CodeBreakdownContainerText
-              dangerouslySetInnerHTML={{ __html: [...mainTakeAway] }}
+              dangerouslySetInnerHTML={{ __html: mainTakeAway.join("") }}
             />
 
             {codeBreakDown.map(({ text, codeSnippet }) => (
@@ -135,9 +161,13 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
           </CodeBreakdownContainer>
 
           <GoLiveCTA>
-            <ThankYouText>Thank you!</ThankYouText>
+            <ThankYouText>Keep scrolling to go back!</ThankYouText>
             <DividerBottom />
-            <ButtonCTA>Go Live </ButtonCTA>
+            <ButtonCTA>
+              <Link href={liveLink} target="_blank">
+                Launch App
+              </Link>
+            </ButtonCTA>
           </GoLiveCTA>
         </FlexContainer>
 

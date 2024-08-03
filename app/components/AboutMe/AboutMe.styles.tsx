@@ -1,6 +1,7 @@
 import { mediaLarge } from "@/utils/media";
 import { motion } from "framer-motion";
 import styled, { css, keyframes } from "styled-components";
+import { CloseProject } from "../ProjectDetail/ProjectDetail.styles";
 
 export const Container = styled(motion.div).attrs({
   initial: { opacity: 0 },
@@ -10,7 +11,7 @@ export const Container = styled(motion.div).attrs({
   width: 95vw;
   will-change: transform;
   height: 97dvh;
-  background-color: #fdfffc;
+  background-color: #faf6ef;
   position: fixed;
   transform: translate(-50%, -50%);
   top: 50%;
@@ -31,6 +32,18 @@ export const Container = styled(motion.div).attrs({
   `)};
 `;
 
+export const InnerContainer = styled.div`
+  width: 100%;
+  overflow-y: scroll;
+  height: 100vh;
+  position: relative;
+  scroll-behavior: smooth;
+`;
+
+export const CloseTabText = styled(CloseProject)`
+  font-weight: 500;
+  color: #141414;
+`;
 const shimmer = keyframes`
   0% { background-position: -1000px 0; }
   100% { background-position: 1000px 0; }
@@ -71,7 +84,7 @@ export const BeratImage = styled.img.attrs<{ isLoaded: boolean }>({
 
 export const Overlay = styled(motion.div).attrs({
   initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.5 } },
+  animate: { opacity: 0.8, transition: { duration: 0.5 } },
   exit: { opacity: 0 },
 })`
   position: fixed;
@@ -79,7 +92,7 @@ export const Overlay = styled(motion.div).attrs({
   height: 100vh;
   background-color: black;
   z-index: 1;
-  opacity: 1;
+  opacity: 0.7;
   top: 0;
   left: 0;
 `;

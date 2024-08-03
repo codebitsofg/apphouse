@@ -17,9 +17,6 @@ import {
 } from "./LoadingPage.styles";
 import { Mode } from "@/utils/types/app.types";
 import { AnimatePresence, useAnimationControls } from "framer-motion";
-import { TabItemContainer, TabText } from "../Navigation/Navigation.styles";
-import AboutMeIcon from "../Icons/AboutMeIcon";
-import BeratGencLogo from "../Icons/BeratGencLogo";
 
 interface LoadingPageProps {
   progress: number;
@@ -59,8 +56,8 @@ const LoadingPage = ({
               <>
                 <OptionContainer key={"242442"}>
                   <SelectModeText>
-                    Select a mode to view curated projects. You can switch
-                    between modes from the navigation.
+                    Select a mode to view curated projects. You can switch the
+                    mode from the navigation. Try both!
                   </SelectModeText>
                   <InnerOptionContainer>
                     {options.map((mode, i) => (

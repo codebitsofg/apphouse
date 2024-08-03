@@ -111,141 +111,6 @@ export default [
   },
 
   {
-    rectPosition: { top: "40%", left: "-50%" },
-    projectName: "Univversecam",
-    mediaPath: "universecam",
-    liveLink: "https://unniversecam.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/univversecam",
-    techStack: [
-      "TypeScript",
-      "Three.js",
-      "Zustand.js",
-      "Framer Motion",
-      "Next.js",
-      "Styled Components",
-    ],
-    deployment: ["Vercel"],
-    shortDesc:
-      "A Three.js & Next.js app designed & written with optimal modularity in mind",
-    mainTakeAway: [
-      "The application has a sophisticated UI controlled with state saved and managed with <span>React Context</span>. The UI is execution of a complex design featuring implementations of common web app elements such as select menus, carousel slides, and footers. ",
-      "A WebGL Typescript class is written to encapsulate and organize logic.",
-      "Modularity is carefully conducted in the codebase, there are lots of room for flexibility. React user interface and the scene class updates one another based on user input. With a focus on modularity and synchronization, the application is a good example of modular UI and how it can be matched with immersive web experiences.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: `
-        interface ISkewedContainer<T> {
-          children: T ;
-          canSelectMultiple?: boolean;
-          isActiveSlot?: boolean;
-          isChildImage: boolean;
-          onClick?: (scene: Scene) => void;
-        }
-        
-        const SkewedContainer = ({
-          children,
-          onClick,
-          canSelectMultiple,
-          isActiveSlot,
-          isChildImage,
-        }: ISkewedContainer) => {
-          const [isActive, setisActive] = useState(isActiveSlot);
-          const { sceneRef } = useContext(AppContext);
-        
-          const selectSlot = () => {
-            canSelectMultiple && setisActive(!isActive);
-            onClick && onClick(sceneRef);
-          };
-        
-          return (
-            <Wrapper isActive={isActiveSlot} onClick={selectSlot}>
-              <InnerWrapper>
-                {isChildImage ? <Image src={children} /> : children}
-              </InnerWrapper>
-            </Wrapper>
-          );
-        };
-        `,
-        text: "The component highlighted above is a highly adaptable one, capable of changing it appearance, and its behaviour based on props, serving as the fundamental component for most buttons within the app",
-      },
-      {
-        codeSnippet: `
-        const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
-          x.set(-(((activeSlide + 1) * FULL_WIDTH) / SLIDE_COUNT));
-          setActiveSlide((activeSlide) =>
-            activeSlide < SLIDE_COUNT - 1 ? activeSlide + 1 : activeSlide
-          );
-      
-          !isNavigationActive && setIsFactionSearchVisible(false);
-        };
-        `,
-        text: "Main logic responsible for calculating the transformation of the <span>custom slider</span>. The parameterized numerical constants avoids the usage of magic numbers, for code readability.",
-      },
-      {
-        codeSnippet: `
-        loadModels = () => {
-          const planets = ["alien", "serenity", "tree", "beta"];
-    
-          const loader = new GLTFLoader();
-      
-          const planetLoadMap = planets.map((planet, i) => {
-            return new Promise((resolve, reject) => {
-              loader.load("/assets/planets/{planet}.glb", (scene) => {
-                const planetGroup = this.world.clone();
-                planetGroup.userData.planetName = planet;
-                planetGroup.position.set(0, 0, 0);
-      
-                (planetGroup as any).isPlanet = true;
-      
-                scene.scene.traverse((item) => {
-                  item.scale.set(1, 1, 1);
-                  item.position.set(0, 0, 0);
-                });
-      
-                planetGroup.add(scene.scene);
-                this.planets.push(planetGroup);
-                this.scene.add(planetGroup);
-                resolve(scene.scene);
-              });
-            });
-          });
-      
-          return Promise.all(planetLoadMap);
-        };  
-        `,
-        text: "Function above belongs to the class that renders the 3D Scene. It loads modals in an <span>asynchronous</span> way to ensure that the app is not accessible to the user before all necessary data has loaded.",
-      },
-      {
-        codeSnippet: `
-        <PlanetDetailRow data={{ title: "Planet Code", info: "Banu" }} />
-        `,
-        text: "Yet another example of calling a modular component with props.",
-      },
-      {
-        codeSnippet: `
-        export const SliderInnerWrapper = styled(motion.div).attrs({
-          transition: {
-            ease: "circInOut",
-            duration: 1,
-          },
-        })<ISlideCount>(
-          ({ slide }) => css"
-            width: ${`slide * 100%`};
-            height: 100%;
-            pointer-events: none;
-          "
-        );
-
-        //No animation config is being passed when calling the component.
-        <SliderInnerWrapper slide={slide}></SliderInnerWrapper>
-        `,
-        text: "Above showcases how <span>styled-components and framer-motion</span> can be used together to make sure that our component reads cleaner.",
-      },
-    ],
-  },
-
-  {
     rectPosition: { top: "-30%", left: "0%" },
     projectName: "Task Manager",
     techStack: ["TypeScript", "Next.js", "Docker", "Styled Components"],
@@ -1037,6 +902,140 @@ export default [
       );
     `,
         text: "This code bit creates vertical lines seen on the page. The Symbol class instances are what we see as 0's and 1's. They are being being drawn into the canvas with random positions, and colors. All these are being handled with class specific functions and this way we're keeping the logic seperated from outside world but as one in the class itself.",
+      },
+    ],
+  },
+  {
+    rectPosition: { top: "40%", left: "-50%" },
+    projectName: "Univversecam",
+    mediaPath: "universecam",
+    liveLink: "https://unniversecam.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/univversecam",
+    techStack: [
+      "TypeScript",
+      "Three.js",
+      "Zustand.js",
+      "Framer Motion",
+      "Next.js",
+      "Styled Components",
+    ],
+    deployment: ["Vercel"],
+    shortDesc:
+      "A Three.js & Next.js app designed & written with optimal modularity in mind",
+    mainTakeAway: [
+      "The application has a sophisticated UI controlled with state saved and managed with <span>React Context</span>. The UI is execution of a complex design featuring implementations of common web app elements such as select menus, carousel slides, and footers. ",
+      "A WebGL Typescript class is written to encapsulate and organize logic.",
+      "Modularity is carefully conducted in the codebase, there are lots of room for flexibility. React user interface and the scene class updates one another based on user input. With a focus on modularity and synchronization, the application is a good example of modular UI and how it can be matched with immersive web experiences.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: `
+        interface ISkewedContainer<T> {
+          children: T ;
+          canSelectMultiple?: boolean;
+          isActiveSlot?: boolean;
+          isChildImage: boolean;
+          onClick?: (scene: Scene) => void;
+        }
+        
+        const SkewedContainer = ({
+          children,
+          onClick,
+          canSelectMultiple,
+          isActiveSlot,
+          isChildImage,
+        }: ISkewedContainer) => {
+          const [isActive, setisActive] = useState(isActiveSlot);
+          const { sceneRef } = useContext(AppContext);
+        
+          const selectSlot = () => {
+            canSelectMultiple && setisActive(!isActive);
+            onClick && onClick(sceneRef);
+          };
+        
+          return (
+            <Wrapper isActive={isActiveSlot} onClick={selectSlot}>
+              <InnerWrapper>
+                {isChildImage ? <Image src={children} /> : children}
+              </InnerWrapper>
+            </Wrapper>
+          );
+        };
+        `,
+        text: "The component highlighted above is a highly adaptable one, capable of changing it appearance, and its behaviour based on props, serving as the fundamental component for most buttons within the app",
+      },
+      {
+        codeSnippet: `
+        const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+          x.set(-(((activeSlide + 1) * FULL_WIDTH) / SLIDE_COUNT));
+          setActiveSlide((activeSlide) =>
+            activeSlide < SLIDE_COUNT - 1 ? activeSlide + 1 : activeSlide
+          );
+      
+          !isNavigationActive && setIsFactionSearchVisible(false);
+        };
+        `,
+        text: "Main logic responsible for calculating the transformation of the <span>custom slider</span>. The parameterized numerical constants avoids the usage of magic numbers, for code readability.",
+      },
+      {
+        codeSnippet: `
+        loadModels = () => {
+          const planets = ["alien", "serenity", "tree", "beta"];
+    
+          const loader = new GLTFLoader();
+      
+          const planetLoadMap = planets.map((planet, i) => {
+            return new Promise((resolve, reject) => {
+              loader.load("/assets/planets/{planet}.glb", (scene) => {
+                const planetGroup = this.world.clone();
+                planetGroup.userData.planetName = planet;
+                planetGroup.position.set(0, 0, 0);
+      
+                (planetGroup as any).isPlanet = true;
+      
+                scene.scene.traverse((item) => {
+                  item.scale.set(1, 1, 1);
+                  item.position.set(0, 0, 0);
+                });
+      
+                planetGroup.add(scene.scene);
+                this.planets.push(planetGroup);
+                this.scene.add(planetGroup);
+                resolve(scene.scene);
+              });
+            });
+          });
+      
+          return Promise.all(planetLoadMap);
+        };  
+        `,
+        text: "Function above belongs to the class that renders the 3D Scene. It loads modals in an <span>asynchronous</span> way to ensure that the app is not accessible to the user before all necessary data has loaded.",
+      },
+      {
+        codeSnippet: `
+        <PlanetDetailRow data={{ title: "Planet Code", info: "Banu" }} />
+        `,
+        text: "Yet another example of calling a modular component with props.",
+      },
+      {
+        codeSnippet: `
+        export const SliderInnerWrapper = styled(motion.div).attrs({
+          transition: {
+            ease: "circInOut",
+            duration: 1,
+          },
+        })<ISlideCount>(
+          ({ slide }) => css"
+            width: ${`slide * 100%`};
+            height: 100%;
+            pointer-events: none;
+          "
+        );
+
+        //No animation config is being passed when calling the component.
+        <SliderInnerWrapper slide={slide}></SliderInnerWrapper>
+        `,
+        text: "Above showcases how <span>styled-components and framer-motion</span> can be used together to make sure that our component reads cleaner.",
       },
     ],
   },

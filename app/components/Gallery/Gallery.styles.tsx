@@ -66,6 +66,7 @@ export const CollectionName = styled(motion.h1).attrs({
   font-size: 5rem;
   text-align: center;
   line-height: 100rem;
+  user-select: none;
 `;
 
 export const ProjectInfoContainer = styled(motion.div).attrs({
@@ -78,12 +79,16 @@ export const ProjectInfoContainer = styled(motion.div).attrs({
   color: white;
   padding: 2vw;
   z-index: 2;
+  user-select: none;
+  pointer-events: none;
 `;
 
 export const Name = styled.h1`
   font-weight: 400;
   margin-bottom: 1vh;
   display: inline-block;
+  pointer-events: none;
+  user-select: none;
   padding: 0;
   margin: 0;
   margin-bottom: 1vh;

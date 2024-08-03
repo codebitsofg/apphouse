@@ -6,9 +6,10 @@ export const Container = styled.div``;
 export const LogoContainer = styled.div`
   position: fixed;
   top: 3.5%;
+  z-index: 100;
   left: 2%;
   opacity: 0.8;
-  z-index: 2;
+
   width: 15%;
   height: 15%;
 
