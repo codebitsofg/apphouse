@@ -208,6 +208,87 @@ export default [
   },
 
   {
+    rectPosition: { top: "-40%", left: "-50%" },
+    projectName: "Resume Creator",
+    date: "Mar 2021",
+    projectType: "Frontend",
+    liveLink: "http://resumemaker.beratgenc.live/",
+    repoLink: "https://github.com/soberbat/r-resume",
+    techStack: ["JavaScript", "React.js", "Styled Components"],
+    mediaPath: "resume",
+    shortDesc: "A resume creation tool made with React.js and Redux",
+    mainTakeAway: [
+      "The app lets you create your own resume that can be dowloaded in PDF format. Third party libraries is being used here for the functionality.",
+      "The document to be downloaded is being created with the help of both pre configured and custom React input components to offer flexibility",
+      "Framer Motion is being used for interaction animations which in the end makes the whole app buttery smooth.",
+      "Frontend is featuring complex data management with Redux Toolkit. Multiple slices are being used for organizing the store for better a developer experience and for making sure that we're able to access the data throught the app.",
+      "Styled components is being used here and a very minimalistic design is implemented.",
+      "Components have been written with the React's reusability rule in mind.",
+    ],
+    codeBreakDown: [
+      {
+        codeSnippet: ` 
+        import { configureStore } from "@reduxjs/toolkit";
+        import textSlice from "./textSlice";
+        import AccordionSlice from "./AccordionSlice";
+        import PropSlice from "./PropSlice";
+        
+        export default configureStore({
+          reducer: {
+            values: textSlice,
+            Accordions: AccordionSlice,
+            Properties: PropSlice,
+          },
+        });
+    `,
+        text: "Initialization of the Redux Store. Different blocks of the app use seperate slices for code maintainability.",
+      },
+
+      {
+        codeSnippet: ` 
+        const arr = Object.entries(state.Accordions.Education);
+        const filtered = arr.filter(
+          ([key, value]) => key !== action.payload.id
+        );
+        const newState = Object.fromEntries(filtered);
+        state.Accordions.Education = {
+          ...newState,
+        };
+    `,
+        text: "Filtering & updating of the data...",
+      },
+
+      {
+        codeSnippet: ` 
+        export default function Editor() {
+          const componentRef = useRef();
+          const handlePrint = useReactToPrint({
+            content: () => componentRef.current,    
+          });
+        
+          const visiblity = useSelector((state) => state.values.visibility);
+          const PreviewVisibility = useSelector(
+            (state) => state.Accordions.PreviewVisibility
+          );
+          
+          return (
+            <Wrapper previewVisibility={PreviewVisibility}>
+              <PageToPrint ref={componentRef} />
+              <Container>
+                <Button onClick={handlePrint}>Download 🥷🏼</Button>
+                <span>{visiblity && <SavingSpinner id="Spinner" />}</span>
+              </Container>
+            </Wrapper>
+          );
+        }
+        
+    `,
+        text: "The editor component that downloads the file to user machine. React useRef, Redux hooks and conditional rendering and apply styles which are fundamental in web app development are featured here.",
+      },
+    ],
+  },
+
+  {
     rectPosition: { top: "10%", left: "40%" },
     projectName: "PATI",
     date: "May 2024",
@@ -362,87 +443,6 @@ export default [
       `,
 
         text: "Some <span>gcloud CLI</span> commands for updating & deploying the API. The initial command builds a <span> Docker </span> image with specified tags. Later, the built image is pushed to a the <span>Google Container Registry</span>, to be used in deployment. Finally the API deployment to Google Cloud Run is executed.",
-      },
-    ],
-  },
-
-  {
-    rectPosition: { top: "-40%", left: "-50%" },
-    projectName: "Resume Creator",
-    date: "Mar 2021",
-    projectType: "Frontend",
-    liveLink: "http://resumemaker.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/r-resume",
-    techStack: ["JavaScript", "React.js", "Styled Components"],
-    mediaPath: "resume",
-    shortDesc: "A resume creation tool made with React.js and Redux",
-    mainTakeAway: [
-      "The app lets you create your own resume that can be dowloaded in PDF format. Third party libraries is being used here for the functionality.",
-      "The document to be downloaded is being created with the help of both pre configured and custom React input components to offer flexibility",
-      "Framer Motion is being used for interaction animations which in the end makes the whole app buttery smooth.",
-      "Frontend is featuring complex data management with Redux Toolkit. Multiple slices are being used for organizing the store for better a developer experience and for making sure that we're able to access the data throught the app.",
-      "Styled components is being used here and a very minimalistic design is implemented.",
-      "Components have been written with the React's reusability rule in mind.",
-    ],
-    codeBreakDown: [
-      {
-        codeSnippet: ` 
-        import { configureStore } from "@reduxjs/toolkit";
-        import textSlice from "./textSlice";
-        import AccordionSlice from "./AccordionSlice";
-        import PropSlice from "./PropSlice";
-        
-        export default configureStore({
-          reducer: {
-            values: textSlice,
-            Accordions: AccordionSlice,
-            Properties: PropSlice,
-          },
-        });
-    `,
-        text: "Initialization of the Redux Store. Different blocks of the app use seperate slices for code maintainability.",
-      },
-
-      {
-        codeSnippet: ` 
-        const arr = Object.entries(state.Accordions.Education);
-        const filtered = arr.filter(
-          ([key, value]) => key !== action.payload.id
-        );
-        const newState = Object.fromEntries(filtered);
-        state.Accordions.Education = {
-          ...newState,
-        };
-    `,
-        text: "Filtering & updating of the data...",
-      },
-
-      {
-        codeSnippet: ` 
-        export default function Editor() {
-          const componentRef = useRef();
-          const handlePrint = useReactToPrint({
-            content: () => componentRef.current,    
-          });
-        
-          const visiblity = useSelector((state) => state.values.visibility);
-          const PreviewVisibility = useSelector(
-            (state) => state.Accordions.PreviewVisibility
-          );
-          
-          return (
-            <Wrapper previewVisibility={PreviewVisibility}>
-              <PageToPrint ref={componentRef} />
-              <Container>
-                <Button onClick={handlePrint}>Download 🥷🏼</Button>
-                <span>{visiblity && <SavingSpinner id="Spinner" />}</span>
-              </Container>
-            </Wrapper>
-          );
-        }
-        
-    `,
-        text: "The editor component that downloads the file to user machine. React useRef, Redux hooks and conditional rendering and apply styles which are fundamental in web app development are featured here.",
       },
     ],
   },
