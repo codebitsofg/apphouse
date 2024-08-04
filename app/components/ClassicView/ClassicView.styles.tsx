@@ -32,7 +32,7 @@ export const InnerContainer = styled.div`
   height: 100%;
   flex-direction: column;
   align-items: center;
-  padding-top: 5%;
+  padding-top: 2%;
   display: flex;
 `;
 
@@ -124,13 +124,14 @@ export const DescriptionContainer = styled.div`
 `;
 
 export const Descriptions = styled.div`
-  margin-top: 1vh;
+  margin-top: 0.3vh;
   display: flex;
   flex-direction: column;
 `;
 
 export const Description = styled(StackItem)`
   background-color: transparent;
+  margin-bottom: 0.2vh;
 `;
 
 export const Title = styled.span`
@@ -174,9 +175,9 @@ export const Item = styled(motion.div)`
 
 export const BeratGencText = styled.h3`
   position: absolute;
-  bottom: 7vh;
+  bottom: 5vh;
   font-weight: 300;
-  left: 1vw;
+  left: 1.5vw;
   font-size: 0.7rem;
   width: 15%;
   padding-bottom: 1vh;
