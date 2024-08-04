@@ -5,18 +5,18 @@ import { CloseProject } from "../ProjectDetail/ProjectDetail.styles";
 
 export const Container = styled(motion.div).attrs({
   initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.3, delay: 0.4 } },
+  animate: { opacity: 1, transition: { duration: 0.3, delay: 0.5 } },
   exit: { opacity: 0 },
 })`
   width: 95vw;
   will-change: transform;
-  height: 97dvh;
+  height: 98dvh;
   background-color: #faf6ef;
+  border-radius: 4px;
   position: fixed;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  border-radius: 8px;
   z-index: 2;
   box-shadow: 0 0 10px #04080f20;
   border: 1px solid #04080f20;
@@ -34,7 +34,7 @@ export const Container = styled(motion.div).attrs({
 
 export const Overlay = styled(motion.div).attrs({
   initial: { opacity: 0 },
-  animate: { opacity: 0.9, transition: { duration: 0.3, delay: 1 } },
+  animate: { opacity: 0.9, transition: { duration: 0.3, delay: 0.5 } },
   exit: { opacity: 0 },
 })`
   position: fixed;
@@ -56,7 +56,12 @@ export const InnerContainer = styled.div`
 `;
 
 export const CloseTabText = styled(CloseProject)`
-  font-weight: 500;
+  font-weight: 400;
+  top: 1.2vh;
+  border-radius: 2px;
+  background-color: #f1ede7;
+  padding: 0.5%;
+  right: 1.2vw;
   color: #141414;
 `;
 const shimmer = keyframes`

@@ -78,7 +78,7 @@ const ClassicView = () => {
             transition={{ duration: 1, ease: "anticipate" }}
             style={{ x: xSpring }}
             onMouseMove={handleMouseMove}
-            onHoverEnd={() => sethoveredProject(null)}
+            // onHoverEnd={() => sethoveredProject(null)}
           >
             {projectData.map((project, i) => {
               const { mediaPath, liveLink } = project;
