@@ -8,7 +8,7 @@ export const Container = styled(motion.div).attrs({
     opacity: 0,
     transition: {
       duration: 0.1,
-      delay: 0.5,
+      delay: 1.2,
     },
   },
 })`

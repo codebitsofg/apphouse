@@ -19,7 +19,7 @@ export const Container = styled(motion.div).attrs({
     z-index: 99;
     cursor: pointer;
     height: 25vw;
-    border-radius: 2px;
+    border-radius: 4px;
     position: absolute;
     transform-origin: center;
     align-items: center;

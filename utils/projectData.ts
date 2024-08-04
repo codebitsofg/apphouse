@@ -3,6 +3,8 @@ export default [
     rectPosition: { top: "10%", left: "-20%" },
     projectName: "Shore Blog",
     mediaPath: "shore",
+    date: "June 2024",
+    projectType: "Frontend",
     repoLink: "https://github.com/soberbat/shoreblog",
     liveLink: "https://polite-florentine-f52a60.netlify.app/",
     techStack: [
@@ -15,11 +17,13 @@ export default [
     ],
     shortDesc: "A Jamstack Blog powered by Next.js and Strapi CMS",
     mainTakeAway: [
-      "Skinshore is a static export of a Next.js blog where performance and SEO optimization is of importance.",
-      "Strapi CMS is used as the Headless CMS choice. The images are being served in an S3 bucket for production use.",
-      "Dynamic routes are configured and latest features of Next.js App Router is being used.",
-      "Shadcn is used for some components to save some time.",
-      "Page level SEO optimizations are implemented for higher ranking in the search results.",
+      "Skinshore is a static export build of a Next.js blog where performance and SEO optimization is of importance.",
+      "The latest concept like server side rendering, site generation methods in the frontend world is prominent is the app. It is always good to start something new from stratch to follow latest concepts.",
+      "Highly reusable components that are being controlled with props has been written using Tailwind CSS. Loading skeletons are used for a better user experience.",
+      "Strapi CMS is used as the Headless CMS choice. This time I did not use Graphql extenstion of Strapi but that could be another option too.",
+      "The images are being served in an S3 bucket for production use. Strapi offers different providers to choose from.",
+      "Dynamic routes are configured and latest features of Next.js App Router is being used. Page level SEO optimizations are implemented for higher ranking in the search results.",
+      "Shadcn is used for carousel component to save some time.",
     ],
     codeBreakDown: [
       {
@@ -46,7 +50,7 @@ export default [
           },
         });   
       `,
-        text: "The strapi config that saves the images to an S3 Bucket.",
+        text: "The strapi config that saves the images to an S3 Bucket. Environment variables are being used here though it wasn't necessary since the strapi instance neither deployed nor being store in a code repo.",
       },
       {
         codeSnippet: `
@@ -68,7 +72,7 @@ export default [
           }
         }
       `,
-        text: "Functions that introduced with Next.js 14. generateStaticParams creates the dynamic routes based on the data entries retrieved from the CMS.",
+        text: "Functions that introduced with Next.js 14. generateStaticParams creates the dynamic routes based on the data entries retrieved from the CMS. Exporting these on page level do the trick.",
       },
 
       {
@@ -105,7 +109,7 @@ export default [
         }
       `,
 
-        text: "Home page with reusable components",
+        text: "Home page with reusable components. The fetchCMSEntries function makes the call to the strapi server and gets the entires ot be filtered based on the component's needs.",
       },
     ],
   },
@@ -113,6 +117,8 @@ export default [
   {
     rectPosition: { top: "-30%", left: "0%" },
     projectName: "Task Manager",
+    date: "Jan 2024",
+    projectType: "Full Stack",
     techStack: ["TypeScript", "Next.js", "Docker", "Styled Components"],
     deployment: ["Github Actions", "Google Cloud Run"],
     liveLink: "https://application.taskermanager.site/",
@@ -121,10 +127,11 @@ export default [
     shortDesc: "A Next.js + Nest.js Fullstack Task Management App",
     mainTakeAway: [
       "Here the sesion cookies are being stored in the client coming the Nest.js backend API for displaying user specific data.",
-      "The UI itself has many examples of modern web components, it includes forms components as well as sidebars, topbars, modals, expanding views & hover states.",
-      "It showcases <span>client and server</span> communication in a production environment.",
-      "The app is fully automated with <span>Github Actions Pipelines</span>.",
-      "A custom domain is configured both for the backend and the frontend to persist cookie.",
+      "The API that consists of multiple routes is written using Nest.js.",
+      "Prisma is used for querying the data and updating the schemas on the Google Cloud SQL Database instance.",
+      "The dashboard has many examples of modern web components, it includes forms components as well as sidebars, topbars, modals, expanding views & hover states.",
+      "It showcases <span>client and server</span> communication in a production environment. A custom domain is configured both for the backend and the frontend to be able to set cookies and persist them.",
+      "The app is fully automated with <span>Github Actions Pipelines</span>. It builds the app as a docker container. First pushes it to Google Cloud repository then deploys it from here within the region specified.",
       "Use test@user.com as login email and 1234 as password to test the app.",
     ],
     codeBreakDown: [
@@ -203,14 +210,10 @@ export default [
   {
     rectPosition: { top: "10%", left: "40%" },
     projectName: "PATI",
+    date: "May 2024",
+    projectType: "Cloud",
     techStack: ["TypeScript", "Next.js", "Axios", "Tailwind CSS"],
-    deployment: [
-      "AWS Lambda",
-      "S3 Static Site Deployment",
-      "AWS CDK",
-      "DynamoDB",
-      "SQS",
-    ],
+    deployment: ["AWS Lambda", "S3 Deployment", "AWS CDK", "DynamoDB", "SQS"],
     liveLink:
       "http://infrastructurestack-nextjssitebucketbd1a5941-isspgruxxmoy.s3-website.eu-central-1.amazonaws.com/",
     repoLink: "https://github.com/soberbat/pati",
@@ -218,10 +221,9 @@ export default [
     shortDesc: "A landing page for a pet adoptation platform",
     mainTakeAway: [
       "I decided to start a side project where I will be applying latest technology to practice. The first iteration is this landing page to collect user emails to sign them in to the newsletter.",
-      "I find it especially interesting because the whole app from API management to service communication to website hosting is in the AWS Cloud. One can have many solutions to many problems with AWS cloud.",
-      "It is a monorepo initialized using NX. It follows the microservices architecture. The API's are served as Lambda Functions, SQS queue communicates the user data to email service from the user register service.",
-      "Emails are being sent using Sendgrid and the user data is being saved to DynamoDB.",
-      "AWS CDK used as IAC tool.",
+      "I find it especially interesting because the whole app from API management to service communication to website hosting is in the AWS Cloud. One can have many solutions to many problems with AWS cloud. The frontend is a Next.js static export that is being served in an S3 Bucket. And the API itself is nothing but 2 lambda functions that communicates with each other.",
+      "It is a monorepo initialized using NX. It follows the microservices architecture. The frontend and backend lambdas have their own service that is managed by nx. The API is served as seperate Lambda Functions. Once hit the user data is first being saved to the DynamoDB table then the user email is being communicated with SQS queue to email service that later send the greeting email using Sendgrid.",
+      "AWS CDK is used for deploying the frontend and the backend services. The deployment and configuring the infrastructure from the terminal is much much more easier.",
     ],
     codeBreakDown: [
       {
@@ -309,6 +311,8 @@ export default [
   {
     rectPosition: { top: "30%", left: "70%" },
     projectName: "HEIC TO JPEG Converter",
+    date: "Sept 2023",
+    projectType: "Full Stack",
     mediaPath: "heic",
     repoLink: "https://github.com/soberbat/heic-to-jpeg",
     liveLink: "https://heictojpeg.beratgenc.live/",
@@ -323,10 +327,10 @@ export default [
     deployment: ["Google Cloud Run"],
     shortDesc: "A Dockerized backend API deployed as GCR service ",
     mainTakeAway: [
-      "The app is a fully functioning HEIC to JPEG converter. The API and the web application are<span> deployed as a seperate Google Cloud Run services.</span>",
-      "NX used for monorepo initializer and the microservices architecture is implemented.",
-      "The backend handles the recieved form data from the frontend using<span> multer</span> and processes the image and changes its format as JPEG.",
-      "The frontend is responsible for making the requests with the data to the backend and display the returned data in an <span>asynchronous fashion.</span>",
+      "I've been using some tools for the same functionality but I've asked the question: Can I build my own converter? And the answer is here. The app is a fully functioning HEIC to JPEG converter. The API and the web application are<span> deployed as a seperate Google Cloud Run services that communicates user input to one another.</span>",
+      "NX is being used for monorepo initializer and the microservices architecture is implemented.",
+      "The backend handles the recieved form data from the frontend using<span> multer</span> and processes the image and changes its format as JPEG. Then sends it to the client.",
+      "The React Frontend is responsible for making the requests with the data to the backend and display the returned data. The asynchronous nature of the app makes it compulsory to React State to notify user about the different states of the request.",
     ],
     codeBreakDown: [
       {
@@ -365,16 +369,20 @@ export default [
   {
     rectPosition: { top: "-40%", left: "-50%" },
     projectName: "Resume Creator",
+    date: "Mar 2021",
+    projectType: "Frontend",
     liveLink: "http://resumemaker.beratgenc.live/",
     repoLink: "https://github.com/soberbat/r-resume",
     techStack: ["JavaScript", "React.js", "Styled Components"],
     mediaPath: "resume",
     shortDesc: "A resume creation tool made with React.js and Redux",
     mainTakeAway: [
-      "App lets you create your own resume to rock your interviews.",
-      "The app is a frontend app with complex data management handled by Redux. Multiple slices are being used for organizing the store for better a developer experience.",
-      "It is styled using styled components and a very minimalistic design is implemented. You can customize and then download your resume with it.",
-      "Reusable components are being used to save us some time.",
+      "The app lets you create your own resume that can be dowloaded in PDF format. Third party libraries is being used here for the functionality.",
+      "The document to be downloaded is being created with the help of both pre configured and custom React input components to offer flexibility",
+      "Framer Motion is being used for interaction animations which in the end makes the whole app buttery smooth.",
+      "Frontend is featuring complex data management with Redux Toolkit. Multiple slices are being used for organizing the store for better a developer experience and for making sure that we're able to access the data throught the app.",
+      "Styled components is being used here and a very minimalistic design is implemented.",
+      "Components have been written with the React's reusability rule in mind.",
     ],
     codeBreakDown: [
       {
@@ -392,7 +400,21 @@ export default [
           },
         });
     `,
-        text: "Initialization of the Redux Store ",
+        text: "Initialization of the Redux Store. Different blocks of the app use seperate slices for code maintainability.",
+      },
+
+      {
+        codeSnippet: ` 
+        const arr = Object.entries(state.Accordions.Education);
+        const filtered = arr.filter(
+          ([key, value]) => key !== action.payload.id
+        );
+        const newState = Object.fromEntries(filtered);
+        state.Accordions.Education = {
+          ...newState,
+        };
+    `,
+        text: "Filtering & updating of the data...",
       },
 
       {
@@ -400,8 +422,7 @@ export default [
         export default function Editor() {
           const componentRef = useRef();
           const handlePrint = useReactToPrint({
-            content: () => componentRef.current,
-            
+            content: () => componentRef.current,    
           });
         
           const visiblity = useSelector((state) => state.values.visibility);
@@ -421,7 +442,7 @@ export default [
         }
         
     `,
-        text: "The editor component that downloads the file to user machine. React and Redux hooks are featured here.",
+        text: "The editor component that downloads the file to user machine. React useRef, Redux hooks and conditional rendering and apply styles which are fundamental in web app development are featured here.",
       },
     ],
   },
@@ -429,6 +450,8 @@ export default [
   {
     rectPosition: { top: "60%", left: "10" },
     projectName: "Music Gallery",
+    date: "Aug 2023",
+    projectType: "Frontend",
     mediaPath: "gallery",
     repoLink: "https://github.com/soberbat/music-gallery",
     liveLink: "https://sound.beratgenc.live/",
@@ -443,9 +466,10 @@ export default [
     shortDesc:
       "React & Three.js immersive app with a custom player and linked navigation system",
     mainTakeAway: [
-      "This app consists of <span>two classes</span>: Each pane originates from a custom class that extends the Three.Object3D class, while the Scene class handles rendering, controls the <span>general navigation flow</span>, and communicates with the React UI.",
+      "This app consists of two Three.js classes that  Each pane originates from a custom class that extends the Three.Object3D class.  While the Scene class handles rendering and controlling of the <span>general navigation flow</span>. It also the React's entry point of the scene to update its state.",
       "The navigation posed the greatest challenge in the project. You can control the app through scrolling and using two distinct UI navigation elements, all of which remain synchronized with each other. The scrolling navigation is implemented using a <span>debouncer.</span>",
-      "There is a custom made react music player linked to the scene, allowing playback control through dragging and clicking. The data is communicated to both the scene and the UI. Different kinds of listeners are heavily used together to make the interactions possible.",
+      "The panes on the page are both rendering images and videos in the 3D scene. The app is only accessible when the scene is finished with drawing itself with the media which makes a better use experience.",
+      "There is a custom made react music player linked to the scene, allowing playback control through dragging and clicking. Framer Motion API's is being used for smooth animations. The data is communicated to both the scene and the UI. Examples of event listeners working together to make the interactions possible is featured.",
     ],
     codeBreakDown: [
       {
@@ -599,6 +623,8 @@ export default [
     rectPosition: { top: "0%", left: "-60%" },
     projectName: "Awab Alsaati Portfolio",
     mediaPath: "alsaati",
+    date: "Jul 2023",
+    projectType: "Frontend",
     liveLink: "https://www.awabalsaati.com/",
     repoLink: "https://github.com/soberbat/awabsfolio",
     techStack: [
@@ -611,8 +637,10 @@ export default [
     deployment: ["Vercel"],
     shortDesc: "A client work featuring, XHR powered preloader mechanism",
     mainTakeAway: [
-      "This project's entire production cycle, from development through testing to deployment, is managed by me. The application is the product of precise, pixel perfect, responsive translation design into code.",
-      "Prominent features include a <span>preloader implemented using class syntax, custom hooks,</span> and the utilization of<span> Zustand </span>as the state manager.",
+      "This project's entire production cycle, from development through testing to deployment, is managed by me. The application is the product of precise, pixel perfect, responsive translation design into code. Next.js is being used here.",
+      "The client didn't want to lose the quality of the images but also did not want to have users wait for the images to be downloaded when they're actually using the app. Therefore a preloader using class syntax and XHR is written to provide user a better experience. The data is being first saved to the global store and only after the download process is finished, users can explore the app.",
+      "Making the components reusable was a challange here since the design wasn't created this idea in mind. So there are a lot of props and state is being used to enable us to do that. Custom hooks are being used to write a more readeble code and styled components is being used for styling the app.",
+      "Since the ap is just an image gallery, I've went with using Zustand since it takes no time to configure a global state management store when comparing to Redux or the Context API.",
     ],
     codeBreakDown: [
       {
@@ -679,7 +707,7 @@ export default [
         
         export default Preloader;
     `,
-        text: "A <span>XHR backed preloading mechanism</span> written with class syntax. Displays overall loading progress for better user experience. It creates URL's to be used throughout the app.",
+        text: "A <span>XHR backed preloading mechanism</span> written with class syntax. Displays overall loading progress for better user experience. It creates URL's to be used throughout the app. With its methods and properties all the logic inside is encapsulated within the class.",
       },
       {
         codeSnippet: ` 
@@ -707,7 +735,7 @@ export default [
         
         export default usePreloder;
       `,
-        text: "A <span>custom hook </span>to isolate preloading logic from the app. It saves the returned urls to the Zustand store and returns the loaded and progress state to be used in the UI.",
+        text: "A <span>custom hook </span> to manage the preloaded data within the app. It saves the downloaded image urls to the Zustand store along with progress state to be used in the UI for displaying in the progress bar.",
       },
       {
         codeSnippet: ` 
@@ -716,7 +744,7 @@ export default [
         damping: 15,
       });
       `,
-        text: "<span>Framer motion API's </span> working together in action to interpolate input and smoothly animate.",
+        text: "<span>Framer motion API's </span> working together in action to interpolate input and smoothly animate. This give the progress bar its wavy smooth look.",
       },
       {
         codeSnippet: ` 
@@ -735,7 +763,7 @@ export default [
         
         export default PageBackground;
       `,
-        text: "Page background component that is being used on pages.",
+        text: "The reusable page background component that is being used on pages which changes the actual image based on the route we're in.",
       },
     ],
   },
@@ -744,6 +772,8 @@ export default [
     rectPosition: { top: "100%", left: "-50%" },
     projectName: "Scroll Triggered Story",
     liveLink: "https://scrollstory.beratgenc.live/",
+    date: "June 2023",
+    projectType: "Frontend",
     repoLink: "https://github.com/soberbat/scroll-triggered-story",
     mediaPath: "story",
     techStack: ["TypeScript", "React.js", "Styled Components", "Framer Motion"],
@@ -751,9 +781,7 @@ export default [
     shortDesc:
       "An attempt to get as close as possible to a WebFlow page using React and Typescript.",
     mainTakeAway: [
-      "This project is yet another attempt to replicate a <span>Webflow</span> page that is animated using <span>scroll input.</span>",
-      "This version of the app is written using <span> Typescript, React. </span>  And the UI is animated using framer motion API's.",
-      "I particulary payed attention to the readability of the code. The concrete and solid feel of the code makes it easier to read.",
+      "This project is yet another attempt to replicate a web page that is animated using scroll input. I've came across with the beautiful page when exploring cool websites and wanted to see how close I can get. The original version is created using WebFlow but this version of the app is written using <span> Typescript, React. </span>.  The UI is animated using framer motion API's. It providees us with the scroll progress which makes all this work. I particulary payed attention to the readability of the code. The solid feel of the code makes it easier to read",
     ],
     codeBreakDown: [
       {
@@ -864,6 +892,8 @@ export default [
     rectPosition: { top: "120%", left: "-10%" },
     projectName: "Canvas Art",
     mediaPath: "canvas",
+    date: "May 2021",
+    projectType: "Frontend",
     liveLink: "https://canvasart.beratgenc.live/",
     repoLink: "https://github.com/soberbat/canvas-art",
     techStack: [
@@ -909,6 +939,8 @@ export default [
     rectPosition: { top: "40%", left: "-50%" },
     projectName: "Univversecam",
     mediaPath: "universecam",
+    date: "Nov 2023",
+    projectType: "Frontend",
     liveLink: "https://unniversecam.beratgenc.live/",
     repoLink: "https://github.com/soberbat/univversecam",
     techStack: [
@@ -924,8 +956,9 @@ export default [
       "A Three.js & Next.js app designed & written with optimal modularity in mind",
     mainTakeAway: [
       "The application has a sophisticated UI controlled with state saved and managed with <span>React Context</span>. The UI is execution of a complex design featuring implementations of common web app elements such as select menus, carousel slides, and footers. ",
-      "A WebGL Typescript class is written to encapsulate and organize logic.",
-      "Modularity is carefully conducted in the codebase, there are lots of room for flexibility. React user interface and the scene class updates one another based on user input. With a focus on modularity and synchronization, the application is a good example of modular UI and how it can be matched with immersive web experiences.",
+      "Three.js (WebGL) is being used here for creating the our scene which consist of a camera, renderer and a bunch of cool looking planets that are orbiting around their sun using Request Animation Frame.",
+      "Just as we would assign functionalities to 2D components on Web, we're able to do it with Raycasting in the scene to make 3D elements interactable. Three.js offers a base class Raycaster for that.",
+      "Modularity is carefully implemented in the codebase, there are lots of room for flexibility. React user interface and the scene class updates one another based on user input. With a focus on modularity and synchronization, the application is a good example of modular UI and how it can be matched with immersive web experiences.",
     ],
     codeBreakDown: [
       {
@@ -962,7 +995,7 @@ export default [
           );
         };
         `,
-        text: "The component highlighted above is a highly adaptable one, capable of changing it appearance, and its behaviour based on props, serving as the fundamental component for most buttons within the app",
+        text: "The component highlighted below is a highly adaptable one, capable of changing it appearance, and its behaviour based on props, serving as the fundamental component for most buttons within the app",
       },
       {
         codeSnippet: `
@@ -975,7 +1008,25 @@ export default [
           !isNavigationActive && setIsFactionSearchVisible(false);
         };
         `,
-        text: "Main logic responsible for calculating the transformation of the <span>custom slider</span>. The parameterized numerical constants avoids the usage of magic numbers, for code readability.",
+        text: "Main logic responsible for calculating the transformation of the <span>custom slider</span>. The numerical constants avoids the usage of magic numbers, for code readability.",
+      },
+      {
+        codeSnippet: `
+        createSprite = (spriteMaterial: THREE.SpriteMaterial) => {
+          const sprite = new THREE.Sprite(spriteMaterial);
+          sprite.scale.set(0.5, 0.5, 0.5);
+          sprite.position.set(
+            this.getRandomNumber(-20, 20),
+            this.getRandomNumber(-10, 10),
+            this.getRandomNumber(-10, 10)
+          );
+      
+          this.scene.add(sprite);
+      
+          return sprite;
+        };
+        `,
+        text: "Sprites are what enable us to use 2D images in the 3D world. The method here uses the Sprite method from THREE base class to create sprites. And it randomly positions them to the scene.",
       },
       {
         codeSnippet: `
@@ -1009,7 +1060,7 @@ export default [
           return Promise.all(planetLoadMap);
         };  
         `,
-        text: "Function above belongs to the class that renders the 3D Scene. It loads modals in an <span>asynchronous</span> way to ensure that the app is not accessible to the user before all necessary data has loaded.",
+        text: "Function below belongs to the class that renders the 3D Scene. It loads modals in an <span>asynchronous</span> way to ensure that the app is not accessible to the user before all necessary data has loaded.",
       },
       {
         codeSnippet: `
@@ -1035,7 +1086,7 @@ export default [
         //No animation config is being passed when calling the component.
         <SliderInnerWrapper slide={slide}></SliderInnerWrapper>
         `,
-        text: "Above showcases how <span>styled-components and framer-motion</span> can be used together to make sure that our component reads cleaner.",
+        text: "Below showcases how <span>styled-components and framer-motion</span> can be used together to make sure that our component reads cleaner.",
       },
     ],
   },
@@ -1044,6 +1095,8 @@ export default [
     rectPosition: { top: "-35%", left: "50%" },
     projectName: "Session Auth",
     mediaPath: "sessionauth",
+    date: "Dec 2023",
+    projectType: "Backend",
     liveLink:
       "https://auth-with-session.in3a4agovd8hi.eu-central-1.cs.amazonlightsail.com/",
     repoLink: "https://github.com/soberbat/auth-service",
@@ -1192,6 +1245,8 @@ export default [
   {
     rectPosition: { top: "100%", left: "60%" },
     projectName: "Task Manager Backend",
+    date: "Oct 2023",
+    projectType: "Backend",
     mediaPath: "taskerapi",
     liveLink: "https://backend.taskermanager.site",
     techStack: ["Nest.js"],
@@ -1199,10 +1254,10 @@ export default [
     repoLink: "https://github.com/soberbat/task-manager",
     shortDesc: "Monolithic API written with Nest.js",
     mainTakeAway: [
-      "A task manager API written using Nest.js, Nest CLI and Prisma as the ORM. It performs <span>CRUD operations an a MySQL</span> based database which includes several number of <span>tables with one-to-one, many-to-many, and one-to-many relationships.</span>",
-      "It uses redis as a cookie storage to save user session for authentication",
-      "The API endpoints are <span>documented using Swagger UI</span> for easy exploration and testing.",
-      "The app is fully <span>automated with Github Actions</span>. And features integrations with Google Cloud Products. Overall, application showcases <span>modern development practices and integration with industry standart tools.</span>",
+      "The API for the task manager app that is written using Nest.js, Nest CLI and Prisma as the ORM. It performs CRUD operations an a MySQL</span> database which includes several number of <span>tables with one-to-one, many-to-many, and one-to-many relationships.</span> It is what makes us enable to create teams, users, tasks and projects.",
+      "It uses Redis as a cookie storage to save user session for authentication. The frontend reads it from the middleware function to decide whether to show protected routes or not.",
+      "The API endpoints are <span>documented using Swagger UI</span> for easy exploration and testing. ",
+      "The app is fully <span>automated with Github Actions</span>. Overall, application showcases modern development practices and integration with industry standart tools. And features integrations with Google Cloud Products.",
     ],
     codeBreakDown: [
       {

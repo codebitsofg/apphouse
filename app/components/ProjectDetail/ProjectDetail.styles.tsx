@@ -9,7 +9,7 @@ import { Overlay, SecondOverlay } from "../LoadingPage/LoadingPage.styles";
 export const Container = styled(motion.div).attrs({
   ...opacityConfig,
   transition: { delay: 1 },
-  exit: { opacity: 0, transition: { delay: 0.8 } },
+  exit: { opacity: 0, transition: { delay: 1 } },
 })`
   position: fixed;
   top: 0;
@@ -51,11 +51,6 @@ export const DescriptionText = styled.p`
   font-size: 0.8rem;
   font-weight: 400;
   font-size: 0.7rem;
-
-  span {
-    color: white;
-    font-weight: 400;
-  }
 `;
 
 export const PanelInnerContainer = styled.div`
@@ -167,13 +162,17 @@ export const SecondaryOverlayProjectDetail = styled(SecondOverlay)`
   background-color: #1f1d1f;
 `;
 
-export const InnerContainer = styled.div`
+export const InnerContainer = styled(motion.div).attrs({
+  ...opacityConfig,
+  transition: { delay: 1.6, duration: 1 },
+})`
+  opacity: 0;
   overflow-y: scroll;
   height: 100vh;
   position: relative;
   z-index: 1;
   scroll-behavior: smooth;
-  padding-bottom: 25%;
+  padding-bottom: 10%;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -238,11 +237,11 @@ export const Title = styled.h1`
 
 export const ProjectDetailText = styled(motion.p)`
   font-size: 2rem;
-  background-color: #ffffff39;
+  background-color: #424242;
   filter: blur(60px);
   line-height: 3rem;
   border-radius: 100%;
-  color: #d4d4d4;
+  color: #d4d4d42a;
   font-weight: 100;
   margin-bottom: 5%;
 `;
@@ -287,6 +286,11 @@ export const LinkContainer = styled.div`
   font-weight: 300;
   margin-bottom: 3%;
   font-size: 0.9rem;
+  transition: all ease-in-out 0.5s;
+
+  &:hover {
+    border-color: white;
+  }
 `;
 
 export const Media = styled.img`
@@ -304,9 +308,10 @@ export const CodeBreakdownContainer = styled.div`
 `;
 
 export const CodeBreakdownContainerText = styled(ProjectDetailText)`
-  font-size: 1.4rem;
-  line-height: 2.9rem;
+  font-size: 1rem;
+  line-height: 2rem;
   background-color: transparent;
+  color: #d4d4d4;
 `;
 export const CodeBreakdownTitle = styled(Title)`
   margin-bottom: 2%;

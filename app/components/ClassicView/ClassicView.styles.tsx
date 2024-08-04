@@ -12,7 +12,7 @@ export const Container = styled(motion.div).attrs({
   exit: {
     opacity: 0,
     transition: {
-      delay: 0.3,
+      delay: 1.2,
     },
   },
 })`
@@ -55,11 +55,11 @@ export const Footer = styled.div`
   width: 100%;
   left: 0;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   background-color: #f1ede7;
   height: 5vh;
   display: flex;
-  padding-left: 1vw;
+  padding-right: 1vw;
 
   h4 {
     margin: 0;
@@ -147,6 +147,7 @@ export const Title = styled.span`
 
 export const OverflowingContainer = styled(motion.div)`
   width: 100vw;
+  transform-origin: top;
   overflow: hidden;
 `;
 
@@ -166,6 +167,7 @@ export const Item = styled(motion.div)`
   height: 200px;
   align-items: center;
   justify-content: center;
+  position: relative;
   display: flex;
   background-color: #000000;
 `;
@@ -174,11 +176,11 @@ export const BeratGencText = styled.h3`
   position: absolute;
   bottom: 7vh;
   font-weight: 300;
-  right: 1vw;
+  left: 1vw;
   font-size: 0.7rem;
   width: 10%;
   padding-bottom: 1vh;
-  text-align: right;
+  text-align: left;
 `;
 
 export const ItemInnerContainer = styled.div`
@@ -197,15 +199,18 @@ export const ProjectImage = styled.img`
   pointer-events: all;
 `;
 
-export const Overlay = styled.div`
+export const Overlay = styled(motion.div).attrs({
+  initial: { opacity: 1 },
+  animate: { opacity: 0 },
+  transition: { duration: 0.6, delay: 0.5, ease: "anticipate" },
+})`
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  /* background-color: white; */
+  background-color: #faf6ef;
   z-index: 1;
-  opacity: 0.7;
 `;
 
 ///////

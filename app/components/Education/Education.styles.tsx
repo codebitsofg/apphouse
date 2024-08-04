@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   ${mediaLarge(css`
     width: 80%;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     margin-bottom: 0.8%;
   `)}
 `;

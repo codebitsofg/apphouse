@@ -64,7 +64,7 @@ const ClassicView = () => {
     [0, window.innerWidth],
     [0, -window.innerWidth]
   );
-  const xSpring = useSpring(x, { damping: 30, stiffness: 40 });
+  const xSpring = useSpring(x, { damping: 10, stiffness: 20 });
 
   const handleMouseMove = (event: any) => {
     mouseX.set(event.clientX);

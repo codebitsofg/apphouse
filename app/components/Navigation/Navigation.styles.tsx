@@ -32,12 +32,12 @@ export const HamburgerButton = styled.div<{ isDark: boolean }>`
 `;
 
 export const Bar = styled.div<{ isOpen: boolean }>`
-  width: 1.5vw;
+  width: 6vw;
   margin-bottom: 0.3vw;
   height: 0.11vw;
   background-color: white;
   transition: all 0.3s ease-in-out;
-  transition-delay: 1s;
+  transition-delay: 0.5s;
   ${({ isOpen }) =>
     isOpen &&
     `
@@ -52,6 +52,10 @@ export const Bar = styled.div<{ isOpen: boolean }>`
     }
     background-color: black;
   `}
+
+  ${mediaLarge(css`
+    width: 1.5vw;
+  `)}
 `;
 
 export const Wrapper = styled(motion.div).attrs({
@@ -69,18 +73,22 @@ export const Wrapper = styled(motion.div).attrs({
     x: "100%",
     transition: {
       ease: "easeInOut",
-      duration: 0.3,
+      duration: 0.4,
     },
   },
 })`
   background-color: #bac4b8;
-  width: 35vw;
+  width: 100vw;
   height: 100vh;
   top: 0;
   right: 0;
   position: fixed;
   z-index: 99;
   color: #212121;
+
+  ${mediaLarge(css`
+    width: 35vw;
+  `)}
 `;
 
 export const NavItem = styled.div`

@@ -48,6 +48,8 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
     codeBreakDown,
     mainTakeAway,
     mediaPath,
+    projectType,
+    date,
     liveLink,
     repoLink,
     techStack,
@@ -87,7 +89,7 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
   }, [lenis, raf]);
 
   return (
-    <Container>
+    <Container key="projectDetailKey">
       <InnerContainer ref={ref}>
         <FlexContainer>
           <TitleContainer>
@@ -113,7 +115,7 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
             <ProjectSpecsContainer>
               <ProjectSpecContainer>
                 <ProjectSpecTitle>Project Type</ProjectSpecTitle>
-                <ProjectSpec>Cloud</ProjectSpec>
+                <ProjectSpec>{projectType}</ProjectSpec>
               </ProjectSpecContainer>
 
               <ProjectSpecContainer>
@@ -123,7 +125,7 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
 
               <ProjectSpecContainer>
                 <ProjectSpecTitle> Date </ProjectSpecTitle>
-                <ProjectSpec>Aug, 2024</ProjectSpec>
+                <ProjectSpec>{date}</ProjectSpec>
               </ProjectSpecContainer>
 
               <LinksContainer>
@@ -149,7 +151,7 @@ const ProjectDetail = ({ onClose, project }: ProjecDetailProps) => {
             <CodeBreakdownTitle> Code Breakdown </CodeBreakdownTitle>
 
             <CodeBreakdownContainerText
-              dangerouslySetInnerHTML={{ __html: mainTakeAway.join("") }}
+              dangerouslySetInnerHTML={{ __html: mainTakeAway.join(" ") }}
             />
 
             {codeBreakDown.map(({ text, codeSnippet }) => (

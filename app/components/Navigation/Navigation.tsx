@@ -4,6 +4,7 @@ import useStore from "@/app/store/useStore";
 import { AnimatePresence } from "framer-motion";
 import { Mode } from "@/utils/types/app.types";
 import Link from "next/link";
+import useIsMobile from "@/app/hooks/useIsMobile";
 
 interface NavigationProps {
   onAboutMeClick: () => void;
@@ -18,6 +19,7 @@ const Navigation = ({
 }: NavigationProps) => {
   const { onHoverStartStore, onHoverEndStore, links } = useStore();
   const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useIsMobile();
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -43,20 +45,22 @@ const Navigation = ({
             <S.InnerContainer>
               <S.NavItem
                 onClick={() => {
-                  onModeSwitch(), setIsOpen(false);
-                }}
-              >
-                <S.NavNumber>01</S.NavNumber>
-                <S.NavName>Mode</S.NavName>
-              </S.NavItem>
-              <S.NavItem
-                onClick={() => {
                   onAboutMeClick(), setIsOpen(false);
                 }}
               >
-                <S.NavNumber>02</S.NavNumber>
+                <S.NavNumber>01</S.NavNumber>
                 <S.NavName>About</S.NavName>
               </S.NavItem>
+              {!isMobile && (
+                <S.NavItem
+                  onClick={() => {
+                    onModeSwitch(), setIsOpen(false);
+                  }}
+                >
+                  <S.NavNumber>02</S.NavNumber>
+                  <S.NavName>Mode</S.NavName>
+                </S.NavItem>
+              )}
 
               <S.Details>
                 <S.MailContainer>

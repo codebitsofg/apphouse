@@ -63,10 +63,11 @@ export default function Home() {
   );
 
   const onAnimationComplete = useCallback((e: AnimationDefinition) => {
+    console.log("completed");
     setisAnimating(false);
   }, []);
 
-  console.log(mode === Mode.GALLERY);
+  console.log({ isAnimating });
   return (
     <>
       <Analytics />
@@ -81,7 +82,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <MouseFollower />
+      {!isProjectDetailVisible && <MouseFollower />}
 
       {mode && (
         <Navigation
@@ -113,7 +114,11 @@ export default function Home() {
 
           <AnimatePresence>
             {isProjectDetailVisible && (
-              <ProjectDetail project={project} onClose={onProjectClose} />
+              <ProjectDetail
+                key={"13skffsk"}
+                project={project}
+                onClose={onProjectClose}
+              />
             )}
           </AnimatePresence>
 

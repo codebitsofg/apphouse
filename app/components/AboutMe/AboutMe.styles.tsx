@@ -5,7 +5,7 @@ import { CloseProject } from "../ProjectDetail/ProjectDetail.styles";
 
 export const Container = styled(motion.div).attrs({
   initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.5 } },
+  animate: { opacity: 1, transition: { duration: 0.3, delay: 0.4 } },
   exit: { opacity: 0 },
 })`
   width: 95vw;
@@ -30,6 +30,21 @@ export const Container = styled(motion.div).attrs({
   ${mediaLarge(css`
     padding-top: 0;
   `)};
+`;
+
+export const Overlay = styled(motion.div).attrs({
+  initial: { opacity: 0 },
+  animate: { opacity: 0.9, transition: { duration: 0.3, delay: 1 } },
+  exit: { opacity: 0 },
+})`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 1;
+  opacity: 0.7;
+  top: 0;
+  left: 0;
 `;
 
 export const InnerContainer = styled.div`
@@ -82,21 +97,6 @@ export const BeratImage = styled.img.attrs<{ isLoaded: boolean }>({
   display: ${({ isLoaded }) => (isLoaded ? "inline" : "none")};
 `;
 
-export const Overlay = styled(motion.div).attrs({
-  initial: { opacity: 0 },
-  animate: { opacity: 0.8, transition: { duration: 0.5 } },
-  exit: { opacity: 0 },
-})`
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
-  z-index: 1;
-  opacity: 0.7;
-  top: 0;
-  left: 0;
-`;
-
 export const NameContainer = styled.h1`
   margin: 0;
   color: #04080f;
@@ -109,7 +109,7 @@ export const NameContainer = styled.h1`
   margin: 0 auto;
   margin-bottom: 2%;
   text-align: left;
-  border-bottom: 1px dotted #0f0e0e;
+  border-bottom: 0.3px solid #0f0e0e41;
 `;
 
 export const InfoContainer = styled.div`
@@ -131,7 +131,7 @@ export const DetailedText = styled.p`
   margin: 0 auto;
   font-weight: 300;
   margin-bottom: 0.8%;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-align: center;
   ${mediaLarge(css`
     max-width: 60%;
@@ -151,7 +151,7 @@ export const SectionTitle = styled.h4`
   font-weight: 400;
   font-size: 2.4rem;
   padding-bottom: 0.5%;
-  border-bottom: 1px dotted #0f0e0e;
+  border-bottom: 0.3px solid #0f0e0e41;
   margin-bottom: 1%;
   color: #04080f;
 
@@ -170,9 +170,7 @@ export const RowTitle = styled.span`
   font-size: 0.6rem;
 `;
 
-export const RowText = styled.span`
-  color: #8fbcf6;
-`;
+export const RowText = styled.span``;
 
 export const ExperienceDetail = styled.div`
   margin-top: 2%;
@@ -185,7 +183,7 @@ export const DetailPoint = styled.span`
   font-size: 0.5rem;
 
   ${mediaLarge(css`
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   `)}
 `;
 
@@ -194,10 +192,9 @@ export const Bullet = styled.span`
 `;
 
 export const Skill = styled.div`
-  background-color: #04080f;
+  background-color: #f1ede7;
   max-width: fit-content;
   padding: 0.5%;
-  color: #f7f9f5;
   margin-bottom: 1%;
   border-radius: 3px;
   font-size: 0.6rem;
@@ -206,8 +203,8 @@ export const Skill = styled.div`
   justify-content: center;
 
   ${mediaLarge(css`
-    padding: 0.5%;
-    font-size: 0.9rem;
+    padding: 0.3%;
+    font-size: 0.7rem;
   `)}
 `;
 
@@ -220,18 +217,17 @@ export const SkillsWrapper = styled.div`
   gap: 2%;
   flex-wrap: wrap;
   margin-top: 1rem;
-  border-bottom: 1px dotted #0f0e0e;
+  border-bottom: 0.3px solid #0f0e0e41;
 `;
 
 export const SecondaryTitle = styled.h5`
   width: max-content;
   color: #0f0e0e;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding-bottom: 0.5%;
-  border-bottom: 1px dotted #0f0e0e;
+  border-bottom: 0.3px solid #0f0e0e41;
   margin-bottom: 1%;
-  color: #8fbcf6;
 `;
 
 export const SocialsContainer = styled.div`

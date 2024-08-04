@@ -11,7 +11,7 @@ export const Container = styled(motion.div).attrs({
   left: 0;
   width: 100vw;
   height: 100dvh;
-  background-color: #04080f;
+  background-color: white;
   z-index: 105;
   pointer-events: none;
   display: flex;
@@ -19,6 +19,7 @@ export const Container = styled(motion.div).attrs({
   justify-content: center;
   font-weight: 300;
   color: #f2f2f2;
+  transform-origin: bottom;
   font-size: 5rem;
 
   svg {
@@ -29,8 +30,8 @@ export const Container = styled(motion.div).attrs({
 export const TransitioningOverlay = styled(motion.div)`
   width: 100%;
   height: 100%;
-  background-color: white;
-  transform-origin: top;
+  background-color: #04080f;
+  transform-origin: bottom;
 `;
 
 export const InnerContainer = styled.div`
