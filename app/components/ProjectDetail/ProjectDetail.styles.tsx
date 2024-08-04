@@ -172,7 +172,7 @@ export const InnerContainer = styled(motion.div).attrs({
   position: relative;
   z-index: 1;
   scroll-behavior: smooth;
-  padding-bottom: 10%;
+  padding-bottom: 13%;
 
   &::-webkit-scrollbar {
     width: 8px;

@@ -178,7 +178,7 @@ export const BeratGencText = styled.h3`
   font-weight: 300;
   left: 1vw;
   font-size: 0.7rem;
-  width: 10%;
+  width: 15%;
   padding-bottom: 1vh;
   text-align: left;
 `;

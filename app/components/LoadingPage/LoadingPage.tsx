@@ -61,7 +61,7 @@ const LoadingPage = ({
                 <OptionContainer key={"242442"}>
                   <SelectModeText>
                     {!isMobile
-                      ? " Select a mode to view curated projects. You can switch themode from the navigation. Try both! "
+                      ? " Select a mode to view curated projects. You can switch the mode from the navigation. Try both! "
                       : " Select a mode to continue"}
                   </SelectModeText>
                   <InnerOptionContainer>
