@@ -19,21 +19,21 @@ export const Container = styled(motion.div).attrs({
     z-index: 99;
     cursor: pointer;
     height: 25vw;
-    border-radius: 4px;
+    border-radius: 3px;
     position: absolute;
     transform-origin: center;
     align-items: center;
     background-color: #0c0c0d;
     ${mediaLarge(css`
-      width: 14vw;
+      width: 11vw;
       height: 11vw;
     `)}
   `
 );
 
 export const BgImage = styled.img`
-  width: 70%;
-  height: 70%;
+  width: 60%;
+  height: 60%;
   object-fit: contain;
   top: 0;
   left: 0;
