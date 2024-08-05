@@ -127,12 +127,12 @@ export default [
     mediaPath: "tasker",
     shortDesc: "A Next.js + Nest.js Fullstack Task Management App",
     mainTakeAway: [
-      "In the app session cookies are being stored in the client coming the Nest.js backend API for displaying user specific data.",
+      "The dashboard that is written with Next.js for the Tasker Manager. In the app session cookies are being stored in the client coming the Nest.js backend API for displaying user specific data.",
       "The API that consists of multiple routes is written using Nest.js.",
       "Prisma is used for querying the data and updating the schemas on the Google Cloud SQL Database instance.",
       "The dashboard has many examples of modern web components, it includes forms components as well as sidebars, topbars, modals, expanding views & hover states.",
       "It showcases <span>client and server</span> communication in a production environment. A custom domain is configured both for the backend and the frontend to be able to set cookies and persist them.",
-      "The app is fully automated with <span>Github Actions Pipelines</span>. It builds the app as a docker container. First pushes it to Google Cloud repository then deploys it from here within the region specified.",
+      "The app is fully automated with <span>Github Actions Pipelines</span>. It builds the app as a docker container. First pushes it to Google Cloud repository then deploys it from there within the region specified.",
       "Use test@user.com as login email and 1234 as password to test the app.",
     ],
     codeBreakDown: [
@@ -303,7 +303,7 @@ export default [
     mainTakeAway: [
       "I decided to start a side project where I will be applying latest technology to practice. The first iteration is this landing page to collect user emails to sign them in to the newsletter. The next part will be a full stack app where users can find homes for stray animals.",
       "The whole app from API management to service communication to website hosting is in the AWS Cloud. The frontend is a Next.js static export that is being served in an S3 Bucket. And the API itself is nothing but 2 lambda functions that communicates with each other.",
-      "It is a monorepo initialized using NX. It follows the microservices architecture. The frontend and backend lambdas have their own service that is managed by nx. The API is served as seperate Lambda Functions. Once hit the user data is first being saved to the DynamoDB table then the user email is being communicated with SQS queue to email service that later send the greeting email using Sendgrid.",
+      "It is a monorepo initialized using NX. It follows the microservices architecture. The frontend and backend lambdas have their own service that is managed by NX. The API is served as seperate Lambda Functions. Once hit the user data is first being saved to the DynamoDB table then the user email is being communicated with SQS queue to email service that later send the greeting email using Sendgrid.",
       "AWS CDK is used for deploying the frontend and the backend services. The deployment and configuring the infrastructure from the terminal is much much more easier comparing to using wizards.",
     ],
     codeBreakDown: [
