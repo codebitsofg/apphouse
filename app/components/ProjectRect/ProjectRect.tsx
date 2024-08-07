@@ -22,7 +22,7 @@ const ProjectRect = (props: ProjectRectProps) => {
     <S.Container {...props}>
       <S.InnerContainer>
         <S.BgImage src={gifUrl} />
-        <S.Overlay whileHover={{ opacity: 0.1 }} />
+        <S.Overlay whileHover={{ opacity: 0.1 }}>{props.children}</S.Overlay>
       </S.InnerContainer>
     </S.Container>
   );
