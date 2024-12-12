@@ -13,6 +13,9 @@ export const Container = styled(motion.div).attrs({
   height: 98dvh;
   background-color: #faf6ef;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   transform: translate(-50%, -50%);
   top: 50%;
@@ -50,8 +53,11 @@ export const Overlay = styled(motion.div).attrs({
 export const InnerContainer = styled.div`
   width: 100%;
   overflow-y: scroll;
-  height: 100vh;
+  height: 100%;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   scroll-behavior: smooth;
 `;
 

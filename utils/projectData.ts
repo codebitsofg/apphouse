@@ -1,12 +1,12 @@
 export default [
   {
     rectPosition: { top: "10%", left: "-20%" },
-    projectName: "Shore Blog",
+    projectName: "Space Crafts V10",
     mediaPath: "shore",
     date: "June 2024",
     projectType: "Frontend",
-    repoLink: "https://github.com/soberbat/shoreblog",
-    liveLink: "https://www.skknshore.com/",
+    repoLink: "#",
+    liveLink: "#",
     techStack: [
       "TypeScript",
       "Strapi CMS",
@@ -15,16 +15,16 @@ export default [
       "Tailwindcss",
       "Amazon S3",
     ],
-    shortDesc: "A Jamstack Blog powered by Next.js and Strapi CMS",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "Skinshore is a statically generated site. A Jamstack Next.js + Strapi blog where performance and SEO optimization is of importance.",
-      "The latest concepts like server side rendering, site generation methods in the frontend world is discovered with the app. It is always good to start something new from stratch to follow latest concepts.",
-      "Highly reusable components that are being controlled with props. They have been written using Tailwind CSS. Skeletons are used for a better user experience.",
-      "Strapi CMS is used as the Headless CMS choice. The entires have images, copy slots as well as page level SEO data such as titles, keywords, page descriptions. This time I did not use Graphql extension of Strapi but that could be another option for querying data.",
-      "The images are being served in an S3 bucket for production use. They are being directly uploaded from the CMS UI. Once store configuration is being handled, Strapi takes care of the rest.",
-      "Dynamic routes are configured and page specific functions such as generateMetaData and generateStaticParams which are introduced with App Router is being used. Page level SEO optimizations are implemented for higher ranking in the search results.",
-      "Shadcn is used for carousel component to save some time.",
-      'I\'ve also written an article that sums up my exploration on SEO optimization with Next.js. Have a look at the article <strong><a href="https://medium.com/@beratgenc.dev/seo-optimization-for-next-js-14-dynamic-routes-b396ac0f6230" target="_blank">here</a></strong>',
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac ex at augue suscipit faucibus non vitae libero.",
+      "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer gravida neque vel risus laoreet, nec vulputate nunc aliquam.",
+      "Fusce interdum tellus nec metus ultrices, non scelerisque velit tristique. Proin convallis sem at velit cursus, nec tempor erat congue.",
+      "Aliquam quis arcu posuere, tincidunt purus in, aliquet quam. Etiam condimentum, lorem nec efficitur ultrices, justo magna sollicitudin magna, vel laoreet augue nunc et nulla.",
+      "Curabitur nec sapien at velit pretium malesuada in at metus. Vivamus luctus eros in dui pharetra, nec consequat enim vestibulum.",
+      "Donec feugiat est sed urna iaculis luctus. Cras varius arcu nec lacus hendrerit, et consequat libero auctor.",
+      "Suspendisse potenti. Etiam eu velit nec augue lacinia aliquam. Nulla facilisi.",
+      'Ut tincidunt elit at mi pharetra, non tincidunt turpis sodales. Praesent id orci at velit tincidunt tincidunt. <strong><a href="https://medium.com/@beratgenc.dev/seo-optimization-for-next-js-14-dynamic-routes-b396ac0f6230" target="_blank">Lorem ipsum</a></strong>',
     ],
     codeBreakDown: [
       {
@@ -50,8 +50,8 @@ export default [
             },
           },
         });   
-      `,
-        text: "The strapi config that saves the images to an S3 Bucket. Environment variables are being used here though it wasn't necessary since the strapi instance neither deployed nor being store in a code repo.",
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac orci non arcu vehicula posuere.",
       },
       {
         codeSnippet: `
@@ -73,9 +73,8 @@ export default [
           }
         }
       `,
-        text: "Functions that introduced with Next.js 14. generateStaticParams creates the dynamic routes based on the data entries retrieved from the CMS. Exporting these on page level do the trick.",
+        text: "Vestibulum vehicula ligula eu magna congue, a tincidunt ex vehicula. Integer sagittis dolor sed urna vulputate, sit amet tempor nulla gravida.",
       },
-
       {
         codeSnippet: `
         const Home = async () => {
@@ -109,121 +108,120 @@ export default [
           )
         }
       `,
-
-        text: "Home page with reusable components. The fetchCMSEntries function makes the call to the strapi server and gets the entires ot be filtered based on the component's needs.",
+        text: "Praesent quis orci nec velit dapibus pharetra a eget lacus. Nulla facilisi. Sed viverra velit quis justo gravida tristique.",
       },
     ],
   },
 
   {
     rectPosition: { top: "-30%", left: "0%" },
-    projectName: "Task Manager",
+    projectName: "Space Crafts V9",
     date: "Jan 2024",
     projectType: "Full Stack",
     techStack: ["TypeScript", "Next.js", "Docker", "Styled Components"],
     deployment: ["Github Actions", "Google Cloud Run"],
-    liveLink: "https://application.taskermanager.site/",
-    repoLink: "https://github.com/soberbat/task-manager-frontend",
+    liveLink: "#",
+    repoLink: "#",
     mediaPath: "tasker",
-    shortDesc: "A Next.js + Nest.js Fullstack Task Management App",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "The dashboard that is written with Next.js for the Tasker Manager. In the app session cookies are being stored in the client coming the Nest.js backend API for displaying user specific data.",
-      "The API that consists of multiple routes is written using Nest.js.",
-      "Prisma is used for querying the data and updating the schemas on the Google Cloud SQL Database instance.",
-      "The dashboard has many examples of modern web components, it includes forms components as well as sidebars, topbars, modals, expanding views & hover states.",
-      "It showcases <span>client and server</span> communication in a production environment. A custom domain is configured both for the backend and the frontend to be able to set cookies and persist them.",
-      "The app is fully automated with <span>Github Actions Pipelines</span>. It builds the app as a docker container. First pushes it to Google Cloud repository then deploys it from there within the region specified.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut orci vitae justo consectetur feugiat.",
+      "Praesent aliquam metus at turpis luctus, eget vulputate nunc tincidunt.",
+      "Fusce consequat turpis sit amet libero ultricies, vitae blandit magna posuere.",
+      "Integer vitae eros vel justo facilisis commodo. Nulla et turpis lacus.",
+      "Curabitur quis augue nec velit dictum hendrerit. Aenean venenatis lacus et ipsum bibendum efficitur.",
+      "Mauris dapibus velit sit amet libero efficitur, vitae posuere sapien mollis.",
       "Use test@user.com as login email and 1234 as password to test the app.",
     ],
     codeBreakDown: [
       {
         codeSnippet: `
-      export async function middleware(request: NextRequest, response: NextResponse) {
-        const cookie = request.cookies.get("connect.sid");
-        const pathName = request.nextUrl.pathname;
-      
-        if (pathName.startsWith("/enter") || pathName.startsWith("/login")) {
-          if (cookie) {
-            const destinationUrl = new URL("/", new URL(request.url).origin);
-            const response = NextResponse.redirect(destinationUrl);
-            return response;
-          }
-        } else {
-          if (!cookie) {
-            const destinationUrl = new URL("/enter", new URL(request.url).origin);
-            const response = NextResponse.redirect(destinationUrl);
-            return response;
+        export async function middleware(request: NextRequest, response: NextResponse) {
+          const cookie = request.cookies.get("connect.sid");
+          const pathName = request.nextUrl.pathname;
+        
+          if (pathName.startsWith("/enter") || pathName.startsWith("/login")) {
+            if (cookie) {
+              const destinationUrl = new URL("/", new URL(request.url).origin);
+              const response = NextResponse.redirect(destinationUrl);
+              return response;
+            }
+          } else {
+            if (!cookie) {
+              const destinationUrl = new URL("/enter", new URL(request.url).origin);
+              const response = NextResponse.redirect(destinationUrl);
+              return response;
+            }
           }
         }
-      }
-      
-      export const config = {
-        matcher: ["/", "/enter"],
-      };     
-      `,
-        text: "<span>Middleware</span> that redirects user appropriately based on their authentication status. It reads the cookie and handles the redirecting of the user on the server side.",
+        
+        export const config = {
+          matcher: ["/", "/enter"],
+        };     
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vestibulum ipsum nec libero varius feugiat.",
       },
       {
         codeSnippet: ` 
-      export default {
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          "Origin-Allow-Credentials": true,
-          "Access-Control-Allow-Credentials": true,
-        },
-      };     
-      `,
-        text: "The config file that makes it possible to pass the cookie and the authorization headers to the server on the following requests.",
+        export default {
+          withCredentials: true,
+          credentials: "include",
+          headers: {
+            "Origin-Allow-Credentials": true,
+            "Access-Control-Allow-Credentials": true,
+          },
+        };     
+        `,
+        text: "Curabitur quis arcu viverra, fringilla nunc non, ultricies libero. Nulla malesuada metus a nisl auctor, quis blandit justo tincidunt.",
       },
       {
         codeSnippet: `
-      <UpdateTaskRow
-      src={"status"}
-      Updater={<PriorityUpdater updateTask={updateCurrentTask} />}
-      taskRowInnerComponent={
-        <ColoredCell color={getPriorityColor(priority)}>
-          {priority}
-        </ColoredCell>
-      }
-    >
-      Priority
-    </UpdateTaskRow>
-
-      `,
-        text: "An example of calling a modular component that takes components as props to change its style and functionality.",
+        <UpdateTaskRow
+        src={"status"}
+        Updater={<PriorityUpdater updateTask={updateCurrentTask} />}
+        taskRowInnerComponent={
+          <ColoredCell color={getPriorityColor(priority)}>
+            {priority}
+          </ColoredCell>
+        }
+      >
+        Priority
+      </UpdateTaskRow>
+  
+        `,
+        text: "Suspendisse potenti. Nam in lectus in sapien dictum tincidunt. Integer at ex vel libero scelerisque interdum.",
       },
       {
         codeSnippet: ` 
-      export default async function Login(email: string, password: string) {
-        try {
-          return await axios.post(prodEndpoint, { email, password }, axiosConfig);
-        } catch (error) {
-          return { status: 401 };
-        }
-      }      
-      `,
-        text: "Function that makes the actual <span>login request</span> to the server.",
+        export default async function Login(email: string, password: string) {
+          try {
+            return await axios.post(prodEndpoint, { email, password }, axiosConfig);
+          } catch (error) {
+            return { status: 401 };
+          }
+        }      
+        `,
+        text: "Proin ut mi non metus tempus tincidunt a id neque. Pellentesque quis sapien sed velit faucibus efficitur.",
       },
     ],
   },
 
   {
     rectPosition: { top: "-40%", left: "-50%" },
-    projectName: "Resume Creator",
+    projectName: "Infınıty",
     date: "Mar 2021",
     projectType: "Frontend",
-    liveLink: "http://resumemaker.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/r-resume",
+    liveLink: "#",
+    repoLink: "#",
     techStack: ["JavaScript", "React.js", "Styled Components"],
     mediaPath: "resume",
-    shortDesc: "A resume creation tool made with React.js and Redux",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "The app lets you create your own resume that can be dowloaded in PDF format. Third party libraries is being used here for the functionality.",
-      "The document to be downloaded is being created with the help of pre configured and custom input components to offer flexibility. React is used as the framework.",
-      "Framer Motion is being used for interaction animations which in the end makes the whole app buttery smooth. Styled components is being used here and a very minimalistic design is implemented. ",
-      "Frontend features data management with Redux Toolkit. Multiple slices are being used for organizing the store for better a developer experience and for making sure that we're able to access the data throughout the app.",
-      "Components have been written with the React's reusability rule in mind.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula felis eu nisi cursus, euismod cursus libero tempus.",
+      "Sed euismod, elit in cursus pretium, urna felis consectetur lectus, sit amet tempus lorem libero eu ante.",
+      "Vestibulum convallis dolor et venenatis consectetur. Aenean fringilla vitae magna ac tincidunt. Curabitur ut viverra sapien.",
+      "Proin at leo et risus dapibus malesuada. Morbi in risus id nunc iaculis condimentum. Nulla facilisi.",
+      "Etiam eget sapien ac leo tristique volutpat et et mauris. In pretium auctor feugiat.",
     ],
     codeBreakDown: [
       {
@@ -240,8 +238,8 @@ export default [
             Properties: PropSlice,
           },
         });
-    `,
-        text: "Initialization of the Redux Store. Different blocks of the app use seperate slices for code maintainability.",
+      `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate mi eu urna pretium, at mollis augue tristique.",
       },
 
       {
@@ -254,8 +252,8 @@ export default [
         state.Accordions.Education = {
           ...newState,
         };
-    `,
-        text: "Filtering & updating of the data...",
+      `,
+        text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       },
 
       {
@@ -282,29 +280,29 @@ export default [
           );
         }
         
-    `,
-        text: "The editor component that downloads the file to user machine. React useRef, Redux hooks and conditional rendering and apply styles which are fundamental in web app development are featured here.",
+      `,
+        text: "Vivamus convallis justo at metus tristique, non gravida lorem tincidunt. Phasellus auctor sollicitudin ante a vulputate.",
       },
     ],
   },
 
   {
     rectPosition: { top: "10%", left: "40%" },
-    projectName: "PATI",
+    projectName: "Ore",
     date: "May 2024",
     projectType: "Cloud",
     techStack: ["TypeScript", "Next.js", "Axios", "Tailwind CSS"],
     deployment: ["AWS Lambda", "S3 Deployment", "AWS CDK", "DynamoDB", "SQS"],
-    liveLink:
-      "http://infrastructurestack-nextjssitebucketbd1a5941-isspgruxxmoy.s3-website.eu-central-1.amazonaws.com/",
-    repoLink: "https://github.com/soberbat/pati",
+    liveLink: "#",
+    repoLink: "#",
     mediaPath: "petapp",
-    shortDesc: "A landing page for a pet adoptation platform",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "I decided to start a side project where I will be applying latest technology to practice. The first iteration is this landing page to collect user emails to sign them in to the newsletter. The next part will be a full stack app where users can find homes for stray animals.",
-      "The whole app from API management to service communication to website hosting is in the AWS Cloud. The frontend is a Next.js static export that is being served in an S3 Bucket. And the API itself is nothing but 2 lambda functions that communicates with each other.",
-      "It is a monorepo initialized using NX. It follows the microservices architecture. The frontend and backend lambdas have their own service that is managed by NX. The API is served as seperate Lambda Functions. Once hit the user data is first being saved to the DynamoDB table then the user email is being communicated with SQS queue to email service that later send the greeting email using Sendgrid.",
-      "AWS CDK is used for deploying the frontend and the backend services. The deployment and configuring the infrastructure from the terminal is much much more easier comparing to using wizards.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
+      "Vivamus fermentum, felis ac feugiat aliquet, nulla risus pellentesque neque, ut auctor nulla purus eu lorem.",
+      "Suspendisse potenti. Etiam faucibus lorem vitae lectus scelerisque, non fermentum libero cursus. Aliquam erat volutpat.",
+      "Fusce tincidunt massa a lectus iaculis, non consectetur ante feugiat. Donec ut sem a ligula vestibulum fermentum.",
+      "Maecenas tristique vehicula lorem, sed tincidunt nisl gravida eget. Quisque ac massa at sapien pharetra feugiat.",
     ],
     codeBreakDown: [
       {
@@ -354,8 +352,8 @@ export default [
             },
           });
         };         
-    `,
-        text: "The provisioning of the API's. AWS CDK is being used as the IAC tool here to saves us from many many clicks.",
+      `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut ligula ac lorem varius gravida. Aliquam erat volutpat.",
       },
       {
         codeSnippet: `
@@ -384,19 +382,19 @@ export default [
           });
         };
         `,
-        text: "The code bit that lets us serve our Next.js static export in an S3 Bucket. How cool is that?",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id dui viverra, faucibus erat in, luctus nunc. Donec auctor sollicitudin ligula.",
       },
     ],
   },
 
   {
     rectPosition: { top: "30%", left: "70%" },
-    projectName: "HEIC TO JPEG Converter",
+    projectName: "Pink Bloom",
     date: "Sept 2023",
     projectType: "Full Stack",
     mediaPath: "heic",
-    repoLink: "https://github.com/soberbat/heic-to-jpeg",
-    liveLink: "https://heictojpeg.beratgenc.live/",
+    repoLink: "#",
+    liveLink: "#",
     techStack: [
       "TypeScript",
       "Node.js",
@@ -406,55 +404,51 @@ export default [
       "Express.js",
     ],
     deployment: ["Google Cloud Run"],
-    shortDesc: "A Dockerized backend API deployed as GCR service ",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "I've had been using some tools for the same functionality but I've asked the question: Can I build my own converter? And the answer is here. The app is a fully functioning HEIC to JPEG converter. The API and the web application are<span> deployed as seperate Google Cloud Run services that communicates user input to one another.</span>",
-      "NX is being used for monorepo initializer and the microservices architecture is implemented.",
-      "The backend handles the recieved form data from the frontend using<span> multer</span> and processes the image and changes its format as JPEG. Then sends it to the client.",
-      "The React Frontend is responsible for making the requests with the data to the backend and display the returned data. The asynchronous nature of the app makes it compulsory to use React state to notify user about the different states of the request.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eros ut eros posuere hendrerit.",
+      "NX facilisis dolor in, maximus dolor tristique ut. Aenean sed lorem sapien.",
+      "Donec volutpat arcu leo, ac tristique nisl accumsan ac. Vestibulum egestas urna at neque luctus, eget laoreet turpis ullamcorper.",
+      "Curabitur eu dolor id eros facilisis tincidunt et eu libero. Donec luctus libero at orci malesuada feugiat.",
     ],
     codeBreakDown: [
       {
         codeSnippet: `
-        async function fromHEICToJPEG(inputBuffer) {
-          try {
-            const data = await convert({
-              buffer: inputBuffer,
-              format: "JPEG",
-              quality: 1,
-            });
-
-            return data;
-          } catch (error) {
-            console.error("Error converting HEIC to JPEG:", error);
-            throw error;
+          async function fromHEICToJPEG(inputBuffer) {
+            try {
+              const data = await convert({
+                buffer: inputBuffer,
+                format: "JPEG",
+                quality: 1,
+              });
+  
+              return data;
+            } catch (error) {
+              console.error("Error converting HEIC to JPEG:", error);
+              throw error;
+            }
           }
-        }
-      `,
-        text: "The main function that converts the HEIC input into JPEG. It is an asynchronous function that takes an inputBuffer. It utilizes the heic-convert library to perform the actual conversion.",
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
       },
       {
         codeSnippet: `
-      docker build .  --platform linux/amd64 -t  europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest
-
-      docker push europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest                           
-
-      gcloud run deploy strapi-cms  --image europe-west1-docker.pkg.dev/dev-sphere-410611/demo/the-dot-cms:latest
-      `,
-
-        text: "Some <span>gcloud CLI</span> commands for updating & deploying the API. The initial command builds a <span> Docker </span> image with specified tags. Later, the built image is pushed to a the <span>Google Container Registry</span>, to be used in deployment. Finally the API deployment to Google Cloud Run is executed.",
+          docker build .  --platform linux/amd64 -t europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest
+          docker push europe-west1-docker.pkg.dev/dev-sphere-410611/demo/heic-convert-frontend:latest
+          gcloud run deploy strapi-cms  --image europe-west1-docker.pkg.dev/dev-sphere-410611/demo/the-dot-cms:latest
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
       },
     ],
   },
-
   {
     rectPosition: { top: "60%", left: "10" },
-    projectName: "Music Gallery",
+    projectName: "Black Void",
     date: "Aug 2023",
     projectType: "Frontend",
     mediaPath: "gallery",
-    repoLink: "https://github.com/soberbat/music-gallery",
-    liveLink: "https://sound.beratgenc.live/",
+    repoLink: "#",
+    liveLink: "#",
     techStack: [
       "TypeScript",
       "Three.js",
@@ -463,171 +457,169 @@ export default [
       "Framer Motion",
     ],
     deployment: ["Vercel"],
-    shortDesc:
-      "React & Three.js immersive app with a custom player and linked navigation system",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "An immersive gallery made with Three.js + React. The app consists of Types safe Three.js classes that originates from a custom class that extends the Three.Object3D class.  The Scene class handles rendering and controlling of the <span>general navigation flow</span>. It is also the React's entry point to the scene to update its state. Other classes are being used for the artpieces since they have their own properties and functionality. .",
-      "The navigation posed the greatest challenge in the project. You can control the app through scrolling and using two distinct React UI navigation, all of which remain synchronized with each other. The scrolling navigation is implemented using a <span>debouncer.</span>",
-      "The panes on the page are both rendering images and videos in the 3D scene. The app is only accessible when the scene is finished with drawing itself with the media which makes a better use experience.",
-      "There is a custom made React music player linked to the scene, allowing playback control through dragging and clicking. Framer Motion API's is being used for smooth animations.",
-      "Howl.js is being used for the audio. It's progress is communicated both to the scene and to the UI. Examples of event listeners working together to make the complex interactions is featured.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eros ut eros posuere hendrerit.",
+      "Aenean vel arcu nec turpis aliquam dictum. Donec suscipit ligula ut ante consequat, ut varius urna elementum.",
+      "Curabitur eget leo nec mi fermentum luctus. Ut posuere est eget turpis aliquet, ut vulputate lorem auctor.",
+      "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur non est vitae augue tempor.",
     ],
     codeBreakDown: [
       {
         codeSnippet: `
-      createMaterial = (texture: THREE.Texture, isPaneBase: boolean) => {
-        return new THREE.MeshBasicMaterial({
-          map: texture,
-          side: THREE.FrontSide,
-          transparent: !isPaneBase,
-        });
-      };
-
-      updateProgresOverlay = () => {
-        if (isNaN(this.trackProgres)) return;
-        const scaleX = (this.paneWidth * this.trackProgres) / 100;
-        this.progresOverlay!.scale.x = scaleX;
-      };
-
-      initVideoTexture = () => {
-        return new Promise<THREE.VideoTexture>((resolve) => {
-          const video = document.createElement("video");
-          video.src = this.getVideoSrc();
-          video.loop = true;
-          video.autoplay = true;
-          video.muted = true;
-    
-          video.oncanplaythrough = () => {
-            video.play();
-            resolve(new THREE.VideoTexture(video));
+          createMaterial = (texture: THREE.Texture, isPaneBase: boolean) => {
+            return new THREE.MeshBasicMaterial({
+              map: texture,
+              side: THREE.FrontSide,
+              transparent: !isPaneBase,
+            });
           };
-        });
-      };
-      `,
-        text: "These function declarations belong to the Pane class and are written with the Clean Code Principles in mind. They are compliant as each function serves a single purpose with <span>descriptive names and modularity.</span>",
+  
+          updateProgresOverlay = () => {
+            if (isNaN(this.trackProgres)) return;
+            const scaleX = (this.paneWidth * this.trackProgres) / 100;
+            this.progresOverlay!.scale.x = scaleX;
+          };
+  
+          initVideoTexture = () => {
+            return new Promise<THREE.VideoTexture>((resolve) => {
+              const video = document.createElement("video");
+              video.src = this.getVideoSrc();
+              video.loop = true;
+              video.autoplay = true;
+              video.muted = true;
+  
+              video.oncanplaythrough = () => {
+                video.play();
+                resolve(new THREE.VideoTexture(video));
+              };
+            });
+          };
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget arcu nec urna pretium convallis. Sed elementum risus.",
       },
       {
         codeSnippet: `
-        interface ITabNavigation extends IEnvironment {
-          progres: number;
-        }
-        
-        const TabNavigation = memo(
-          ({ progres, onProgres }: Partial<ITabNavigation>) => {
-            const containerRef = useRef<HTMLDivElement | null>(null);
-            const progressModulo = progres! % PANECOUNT;
-            const [width, setwidth] = useState(0);
-        
-            const showIndex = useCallback(
-              (i: number) => (i === PANECOUNT ? 0 : i + 1),
-              []
-            );
-        
-            useEffect(() => {
-              if (!containerRef.current) return;
-              const { width } = containerRef.current.getBoundingClientRect();
-              setwidth(width);
-            }, []);
-        
-            return (
-              <Container>
-                <InnerContainer>
-                  <Panes width={width} activePane={progressModulo}>
-                    {[...Array(PANECOUNT + 1)].map((_, index) => (
-                      <PaneRec
-                        onClick={() => onProgres!(index)}
-                        isActivePane={index === progressModulo}
-                        ref={containerRef}
-                        key={index}
-                      >
-                        {showIndex(index)}
-                      </PaneRec>
-                    ))}
-                  </Panes>
-                </InnerContainer>
-                <BackgroundOverlay />
-              </Container>
-            );
+          interface ITabNavigation extends IEnvironment {
+            progres: number;
           }
-        );
-        
-        export default TabNavigation;
-      `,
-        text: "<span>Memoized component</span> below renders one of two UI navigations. It calculates the center point of the parent container using <span> boundingClientRect API</span>. Then animates the child nodes based on the passed progress prop.",
-      },
-      {
-        codeSnippet: `
-      const Environment = memo(
-        ({
-          sceneRef,
-          onProgres,
-          onPlay,
-          trackProgress,
-          onRotate,
-          onContentLoaded,
-        }: IEnvironment) => {
-          const rendererWrapper = useRef<HTMLDivElement | null>(null);
-      
-          useEffect(
-            () => sceneRef?.current?.setTrackProgress(trackProgress),
-            [trackProgress]
+  
+          const TabNavigation = memo(
+            ({ progres, onProgres }: Partial<ITabNavigation>) => {
+              const containerRef = useRef<HTMLDivElement | null>(null);
+              const progressModulo = progres! % PANECOUNT;
+              const [width, setwidth] = useState(0);
+  
+              const showIndex = useCallback(
+                (i: number) => (i === PANECOUNT ? 0 : i + 1),
+                []
+              );
+  
+              useEffect(() => {
+                if (!containerRef.current) return;
+                const { width } = containerRef.current.getBoundingClientRect();
+                setwidth(width);
+              }, []);
+  
+              return (
+                <Container>
+                  <InnerContainer>
+                    <Panes width={width} activePane={progressModulo}>
+                      {[...Array(PANECOUNT + 1)].map((_, index) => (
+                        <PaneRec
+                          onClick={() => onProgres!(index)}
+                          isActivePane={index === progressModulo}
+                          ref={containerRef}
+                          key={index}
+                        >
+                          {showIndex(index)}
+                        </PaneRec>
+                      ))}
+                    </Panes>
+                  </InnerContainer>
+                  <BackgroundOverlay />
+                </Container>
+              );
+            }
           );
-      
-          useEffect(() => {
-            if (sceneRef)
-              !sceneRef.current &&
-                (async () => {
-                  sceneRef.current = new Scene({
-                    rendererContainer: rendererWrapper.current,
-                    handleProgress: onProgres!,
-                    onRotation: onRotate!,
-                    onPlay: onPlay!,
-                  });
-      
-                  await sceneRef.current.init();
-                  onContentLoaded();
-                  sceneRef.current.animate();
-                })();
-          }, []);
-      
-          return <Container ref={rendererWrapper} />;
-        }
-      );
-      
-      export default Environment;
-      `,
-        text: "Component below initializes the scene. It demonstrates how the useRef hook can be utilized to hold any value, including a class instance.",
+  
+          export default TabNavigation;
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam convallis ante orci, et consequat orci facilisis nec.",
       },
       {
         codeSnippet: `
-      const onMouseMove = (e: MouseEvent) => {
-        if (!boundingBox) return;
-        const progressBarWidth = boundingBox?.width;
-        const leftOffset = boundingBox?.x;
-        const positionOnBar = e.clientX - leftOffset;
-        const position = (positionOnBar / progressBarWidth) * FULL_PERCENTAGE;
-        const withMouseOffset = position + MOUSE_OFFSET;
-        setTimeToSlideTo(Math.min(withMouseOffset, FULL_WIDTH_MINUS_HANDLE_OFFSET));
-      };
-    
-      useEffect(() => {
-        setBoundingBox(pBarRef.current && pBarRef.current.getBoundingClientRect());
-        document.addEventListener("mousemove", onMouseMove);
-      }, [pBarRef.current]);
-      `,
-        text: "Code above demonstrates Frontend math in action, achieving precise outcomes. It dynamically calculates the position of the slider handle based on mouse movement.  <span>Bounding box measurements and mouse coordinates</span>, is calculated for determining the exact position to set the slider for accurate representation of user input.",
+          const Environment = memo(
+            ({
+              sceneRef,
+              onProgres,
+              onPlay,
+              trackProgress,
+              onRotate,
+              onContentLoaded,
+            }: IEnvironment) => {
+              const rendererWrapper = useRef<HTMLDivElement | null>(null);
+  
+              useEffect(
+                () => sceneRef?.current?.setTrackProgress(trackProgress),
+                [trackProgress]
+              );
+  
+              useEffect(() => {
+                if (sceneRef)
+                  !sceneRef.current &&
+                    (async () => {
+                      sceneRef.current = new Scene({
+                        rendererContainer: rendererWrapper.current,
+                        handleProgress: onProgres!,
+                        onRotation: onRotate!,
+                        onPlay: onPlay!,
+                      });
+  
+                      await sceneRef.current.init();
+                      onContentLoaded();
+                      sceneRef.current.animate();
+                    })();
+              }, []);
+  
+              return <Container ref={rendererWrapper} />;
+            }
+          );
+  
+          export default Environment;
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et quam ut felis facilisis suscipit.",
+      },
+      {
+        codeSnippet: `
+          const onMouseMove = (e: MouseEvent) => {
+            if (!boundingBox) return;
+            const progressBarWidth = boundingBox?.width;
+            const leftOffset = boundingBox?.x;
+            const positionOnBar = e.clientX - leftOffset;
+            const position = (positionOnBar / progressBarWidth) * FULL_PERCENTAGE;
+            const withMouseOffset = position + MOUSE_OFFSET;
+            setTimeToSlideTo(Math.min(withMouseOffset, FULL_WIDTH_MINUS_HANDLE_OFFSET));
+          };
+  
+          useEffect(() => {
+            setBoundingBox(pBarRef.current && pBarRef.current.getBoundingClientRect());
+            document.addEventListener("mousemove", onMouseMove);
+          }, [pBarRef.current]);
+          `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel nulla venenatis, facilisis libero ac, fringilla nisl.",
       },
     ],
   },
 
   {
     rectPosition: { top: "0%", left: "-60%" },
-    projectName: "Awab Alsaati Portfolio",
+    projectName: "Sent",
     mediaPath: "alsaati",
     date: "Jul 2023",
     projectType: "Frontend",
-    liveLink: "https://www.awabalsaati.com/",
-    repoLink: "https://github.com/soberbat/awabsfolio",
+    liveLink: "#",
+    repoLink: "#",
     techStack: [
       "TypeScript",
       "Next.js",
@@ -636,267 +628,264 @@ export default [
       "Framer Motion",
     ],
     deployment: ["Vercel"],
-    shortDesc: "A client work featuring, XHR powered preloader mechanism",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "This project's entire production cycle, from development through testing to deployment, is managed by me. The application is the product of precise, pixel perfect, responsive translation design into code. Next.js is being used here.",
-      "The client didn't want to lose the quality of the images but also did not want to have users wait for the images to be downloaded when they're actually using the app. Therefore a preloader using class syntax and XHR is written to provide user a better experience. The data is being first saved to the global store and only after the download process is finished, users are enabled to explore the app.",
-      "Making the components reusable was a challange here since the design wasn't created this idea in mind. So there are a lot of props and state is being used to enable us to do that. Custom hooks are being used to create a more readeble codebase and styled components is being used for styling the app.",
-      "Since the ap is just an image gallery, I've went with using Zustand since it takes no time to configure a global state management store with it comparing to Redux or the Context API.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
     ],
     codeBreakDown: [
       {
         codeSnippet: `
-        class Preloader {
-          handleRequestEnd;
-          handleProgress;
-          urlsToPreload: PreloadUrlConfig;
-          preloadedSources: PreloadUrlConfig;
-          loadedImages = 0;
-          imageCount = 60;
-          progress = 0;
-        
-          constructor({ handleRequestEnd, handleProgress }: IPreloader) {
-            this.handleRequestEnd = handleRequestEnd;
-            this.handleProgress = handleProgress;
-            this.urlsToPreload = createImageUrls();
-            this.preloadedSources = {};
-            this.preloadAll();
+          class Preloader {
+            handleRequestEnd;
+            handleProgress;
+            urlsToPreload: PreloadUrlConfig;
+            preloadedSources: PreloadUrlConfig;
+            loadedImages = 0;
+            imageCount = 60;
+            progress = 0;
+          
+            constructor({ handleRequestEnd, handleProgress }: IPreloader) {
+              this.handleRequestEnd = handleRequestEnd;
+              this.handleProgress = handleProgress;
+              this.urlsToPreload = createImageUrls();
+              this.preloadedSources = {};
+              this.preloadAll();
+            }
+          
+            addPrefix = (url: string) => "/images/works/url";
+          
+            onLoad = (resolve: Resolve, xhr: XMLHttpRequest) => {
+              this.loadedImages++;
+          
+              const percantage = this.loadedImages / this.imageCount;
+              this.handleProgress(Math.ceil(percantage * 100));
+          
+              if (this.loadedImages === this.imageCount) {
+                this.handleRequestEnd(this.preloadedSources);
+              }
+          
+              resolve(URL.createObjectURL(xhr.response));
+            };
+          
+            preload = (url: string) => {
+              return new Promise((resolve: Resolve, _) => {
+                const xhr = new XMLHttpRequest();
+                xhr.onload = () => this.onLoad(resolve, xhr);
+          
+                xhr.open("GET", url, true);
+                xhr.responseType = "blob";
+                xhr.send(null);
+              });
+            };
+          
+            preloadAll = async () => {
+              for (const key in this.urlsToPreload) {
+                this.preloadedSources[key] = await Promise.all(
+                  this.urlsToPreload[key].map(async (url) => {
+                    if (Array.isArray(url)) {
+                      return await Promise.all(
+                        url.map(async (url) => await this.preload(this.addPrefix(url)))
+                      );
+                    }
+          
+                    return await this.preload(this.addPrefix(url));
+                  })
+                );
+              }
+            };
           }
-        
-          addPrefix = (url: string) => "/images/works/url";
-        
-          onLoad = (resolve: Resolve, xhr: XMLHttpRequest) => {
-            this.loadedImages++;
-        
-            const percantage = this.loadedImages / this.imageCount;
-            this.handleProgress(Math.ceil(percantage * 100));
-        
-            if (this.loadedImages === this.imageCount) {
-              this.handleRequestEnd(this.preloadedSources);
-            }
-        
-            resolve(URL.createObjectURL(xhr.response));
-          };
-        
-          preload = (url: string) => {
-            return new Promise((resolve: Resolve, _) => {
-              const xhr = new XMLHttpRequest();
-              xhr.onload = () => this.onLoad(resolve, xhr);
-        
-              xhr.open("GET", url, true);
-              xhr.responseType = "blob";
-              xhr.send(null);
-            });
-          };
-        
-          preloadAll = async () => {
-            for (const key in this.urlsToPreload) {
-              this.preloadedSources[key] = await Promise.all(
-                this.urlsToPreload[key].map(async (url) => {
-                  if (Array.isArray(url)) {
-                    return await Promise.all(
-                      url.map(async (url) => await this.preload(this.addPrefix(url)))
-                    );
-                  }
-        
-                  return await this.preload(this.addPrefix(url));
-                })
-              );
-            }
-          };
-        }
-        
-        export default Preloader;
-    `,
-        text: "A <span>XHR backed preloading mechanism</span> written with class syntax. Displays overall loading progress for better user experience. It creates URL's to be used throughout the app. With its methods and properties all the logic inside is encapsulated within the class.",
+          
+          export default Preloader;
+      `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
       },
       {
         codeSnippet: ` 
-        const usePreloder = () => {
-          const [isPreloaded, setisPreloaded] = useState<boolean>(false);
-          const { setImageUrls } = useStore();
-          const [progress, setProgress] = useState(0);
-          const preloader = useRef<Preloader | null>(null);
-        
-          const handleRequestEnd = (imageUrls: PreloadUrlConfig) => {
-            setImageUrls(imageUrls);
-            setisPreloaded(true);
+          const usePreloder = () => {
+            const [isPreloaded, setisPreloaded] = useState<boolean>(false);
+            const { setImageUrls } = useStore();
+            const [progress, setProgress] = useState(0);
+            const preloader = useRef<Preloader | null>(null);
+          
+            const handleRequestEnd = (imageUrls: PreloadUrlConfig) => {
+              setImageUrls(imageUrls);
+              setisPreloaded(true);
+            };
+          
+            const handleProgress = (progress: number) => {
+              setProgress(progress);
+            };
+          
+            useEffect(() => {
+              preloader.current = new Preloader({ handleRequestEnd, handleProgress });
+            }, []);
+          
+            return { isPreloaded, progress };
           };
-        
-          const handleProgress = (progress: number) => {
-            setProgress(progress);
-          };
-        
-          useEffect(() => {
-            preloader.current = new Preloader({ handleRequestEnd, handleProgress });
-          }, []);
-        
-          return { isPreloaded, progress };
-        };
-        
-        export default usePreloder;
-      `,
-        text: "A <span>custom hook </span> to manage the preloaded data within the app. It saves the downloaded image urls to the Zustand store along with progress state to be used in the UI for displaying in the progress bar.",
+          
+          export default usePreloder;
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
       },
       {
         codeSnippet: ` 
-      const scaleX = useSpring(useTransform(motionValProgres, [0, 100], [0, 1]), {
-        stiffness: 10,
-        damping: 15,
-      });
-      `,
-        text: "<span>Framer motion API's </span> working together in action to interpolate input and smoothly animate. This give the progress bar its wavy smooth look.",
+          const scaleX = useSpring(useTransform(motionValProgres, [0, 100], [0, 1]), {
+            stiffness: 10,
+            damping: 15,
+          });
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
       },
       {
         codeSnippet: ` 
-        interface IPageBackground {
-          className?: string;
-        }
-        
-        const PageBackground = ({ className }: IPageBackground) => {
-          return (
-            <S.Container className={className}>
-              <S.ColorOverlay />
-              <S.BackgroundImage />
-            </S.Container>
-          );
-        };
-        
-        export default PageBackground;
-      `,
-        text: "The reusable page background component that is being used on pages which changes the actual image based on the route we're in.",
+          interface IPageBackground {
+            className?: string;
+          }
+          
+          const PageBackground = ({ className }: IPageBackground) => {
+            return (
+              <S.Container className={className}>
+                <S.ColorOverlay />
+                <S.BackgroundImage />
+              </S.Container>
+            );
+          };
+          
+          export default PageBackground;
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
       },
     ],
   },
 
   {
     rectPosition: { top: "100%", left: "-50%" },
-    projectName: "Scroll Triggered Story",
-    liveLink: "https://scrollstory.beratgenc.live/",
+    projectName: "H91",
+    liveLink: "#",
     date: "June 2023",
     projectType: "Frontend",
-    repoLink: "https://github.com/soberbat/scroll-triggered-story",
+    repoLink: "#",
     mediaPath: "story",
     techStack: ["TypeScript", "React.js", "Styled Components", "Framer Motion"],
     deployment: ["Vercel"],
-    shortDesc:
-      "An attempt to get as close as possible to a WebFlow page using React and Typescript.",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "This project is yet another attempt to replicate a web page that is animated using scroll input. I've came across with the beautiful page when exploring cool websites and wanted to see how close I can get. The original version is created using WebFlow but this version of the app is written using <span> Typescript + React. </span>.  The UI is animated using Framer Motion API's. It provides us with the scroll progress which makes all this work. I particulary payed attention to the readability of the code. The solid feel of the code makes it easier to read.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Suspendisse potenti. Integer malesuada dui sed nisi aliquet, et hendrerit tortor eleifend. In dapibus dui sit amet arcu euismod, eu euismod libero cursus. Integer dictum risus eu augue consequat, nec vulputate sapien laoreet.",
     ],
     codeBreakDown: [
       {
         codeSnippet: ` 
-      interface CornerProps {
-        className?: string;
-      }
-      
-      const Corners: React.FC<CornerProps> = ({ className }) => {
-        const positionConfig = Object.values(CornerPosition);
-      
-        return (
-          <Container className={className}>
-            {positionConfig.map((pos, i) => (
-              <CornerWrap key={i} position={pos}>
-                <Corner />
-              </CornerWrap>
-            ))}
-          </Container>
-        );
-      };
-      
-      export default Corners;
-      `,
-        text: "The component iterates through corner positions using an <span>enum</span>, and renders a Corner component for each position.",
+            interface CornerProps {
+              className?: string;
+            }
+            
+            const Corners: React.FC<CornerProps> = ({ className }) => {
+              const positionConfig = Object.values(CornerPosition);
+            
+              return (
+                <Container className={className}>
+                  {positionConfig.map((pos, i) => (
+                    <CornerWrap key={i} position={pos}>
+                      <Corner />
+                    </CornerWrap>
+                  ))}
+                </Container>
+              );
+            };
+            
+            export default Corners;
+          `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.",
       },
       {
         codeSnippet: `
-      
-      export interface IRotatingCircle {
-        scrollProgress: MotionValue<number>;
-      }
-      
-      const RotatingCircle: FC<IRotatingCircle> = ({ scrollProgress }) => {
-        const isMobile = isMobileDevice();
-        const [currentSegment, setCurrentSegment] = useState<Segment>(0);
-        const transformOutput = [-100, isMobile ? -25 : -43];
-        const translate = useTransform(scrollProgress, [0.06, 0.08], transformOutput);
-      
-        const evalueCurrentSegment = useCallback((latestScrollPosition: number) => {
-          const currentSegment =
-            latestScrollPosition < SegmentThreshold.HistorySegment // ENUM
-              ? Segment.History
-              : latestScrollPosition < SegmentThreshold.OriginSegment // ENUM
-              ? Segment.Origin
-              : Segment.Symbol;
-
-          setCurrentSegment(currentSegment);
-        }, []);
-      
-        useMotionValueEvent(scrollProgress, "change", evalueCurrentSegment);
-      
-        return (
-          <S.Container translate={translate}>
-            <S.TransformContainer currentSegment={currentSegment}>
-              {Segments.map(({ name, style }, i) => (
-                <S.Segment key={i} isActive={i === currentSegment} style={style}>
-                  <S.InnerSegmentContainer currentSegment={currentSegment}>
-                    <S.RotatedSquare />
-                    <S.Name>{name}</S.Name>
-                  </S.InnerSegmentContainer>
-                </S.Segment>
-              ))}
-            </S.TransformContainer>
-          </S.Container>
-        );
-      };
-      
-      export default RotatingCircle;  
-      `,
-        text: "This component utilizes various features of the <span>Framer Motion API's</span> for animations, such as useTransform and event handling with useMotionValueEvent. TypeScript enums are used to define constants like SegmentThreshold and Segment.",
+            export interface IRotatingCircle {
+              scrollProgress: MotionValue<number>;
+            }
+            
+            const RotatingCircle: FC<IRotatingCircle> = ({ scrollProgress }) => {
+              const isMobile = isMobileDevice();
+              const [currentSegment, setCurrentSegment] = useState<Segment>(0);
+              const transformOutput = [-100, isMobile ? -25 : -43];
+              const translate = useTransform(scrollProgress, [0.06, 0.08], transformOutput);
+            
+              const evalueCurrentSegment = useCallback((latestScrollPosition: number) => {
+                const currentSegment =
+                  latestScrollPosition < SegmentThreshold.HistorySegment
+                    ? Segment.History
+                    : latestScrollPosition < SegmentThreshold.OriginSegment
+                    ? Segment.Origin
+                    : Segment.Symbol;
+            
+                setCurrentSegment(currentSegment);
+              }, []);
+            
+              useMotionValueEvent(scrollProgress, "change", evalueCurrentSegment);
+            
+              return (
+                <S.Container translate={translate}>
+                  <S.TransformContainer currentSegment={currentSegment}>
+                    {Segments.map(({ name, style }, i) => (
+                      <S.Segment key={i} isActive={i === currentSegment} style={style}>
+                        <S.InnerSegmentContainer currentSegment={currentSegment}>
+                          <S.RotatedSquare />
+                          <S.Name>{name}</S.Name>
+                        </S.InnerSegmentContainer>
+                      </S.Segment>
+                    ))}
+                  </S.TransformContainer>
+                </S.Container>
+              );
+            };
+            
+            export default RotatingCircle;  
+          `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et quam a urna hendrerit tristique.",
       },
       {
         codeSnippet: `
-      export default (breakpoint: string, styles: string | any) => css"
-        @media screen and (min-width: (breakpoint)) {
-          {styles}
-        }";
-      `,
-        text: "This function generates CSS rules wrapped in a media query that targets different screens. Used throught the app for responsiveness.",
+            export default (breakpoint: string, styles: string | any) => css"
+              @media screen and (min-width: (breakpoint)) {
+                {styles}
+              }";
+          `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum libero eu ligula feugiat, a malesuada erat maximus.",
       },
       {
         codeSnippet: ` 
-      export const TransformContainer = styled(motion.div).attrs<IInnerContainer>(
-        ({ currentSegment }) => ({
-          animate: {
-            rotate: "(evaluateCircleRotation(currentSegment))deg",
-          },
-          transition: {
-            ...infoFlowConfig,
-          },
-          initial: { rotate: "160deg" },
-        })
-      )"
-        width: 100%;
-        height: 100%;
-        border: 2px solid (color);
-        border-radius: 9999px;
-        position: relative;
-      ";
-      
-      `,
-        text: "An example of <span>styled-components and framer-motion </span> used together.",
+            export const TransformContainer = styled(motion.div).attrs<IInnerContainer>(
+              ({ currentSegment }) => ({
+                animate: {
+                  rotate: "(evaluateCircleRotation(currentSegment))deg",
+                },
+                transition: {
+                  ...infoFlowConfig,
+                },
+                initial: { rotate: "160deg" },
+              })
+            )"
+              width: 100%;
+              height: 100%;
+              border: 2px solid (color);
+              border-radius: 9999px;
+              position: relative;
+            ";
+          `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec dolor a libero cursus gravida.",
       },
     ],
   },
   {
     rectPosition: { top: "120%", left: "-10%" },
-    projectName: "Canvas Art",
+    projectName: "CCCt",
     mediaPath: "canvas",
     date: "May 2021",
     projectType: "Frontend",
-    liveLink: "https://canvasart.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/canvas-art",
+    liveLink: "#",
+    repoLink: "#",
     techStack: [
       "TypeScript",
       "React.js",
@@ -905,45 +894,46 @@ export default [
       "Framer Motion",
     ],
     deployment: ["Vercel"],
-    shortDesc: "An HTML Canvas app written using class syntax",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "A project from 2022. It is one of my first attempts to create something cool with code. App is an interactive <span>HTML Canvas</span> that generates artistic patterns based on randomly generated data. The whole idea of this project was to explore how class syntax can be utilized as a means of separating logic and writing efficient code.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum scelerisque nisi. Aenean tempor urna eget diam euismod, nec auctor nulla malesuada.",
     ],
     codeBreakDown: [
       {
         codeSnippet: `  
-    init() {
-      this.symbolsCount += 10;
-      const isVertical = Math.random() < 0.5 ? true : false;
+            init() {
+              this.symbolsCount += 10;
+              const isVertical = Math.random() < 0.5 ? true : false;
   
-      this.y = this.getRandomArbitrary(0, window.innerHeight - 0);
-      this.x = this.getRandomArbitrary(window.innerWidth - 0, 0);
-      const color = this.randColor();
-      this.context.font = this.fontSize + "px monospace";
+              this.y = this.getRandomArbitrary(0, window.innerHeight - 0);
+              this.x = this.getRandomArbitrary(window.innerWidth - 0, 0);
+              const color = this.randColor();
+              this.context.font = this.fontSize + "px monospace";
   
-      [...Array(10).fill(0)].map(
-        (_, i) =>
-          (this.symbols[i + this.symbolsCount] = new Symbol({
-            x: this.x,
-            y: this.y,
-            isVertical,
-            context: this.context,
-            color,
-          }))
-      );
-    `,
-        text: "This code bit creates vertical lines seen on the page. The Symbol class instances are what we see as 0's and 1's. They are being being drawn into the canvas with random positions, and colors. All these are being handled with class specific functions and this way we're keeping the logic seperated from outside world but as one in the class itself.",
+              [...Array(10).fill(0)].map(
+                (_, i) =>
+                  (this.symbols[i + this.symbolsCount] = new Symbol({
+                    x: this.x,
+                    y: this.y,
+                    isVertical,
+                    context: this.context,
+                    color,
+                  }))
+              );
+            `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat eros vitae sapien interdum, ac lacinia nisi tincidunt.",
       },
     ],
   },
+
   {
     rectPosition: { top: "40%", left: "-50%" },
-    projectName: "Univversecam",
+    projectName: "Med",
     mediaPath: "universecam",
     date: "Nov 2023",
     projectType: "Frontend",
-    liveLink: "https://unniversecam.beratgenc.live/",
-    repoLink: "https://github.com/soberbat/univversecam",
+    liveLink: "#",
+    repoLink: "#",
     techStack: [
       "TypeScript",
       "Three.js",
@@ -953,171 +943,166 @@ export default [
       "Styled Components",
     ],
     deployment: ["Vercel"],
-    shortDesc:
-      "A Three.js & Next.js app designed & written with optimal modularity in mind",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "A Space factions simulator. The application UI is controlled with state saved and managed with <span>React Context</span>. The UI is execution of a complex design featuring implementations of common web app elements such as select menus, carousel slides, and footers. ",
-      "Three.js (WebGL) is being used here for creating the our scene which consist of a camera, renderer and a group of planets that are orbiting around their sun using. Request Animation Frame is used to enable them to rotate infinitely.",
-      "Just as we would assign functionalities to 2D components on Web, we are able to do the same with Raycasting in the. Three.js offers a base class Raycaster for that. It also offer base classes for creating curved lines which are an integral part of the app.",
-      "Modularity is carefully implemented in the codebase, there are lots of room for flexibility. React user interface and the scene class updates one another based on user input. Tthe application is a good example of modular UI and how it can be matched with immersive web experiences.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum velit quis nisi viverra, at interdum lectus faucibus.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum purus sit amet urna venenatis, a fringilla augue facilisis.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel dolor in sapien interdum efficitur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies, purus sed convallis malesuada, felis felis luctus augue, non pretium neque ligula non nisi.",
     ],
     codeBreakDown: [
       {
         codeSnippet: `
-        interface ISkewedContainer<T> {
-          children: T ;
-          canSelectMultiple?: boolean;
-          isActiveSlot?: boolean;
-          isChildImage: boolean;
-          onClick?: (scene: Scene) => void;
-        }
-        
-        const SkewedContainer = ({
-          children,
-          onClick,
-          canSelectMultiple,
-          isActiveSlot,
-          isChildImage,
-        }: ISkewedContainer) => {
-          const [isActive, setisActive] = useState(isActiveSlot);
-          const { sceneRef } = useContext(AppContext);
-        
-          const selectSlot = () => {
-            canSelectMultiple && setisActive(!isActive);
-            onClick && onClick(sceneRef);
+          interface ISkewedContainer<T> {
+            children: T ;
+            canSelectMultiple?: boolean;
+            isActiveSlot?: boolean;
+            isChildImage: boolean;
+            onClick?: (scene: Scene) => void;
+          }
+          
+          const SkewedContainer = ({
+            children,
+            onClick,
+            canSelectMultiple,
+            isActiveSlot,
+            isChildImage,
+          }: ISkewedContainer) => {
+            const [isActive, setisActive] = useState(isActiveSlot);
+            const { sceneRef } = useContext(AppContext);
+          
+            const selectSlot = () => {
+              canSelectMultiple && setisActive(!isActive);
+              onClick && onClick(sceneRef);
+            };
+          
+            return (
+              <Wrapper isActive={isActiveSlot} onClick={selectSlot}>
+                <InnerWrapper>
+                  {isChildImage ? <Image src={children} /> : children}
+                </InnerWrapper>
+              </Wrapper>
+            );
           };
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum velit quis nisi viverra, at interdum lectus faucibus.",
+      },
+      {
+        codeSnippet: `
+          const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+            x.set(-(((activeSlide + 1) * FULL_WIDTH) / SLIDE_COUNT));
+            setActiveSlide((activeSlide) =>
+              activeSlide < SLIDE_COUNT - 1 ? activeSlide + 1 : activeSlide
+            );
         
-          return (
-            <Wrapper isActive={isActiveSlot} onClick={selectSlot}>
-              <InnerWrapper>
-                {isChildImage ? <Image src={children} /> : children}
-              </InnerWrapper>
-            </Wrapper>
-          );
-        };
+            !isNavigationActive && setIsFactionSearchVisible(false);
+          };
         `,
-        text: "The component highlighted below is a highly adaptable one, capable of changing it appearance, and its behaviour based on props.",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum purus sit amet urna venenatis, a fringilla augue facilisis.",
       },
       {
         codeSnippet: `
-        const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
-          x.set(-(((activeSlide + 1) * FULL_WIDTH) / SLIDE_COUNT));
-          setActiveSlide((activeSlide) =>
-            activeSlide < SLIDE_COUNT - 1 ? activeSlide + 1 : activeSlide
-          );
-      
-          !isNavigationActive && setIsFactionSearchVisible(false);
-        };
+          createSprite = (spriteMaterial: THREE.SpriteMaterial) => {
+            const sprite = new THREE.Sprite(spriteMaterial);
+            sprite.scale.set(0.5, 0.5, 0.5);
+            sprite.position.set(
+              this.getRandomNumber(-20, 20),
+              this.getRandomNumber(-10, 10),
+              this.getRandomNumber(-10, 10)
+            );
+        
+            this.scene.add(sprite);
+        
+            return sprite;
+          };
         `,
-        text: "Main logic responsible for calculating the transformation of the <span>custom slider</span>. The numerical constants avoids the usage of magic numbers.",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel dolor in sapien interdum efficitur.",
       },
       {
         codeSnippet: `
-        createSprite = (spriteMaterial: THREE.SpriteMaterial) => {
-          const sprite = new THREE.Sprite(spriteMaterial);
-          sprite.scale.set(0.5, 0.5, 0.5);
-          sprite.position.set(
-            this.getRandomNumber(-20, 20),
-            this.getRandomNumber(-10, 10),
-            this.getRandomNumber(-10, 10)
-          );
+          loadModels = () => {
+            const planets = ["alien", "serenity", "tree", "beta"];
       
-          this.scene.add(sprite);
-      
-          return sprite;
-        };
-        `,
-        text: "Sprites are what enable us to use 2D images in the 3D world. The method here uses the Sprite method from THREE base class to create sprites. And it randomly positions them to the scene.",
-      },
-      {
-        codeSnippet: `
-        loadModels = () => {
-          const planets = ["alien", "serenity", "tree", "beta"];
-    
-          const loader = new GLTFLoader();
-      
-          const planetLoadMap = planets.map((planet, i) => {
-            return new Promise((resolve, reject) => {
-              loader.load("/assets/planets/{planet}.glb", (scene) => {
-                const planetGroup = this.world.clone();
-                planetGroup.userData.planetName = planet;
-                planetGroup.position.set(0, 0, 0);
-      
-                (planetGroup as any).isPlanet = true;
-      
-                scene.scene.traverse((item) => {
-                  item.scale.set(1, 1, 1);
-                  item.position.set(0, 0, 0);
+            const loader = new GLTFLoader();
+        
+            const planetLoadMap = planets.map((planet, i) => {
+              return new Promise((resolve, reject) => {
+                loader.load("/assets/planets/{planet}.glb", (scene) => {
+                  const planetGroup = this.world.clone();
+                  planetGroup.userData.planetName = planet;
+                  planetGroup.position.set(0, 0, 0);
+        
+                  (planetGroup as any).isPlanet = true;
+        
+                  scene.scene.traverse((item) => {
+                    item.scale.set(1, 1, 1);
+                    item.position.set(0, 0, 0);
+                  });
+        
+                  planetGroup.add(scene.scene);
+                  this.planets.push(planetGroup);
+                  this.scene.add(planetGroup);
+                  resolve(scene.scene);
                 });
-      
-                planetGroup.add(scene.scene);
-                this.planets.push(planetGroup);
-                this.scene.add(planetGroup);
-                resolve(scene.scene);
               });
             });
-          });
-      
-          return Promise.all(planetLoadMap);
-        };  
+        
+            return Promise.all(planetLoadMap);
+          };  
         `,
-        text: "Function below belongs to the class that renders the 3D Scene. It loads modals in an <span>asynchronous</span> way to ensure that the app is not accessible to the user before all necessary data has loaded.",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies, purus sed convallis malesuada, felis felis luctus augue, non pretium neque ligula non nisi.",
       },
       {
         codeSnippet: `
-        <PlanetDetailRow data={{ title: "Planet Code", info: "Banu" }} />
+          <PlanetDetailRow data={{ title: "Planet Code", info: "Banu" }} />
         `,
-        text: "Yet another example of calling a modular component with props.",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum purus sit amet urna venenatis, a fringilla augue facilisis.",
       },
       {
         codeSnippet: `
-        export const SliderInnerWrapper = styled(motion.div).attrs({
-          transition: {
-            ease: "circInOut",
-            duration: 1,
-          },
-        })<ISlideCount>(
-          ({ slide }) => css"
-            width: ${`slide * 100%`};
-            height: 100%;
-            pointer-events: none;
-          "
-        );
-
-        //No animation config is being passed when calling the component.
-        <SliderInnerWrapper slide={slide}></SliderInnerWrapper>
+          export const SliderInnerWrapper = styled(motion.div).attrs({
+            transition: {
+              ease: "circInOut",
+              duration: 1,
+            },
+          })<ISlideCount>(
+            ({ slide }) => css"
+              width: ${`slide * 100%`};
+              height: 100%;
+              pointer-events: none;
+            "
+          );
+  
+          <SliderInnerWrapper slide={slide}></SliderInnerWrapper>
         `,
-        text: "Below showcases how <span>styled-components and framer-motion</span> can be used together to make sure that our component reads cleaner.",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum velit quis nisi viverra, at interdum lectus faucibus.",
       },
     ],
   },
 
   {
     rectPosition: { top: "-35%", left: "50%" },
-    projectName: "Session Auth",
+    projectName: "Aut",
     mediaPath: "sessionauth",
     date: "Dec 2023",
     projectType: "Backend",
-    liveLink:
-      "https://auth-with-session.in3a4agovd8hi.eu-central-1.cs.amazonlightsail.com/",
-    repoLink: "https://github.com/soberbat/auth-service",
+    liveLink: "#",
+    repoLink: "#",
     techStack: ["Node.js"],
     deployment: ["Terraform", "AWS Lightsail", "AWS RDS Postgres"],
-    shortDesc:
-      "A cookie based authentication API featuring Redis Cache and database interactions",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "The demo is developed using <span>Express.js following MVC pattern</span>. It demonstrates how session authentication works on server side, with cookies. The cookies are stored using Redis Cache.",
-      "RDS Postgres is used for database to save user data to the users table. And AWS Lightsail container deployment is used for deploying the docker image. Terraform is used to provision the infrastructure.",
-      "It features <span>SQL command execution</span> for database interactions for data retrieval & manipulation.",
-      "The code demonstrates clear and readable handling of multiple routes.",
-      "Read the API documentation on repository README for testing.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum velit quis nisi viverra, at interdum lectus faucibus.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum purus sit amet urna venenatis, a fringilla augue facilisis.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel dolor in sapien interdum efficitur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies, purus sed convallis malesuada, felis felis luctus augue, non pretium neque ligula non nisi.",
     ],
     codeBreakDown: [
       {
         codeSnippet: `
           const mysql = require("mysql2");
           require("dotenv").config();
-
+  
           const pool = mysql.createPool({
             host: process.env.DB_HOSTNAME,
             port: process.env.DB_PORT,
@@ -1128,42 +1113,41 @@ export default [
             connectionLimit: 10,
             queueLimit: 0,
           });
-
+  
           module.exports = pool.promise();
-      `,
-        text: "Below sets up a <span>MySQL connection pool</span>. It configures the pool with environment variables. It exports the pool instance for use across the application.",
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum velit quis nisi viverra, at interdum lectus faucibus.",
       },
       {
         codeSnippet: `
-      checkIfUserExists: async function (username, password) {
-        try {
-          const [response] = await db.execute(sql.checkIfUserExist, [username]);
-          const userExist = response.length >= 1;
-    
-          if (!userExist) {
-            return { message: sql.userDoesntExist, isSuccesfull: false };
-          }
-    
-          const userData = response[0];
-          const isPasswordCorrect = module.exports.checkPassword(
-            userData,
-            password
-          );
-    
-          return {
-            isSuccesfull: isPasswordCorrect,
-            message: isPasswordCorrect ? sql.success : sql.wrongPassword,
-          };
-        } catch (error) {
-          console.log(error.sqlMessage);
-        }
-      },
-      `,
-        text: "This code snippet checks for the user's existence in the database using the pre-configured connection pool. It executes a <span>SQL query</span> from a config file to verify the user's existence.",
-      },
-      {
-        codeSnippet: `
+        checkIfUserExists: async function (username, password) {
+          try {
+            const [response] = await db.execute(sql.checkIfUserExist, [username]);
+            const userExist = response.length >= 1;
       
+            if (!userExist) {
+              return { message: sql.userDoesntExist, isSuccesfull: false };
+            }
+      
+            const userData = response[0];
+            const isPasswordCorrect = module.exports.checkPassword(
+              userData,
+              password
+            );
+      
+            return {
+              isSuccesfull: isPasswordCorrect,
+              message: isPasswordCorrect ? sql.success : sql.wrongPassword,
+            };
+          } catch (error) {
+            console.log(error.sqlMessage);
+          }
+        },
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum purus sit amet urna venenatis, a fringilla augue facilisis.",
+      },
+      {
+        codeSnippet: `
         resource "aws_lightsail_container_service" "auth_with_session" {
           name  = "auth-with-session"
           power = "nano"
@@ -1171,9 +1155,8 @@ export default [
           tags = {
             version = "1.0.0"
           }
-
         }
-
+  
         resource "aws_lightsail_container_service_deployment_version" "session_auth_deployment" {
           container {
             container_name = "auth-with-session"
@@ -1181,14 +1164,12 @@ export default [
             ports = {
               3001 = "HTTP"
             }
-
-            # environment = {}
           }
-
+  
           public_endpoint {
             container_name = "auth-with-session"
             container_port = 3001
-
+  
             health_check {
               healthy_threshold   = 2
               unhealthy_threshold = 2
@@ -1200,155 +1181,165 @@ export default [
           }
           service_name = aws_lightsail_container_service.auth_with_session.name
         }
-      `,
-        text: "Terraform in action. It saves quite a lot of time and it is pretty straightforward once you get comfortable.",
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies, purus sed convallis malesuada, felis felis luctus augue, non pretium neque ligula non nisi.",
       },
       {
         codeSnippet: ` 
-      const PORT = process.env.PORT;
-
-      const { corsOptions, sessionOptions } = require("./config");
-      const cookieParser = require("cookie-parser");
-      const session = require("express-session");
-      const bodyParser = require("body-parser");
-      const express = require("express");
-      const cors = require("cors");
-
-      const dashboardController = require("./controllers/dashboard.controller");
-      const logoutController = require("./controllers/logout.controller");
-      const signupController = require("./controllers/signup.controller");
-      const loginController = require("./controllers/login.controller");
-      const rootController = require("./controllers/root.controller");
-
-      const app = express();
-
-      app.use(cors(corsOptions));
-      app.use(cookieParser());
-      app.use(bodyParser.json());
-      app.use(bodyParser.urlencoded({ extended: true }));
-
-      app.enable("trust proxy");
-      app.use(session(sessionOptions));
-
-      app.get("/", rootController);
-      app.get("/dashboard", dashboardController);
-      app.post("/signup", signupController);
-      app.post("/logout", logoutController);
-      app.post("/login", loginController);
-
-      app.listen(PORT, () => console.log(---- App running on {PORT}));
-      `,
-        text: "Below sets up an <span>HTTP server with middlewares & defines multiple routes</span>, each handled by their controllers.",
+        const PORT = process.env.PORT;
+  
+        const { corsOptions, sessionOptions } = require("./config");
+        const cookieParser = require("cookie-parser");
+        const session = require("express-session");
+        const bodyParser = require("body-parser");
+        const express = require("express");
+        const cors = require("cors");
+  
+        const dashboardController = require("./controllers/dashboard.controller");
+        const logoutController = require("./controllers/logout.controller");
+        const signupController = require("./controllers/signup.controller");
+        const loginController = require("./controllers/login.controller");
+        const rootController = require("./controllers/root.controller");
+  
+        const app = express();
+  
+        app.use(cors(corsOptions));
+        app.use(cookieParser());
+        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({ extended: true }));
+  
+        app.enable("trust proxy");
+        app.use(session(sessionOptions));
+  
+        app.get("/", rootController);
+        app.get("/dashboard", dashboardController);
+        app.post("/signup", signupController);
+        app.post("/logout", logoutController);
+        app.post("/login", loginController);
+  
+        app.listen(PORT, () => console.log(---- App running on {PORT}));
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel dolor in sapien interdum efficitur.",
+      },
+      {
+        codeSnippet: ` 
+        export const App = ({ children }) => {
+          const currentPage = usePageContext();
+  
+          return (
+            <div>
+              <Navbar currentPage={currentPage} />
+              <Main>{children}</Main>
+              <Footer />
+            </div>
+          );
+        };
+        `,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum velit quis nisi viverra, at interdum lectus faucibus.",
       },
     ],
   },
 
   {
     rectPosition: { top: "100%", left: "60%" },
-    projectName: "Task Manager Backend",
+    projectName: "Sinc",
     date: "Oct 2023",
     projectType: "Backend",
     mediaPath: "taskerapi",
-    liveLink: "https://backend.taskermanager.site",
+    liveLink: "#",
     techStack: ["Nest.js"],
     deployment: ["Google Cloud Run", "Docker", "Github Actions"],
-    repoLink: "https://github.com/soberbat/task-manager",
-    shortDesc: "Monolithic API written with Nest.js",
+    repoLink: "#",
+    shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "The API for the task manager app that is written using Nest.js, Nest CLI and Prisma as the ORM. It performs CRUD operations an a MySQL</span> database which includes several number of <span>tables with one-to-one, many-to-many, and one-to-many relationships.</span> It is what makes us enable to create teams, users, tasks and projects.",
-      "It uses Redis as a cookie storage to save user session for authentication. The frontend reads it from the middleware function to decide whether to show protected routes or not.",
-      "The API endpoints are <span>documented using Swagger UI</span> for easy exploration and testing. ",
-      "The app is fully <span>automated with Github Actions</span>. Overall, application showcases modern development practices and integration with industry standart tools also features integrations with Google Cloud Products.",
+      "The API for the task manager app that is written using Nest.js, Nest CLI, and Prisma as the ORM. It performs CRUD operations on a MySQL database which includes several tables with one-to-one, many-to-many, and one-to-many relationships. It enables creating teams, users, tasks, and projects.",
+      "It uses Redis as cookie storage to save user sessions for authentication. The frontend reads it from the middleware function to decide whether to show protected routes or not.",
+      "The API endpoints are documented using Swagger UI for easy exploration and testing.",
+      "The app is fully automated with Github Actions. Overall, the application showcases modern development practices and integration with industry-standard tools, including integrations with Google Cloud Products.",
     ],
     codeBreakDown: [
       {
         codeSnippet: `
-      
-      model EmployeeOnTeams {
-        teamId     Int
-        employeeId Int
-        team       Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
-        employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-        @@id([teamId, employeeId])
-      }
-
-      model Project {
-        id          Int       @id @default(autoincrement())
-        name        String
-        description String?
-        tasks       Task[]
-        teamId      Int
-        employeeId  Int?
-        team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
-        employee    Employee? @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-      }
-      `,
-
-        text: "<span>Prisma schema definitions</span> for tables. The EmployeeOnTeams table establishes a many-to-many relationship between teams and employees. The Project table includes fields for name, description, tasks, and references to Team and Employee. Relationships are established using the @relation directive.",
+        model EmployeeOnTeams {
+          teamId     Int
+          employeeId Int
+          team       Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+          employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  
+          @@id([teamId, employeeId])
+        }
+  
+        model Project {
+          id          Int       @id @default(autoincrement())
+          name        String
+          description String?
+          tasks       Task[]
+          teamId      Int
+          employeeId  Int?
+          team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
+          employee    Employee? @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+        }
+        `,
+        text: "Prisma schema definitions for tables. The EmployeeOnTeams table establishes a many-to-many relationship between teams and employees. The Project table includes fields for name, description, tasks, and references to Team and Employee. Relationships are established using the @relation directive.",
       },
       {
         codeSnippet: `
-      assignTask(id: number, taskId: number) {
-        return this.databaseService.employee.update({
-          where: { id },
-          data: { tasks: { connect: { id: taskId } } }
-        })
-      }
-      `,
-
-        text: "Function below showcases how easy it is to communicate with the database with <span>Prisma</span>. It offers very familiar syntax for interacting with the data modal by reducing the boilerplate code compared to traditional SQL queries.",
+        assignTask(id: number, taskId: number) {
+          return this.databaseService.employee.update({
+            where: { id },
+            data: { tasks: { connect: { id: taskId } } }
+          })
+        }
+        `,
+        text: "Function below showcases how easy it is to communicate with the database using Prisma. It offers a familiar syntax for interacting with the data model by reducing the boilerplate code compared to traditional SQL queries.",
       },
       {
         codeSnippet: `
-            @Patch('/update')
-            update(
-              @Body() updateEmployeeDto: Prisma.EmployeeUpdateInput,
-              @Req() request: Request
-            ) {
-              const userId = request.session.userId
-              return this.employeeService.update(userId, updateEmployeeDto)
-            }
-      `,
-        text: "One of the controllers for the Employee Table. When a request is being made, it extracts the userId from the session and updates only the related user.",
+        @Patch('/update')
+        update(
+          @Body() updateEmployeeDto: Prisma.EmployeeUpdateInput,
+          @Req() request: Request
+        ) {
+          const userId = request.session.userId
+          return this.employeeService.update(userId, updateEmployeeDto)
+        }
+        `,
+        text: "One of the controllers for the Employee Table. When a request is made, it extracts the userId from the session and updates only the related user.",
       },
       {
         codeSnippet: `
-      async signin({ email, password }: Partial<Prisma.EmployeeCreateInput>) {
-        const user = await this.databaseService.employee.findUnique({
-          where: { email, password },
-          include: { teams: { include: { team: true } } }
-        })
-    
-        return user ? { userId: user.id, teamId: user.teams[0].teamId } : false
-      }
-    }
-      `,
-
-        text: "The service that looks up for the user on the database and returns user to the controller. Complex database operations is much more simplified with Prisma.",
+        async signin({ email, password }: Partial<Prisma.EmployeeCreateInput>) {
+          const user = await this.databaseService.employee.findUnique({
+            where: { email, password },
+            include: { teams: { include: { team: true } } }
+          })
+  
+          return user ? { userId: user.id, teamId: user.teams[0].teamId } : false
+        }
+        `,
+        text: "The service that looks up the user in the database and returns the user to the controller. Complex database operations are simplified with Prisma.",
       },
       {
         codeSnippet: `
         - name: Build and Push
-        env:
-          GCLOUD_PROJECT_ID: {{ secrets.GCLOUD_PROJECT_ID }}
-          REPO: {{ secrets.REPO }}
-        run: |
-          gcloud auth configure-docker europe-west1-docker.pkg.dev
-          docker build -t europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp:latest .
-          docker push europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp:latest
+          env:
+            GCLOUD_PROJECT_ID: {{ secrets.GCLOUD_PROJECT_ID }}
+            REPO: {{ secrets.REPO }}
+          run: |
+            gcloud auth configure-docker europe-west1-docker.pkg.dev
+            docker build -t europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp:latest .
+            docker push europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp:latest
   
-      - name: Deploy
-        env:
-          GCLOUD_PROJECT_ID: {{ secrets.GCLOUD_PROJECT_ID }}
-          REPO: {{ secrets.REPO }}
-        run: |
-          gcloud run deploy task-manager \
-            --region europe-west1 \
-            --image=europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp \
-            --allow-unauthenticated
-      `,
-
+        - name: Deploy
+          env:
+            GCLOUD_PROJECT_ID: {{ secrets.GCLOUD_PROJECT_ID }}
+            REPO: {{ secrets.REPO }}
+          run: |
+            gcloud run deploy task-manager \
+              --region europe-west1 \
+              --image=europe-west1-docker.pkg.dev/$GCLOUD_PROJECT_ID/$REPO/nestapp \
+              --allow-unauthenticated
+        `,
         text: "A part of the workflow file that automates the application with multiple steps. It uses repository secrets for safety.",
       },
     ],

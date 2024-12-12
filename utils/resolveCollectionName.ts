@@ -3,8 +3,8 @@ export const resolveCollectionName = (
   yPercent: number,
   handleCollectionNameChange: (category: string) => void
 ) => {
-  xPercent <= 60 && handleCollectionNameChange("FRONTEND");
-  xPercent >= 60 && handleCollectionNameChange("BACKEND");
+  xPercent <= 60 && handleCollectionNameChange("Design");
+  xPercent >= 60 && handleCollectionNameChange("Development");
 };
 
 export const resolveCollectionNameMobile = (
@@ -15,9 +15,9 @@ export const resolveCollectionNameMobile = (
 ) => {
   const { width, height } = dimensions;
   if (xTransform < -width / 2) {
-    changeCollectionName("BACKEND");
+    changeCollectionName("Design");
     return;
   } else {
-    changeCollectionName("FRONTEND");
+    changeCollectionName("Development");
   }
 };

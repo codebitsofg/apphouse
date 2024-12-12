@@ -18,3 +18,7 @@ export const LogoContainer = styled.div`
     height: 7%;
   `)}
 `;
+
+export const Logo = styled.img`
+  width: 150px;
+`;

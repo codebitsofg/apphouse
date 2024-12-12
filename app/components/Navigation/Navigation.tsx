@@ -64,20 +64,17 @@ const Navigation = ({
 
               <S.Details>
                 <S.MailContainer>
-                  <S.MiniItem>beratgenc.dev@gmail.com</S.MiniItem>
-                  <S.MiniItem>+905530460739</S.MiniItem>
+                  <S.MiniItem>contact@apphouse.com</S.MiniItem>
+                  <S.MiniItem>+80 124 543956</S.MiniItem>
                 </S.MailContainer>
                 <S.MailContainer>
-                  <Link href={"https://www.linkedin.com/in/gencberat"}>
+                  <Link href={"#"}>
                     <S.MiniItem>LINKEDIN</S.MiniItem>
                   </Link>
-                  <Link
-                    target="_blank"
-                    href="https://medium.com/@beratgenc.dev"
-                  >
+                  <Link target="_blank" href="#">
                     <S.MiniItem>MEDIUM</S.MiniItem>
                   </Link>
-                  <Link target="_blank" href="https://github.com/soberbat">
+                  <Link target="_blank" href="#">
                     <S.MiniItem>GITHUB</S.MiniItem>
                   </Link>
                 </S.MailContainer>

@@ -151,7 +151,7 @@ const ClassicView = () => {
         </Footer>
 
         <BeratGencText>
-          Berat Genç 2024 | Made with Next.js, Lenis Smooth Scroll & Framer
+          App House 2024 | Made with Next.js, Lenis Smooth Scroll & Framer
           Motion
         </BeratGencText>
       </InnerContainer>

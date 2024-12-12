@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { AnimatePresence, AnimationDefinition } from "framer-motion";
-import { Container, LogoContainer } from "./styled";
+import { Container, Logo, LogoContainer } from "./styled";
 import Gallery from "./components/Gallery/Gallery";
 import ProjectDetail from "./components/ProjectDetail/ProjectDetail";
 import Navigation from "./components/Navigation/Navigation";
@@ -63,15 +63,11 @@ export default function Home() {
   );
 
   const onAnimationComplete = useCallback((e: AnimationDefinition) => {
-    console.log("completed");
     setisAnimating(false);
   }, []);
 
-  console.log({ isAnimating });
   return (
     <>
-      <Analytics />
-
       <AnimatePresence>
         {!mode && (
           <LoadingPage
@@ -94,7 +90,7 @@ export default function Home() {
 
       {mode && (
         <LogoContainer>
-          <BeratGencLogo isDark={mode === Mode.CLASSIC} />
+          <Logo src="/logo.svg" alt="logo" />
         </LogoContainer>
       )}
 
