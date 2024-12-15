@@ -1252,10 +1252,10 @@ export default [
     repoLink: "#",
     shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     mainTakeAway: [
-      "The API for the task manager app that is written using Nest.js, Nest CLI, and Prisma as the ORM. It performs CRUD operations on a MySQL database which includes several tables with one-to-one, many-to-many, and one-to-many relationships. It enables creating teams, users, tasks, and projects.",
-      "It uses Redis as cookie storage to save user sessions for authentication. The frontend reads it from the middleware function to decide whether to show protected routes or not.",
-      "The API endpoints are documented using Swagger UI for easy exploration and testing.",
-      "The app is fully automated with Github Actions. Overall, the application showcases modern development practices and integration with industry-standard tools, including integrations with Google Cloud Products.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eros ut eros posuere hendrerit.",
+      "Aenean vel arcu nec turpis aliquam dictum. Donec suscipit ligula ut ante consequat, ut varius urna elementum.",
+      "Curabitur eget leo nec mi fermentum luctus. Ut posuere est eget turpis aliquet, ut vulputate lorem auctor.",
+      "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur non est vitae augue tempor.",
     ],
     codeBreakDown: [
       {
@@ -1280,7 +1280,7 @@ export default [
           employee    Employee? @relation(fields: [employeeId], references: [id], onDelete: Cascade)
         }
         `,
-        text: "Prisma schema definitions for tables. The EmployeeOnTeams table establishes a many-to-many relationship between teams and employees. The Project table includes fields for name, description, tasks, and references to Team and Employee. Relationships are established using the @relation directive.",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eros ut eros posuere hendrerit.",
       },
       {
         codeSnippet: `
@@ -1291,7 +1291,7 @@ export default [
           })
         }
         `,
-        text: "Function below showcases how easy it is to communicate with the database using Prisma. It offers a familiar syntax for interacting with the data model by reducing the boilerplate code compared to traditional SQL queries.",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eros ut eros posuere hendrerit.",
       },
       {
         codeSnippet: `
@@ -1304,7 +1304,7 @@ export default [
           return this.employeeService.update(userId, updateEmployeeDto)
         }
         `,
-        text: "One of the controllers for the Employee Table. When a request is made, it extracts the userId from the session and updates only the related user.",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eros ut eros posuere hendrerit.",
       },
       {
         codeSnippet: `
@@ -1317,7 +1317,7 @@ export default [
           return user ? { userId: user.id, teamId: user.teams[0].teamId } : false
         }
         `,
-        text: "The service that looks up the user in the database and returns the user to the controller. Complex database operations are simplified with Prisma.",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eros ut eros posuere hendrerit.",
       },
       {
         codeSnippet: `
