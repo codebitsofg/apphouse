@@ -42,7 +42,7 @@ export default function PrivacyPolicy() {
           <SectionTitle>Introduction</SectionTitle>
           <Paragraph>
             Welcome to MedicEnglish – Learn Medical English
-            (&ldquo;MedicEnglish," &ldquo;we,&rdquo; &ldquo;us,&rdquo; or
+            (&ldquo;MedicEnglish,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or
             &ldquo;our&rdquo;). This Privacy Policy explains how we collect,
             use, share, and protect personal information when you use our mobile
             application (&ldquo;App&rdquo;). By using our App, you consent to
@@ -110,7 +110,7 @@ export default function PrivacyPolicy() {
           <List>
             <ListItem>
               <strong>App Registration:</strong> When you sign up for an account
-              through the App's dedicated sign-up screen.
+              through the App&rsquo;s dedicated sign-up screen.
             </ListItem>
             <ListItem>
               <strong>Automatic Collection:</strong> Certain data is collected
@@ -194,7 +194,7 @@ export default function PrivacyPolicy() {
             </ListItem>
             <ListItem>
               <strong>Legitimate Interests:</strong> Collecting system data
-              (e.g., device identifiers, usage data) to improve our App's
+              (e.g., device identifiers, usage data) to improve our App&rsquo;s
               functionality and ensure security.
             </ListItem>
             <ListItem>
@@ -212,10 +212,11 @@ export default function PrivacyPolicy() {
           <SectionTitle>7. Data Retention</SectionTitle>
           <Paragraph>
             We retain user data for as long as it is necessary to provide the
-            App's services and features. Currently, we do not have an automated
-            data deletion mechanism; however, users can request deletion of
-            their account as described in Section 8. We review and update our
-            retention practices to ensure compliance with relevant regulations.
+            App&rsquo;s services and features. Currently, we do not have an
+            automated data deletion mechanism; however, users can request
+            deletion of their account as described in Section 8. We review and
+            update our retention practices to ensure compliance with relevant
+            regulations.
           </Paragraph>
         </Section>
 
@@ -228,7 +229,7 @@ export default function PrivacyPolicy() {
             </ListItem>
             <ListItem>
               <strong>Deletion:</strong> You can request account deletion by
-              emailing us at support@medicenglish.com or through the App's
+              emailing us at support@medicenglish.com or through the App&rsquo;s
               support/request form.
             </ListItem>
             <ListItem>
@@ -257,7 +258,7 @@ export default function PrivacyPolicy() {
         </Section>
 
         <Section>
-          <SectionTitle>10. Children's Privacy</SectionTitle>
+          <SectionTitle>10. Children&rsquo;s Privacy</SectionTitle>
           <Paragraph>
             MedicEnglish is designed for adult medical professionals and is not
             intended for individuals under the age of 18. We do not knowingly
