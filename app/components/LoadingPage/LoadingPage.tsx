@@ -18,6 +18,7 @@ import {
 import { Mode } from "@/utils/types/app.types";
 import { AnimatePresence, useAnimationControls } from "framer-motion";
 import useIsMobile from "@/app/hooks/useIsMobile";
+import Footer from "../Footer/Footer";
 
 interface LoadingPageProps {
   progress: number;
@@ -70,7 +71,10 @@ const LoadingPage = ({
                         getRender(i) && (
                           <ModeOption
                             key={i}
-                            onClick={() => handleOptionClick(i + 1)}
+                            onClick={() => {
+                              // onAboutMeClick();
+                              // handleOptionClick(i + 1);
+                            }}
                           >
                             {mode}
                           </ModeOption>
@@ -78,6 +82,8 @@ const LoadingPage = ({
                     )}
                   </InnerOptionContainer>
                 </OptionContainer>
+
+                <Footer />
               </>
             ) : (
               <SelectModeText key={"a"}>

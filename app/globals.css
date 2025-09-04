@@ -54,3 +54,11 @@ lenis {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+/* Allow scrolling on specific pages */
+html.allow-scroll,
+body.allow-scroll {
+  height: auto !important;
+  overflow-y: auto !important;
+  background: #ffffff !important;
+}
