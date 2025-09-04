@@ -41,11 +41,12 @@ export default function PrivacyPolicy() {
         <Section>
           <SectionTitle>Introduction</SectionTitle>
           <Paragraph>
-            Welcome to MedicEnglish – Learn Medical English ("MedicEnglish,"
-            "we," "us," or "our"). This Privacy Policy explains how we collect,
+            Welcome to MedicEnglish – Learn Medical English
+            (&ldquo;MedicEnglish," &ldquo;we,&rdquo; &ldquo;us,&rdquo; or
+            &ldquo;our&rdquo;). This Privacy Policy explains how we collect,
             use, share, and protect personal information when you use our mobile
-            application ("App"). By using our App, you consent to the practices
-            described in this Privacy Policy.
+            application (&ldquo;App&rdquo;). By using our App, you consent to
+            the practices described in this Privacy Policy.
           </Paragraph>
         </Section>
 

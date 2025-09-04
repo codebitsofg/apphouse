@@ -45,14 +45,16 @@ export default function TermsAndConditions() {
         <Section>
           <SectionTitle>1. Introduction</SectionTitle>
           <Paragraph>
-            Welcome to MedicEnglish – Learn Medical English (the "App"). These
-            Terms and Conditions ("Terms") govern your access to and use of our
-            Service, including (i) the MedicEnglish mobile application, (ii) any
-            related websites and sub-domains ("Site"), and (iii) any related
-            content, features, and offerings (collectively, the "Service"). By
-            downloading, installing, accessing, or using any part of the
-            Service, you ("User," "you," or "your") agree to be bound by these
-            Terms and our Privacy Policy (together, the "Agreement").
+            Welcome to MedicEnglish – Learn Medical English (the
+            &ldquo;App&rdquo;). These Terms and Conditions (&ldquo;Terms&rdquo;)
+            govern your access to and use of our Service, including (i) the
+            MedicEnglish mobile application, (ii) any related websites and
+            sub-domains (&ldquo;Site&rdquo;), and (iii) any related content,
+            features, and offerings (collectively, the &ldquo;Service&rdquo;).
+            By downloading, installing, accessing, or using any part of the
+            Service, you (&ldquo;User,&rdquo; &ldquo;you,&rdquo; or
+            &ldquo;your&rdquo;) agree to be bound by these Terms and our Privacy
+            Policy (together, the &ldquo;Agreement&rdquo;).
           </Paragraph>
           <Paragraph>
             <strong>
